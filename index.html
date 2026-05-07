@@ -223,21 +223,24 @@
       align-items: center;
     }
 
-   .avatar-ring {
-  width: 320px;
-  height: 320px;
+ .avatar-ring {
+  width: min(320px, 70vw); /* Se adapta mejor a móviles */
+  aspect-ratio: 1; /* Mantiene el círculo perfecto */
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #00d084;
   margin: auto;
   box-shadow: 0 0 35px rgba(0, 208, 132, 0.35);
+  display: block; /* Cambiado de grid a block para evitar zoom extra */
 }
 
 .avatar-ring img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Esto evita que la foto se estire */
-  object-position: center; /* Centra la cara si la foto es apaisada */
+  object-fit: cover;
+  /* 'center 20%' sube la imagen un poco para que no se vea aumentada 
+     en el pecho y se vea más tu cara y el fondo */
+  object-position: center 20%; 
 }
 
     .cards-3,
