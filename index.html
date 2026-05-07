@@ -223,28 +223,29 @@
       align-items: center;
     }
 
-    .avatar-ring {
-      width: min(330px, 72vw);
-      aspect-ratio: 1;
-      margin: 0 auto;
-      border-radius: 50%;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      background:
-        radial-gradient(circle at center, rgba(0, 208, 132, 0.05), transparent 58%),
-        rgba(5, 11, 22, 0.6);
-      box-shadow: inset 0 0 45px rgba(0,0,0,0.6), 0 30px 70px rgba(0,0,0,0.4);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
+   .avatar-ring {
+  width: min(330px, 72vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background:
+    radial-gradient(circle at center, rgba(0, 208, 132, 0.05), transparent 58%),
+    rgba(5, 11, 22, 0.6);
+  box-shadow: inset 0 0 45px rgba(0,0,0,0.6), 0 30px 70px rgba(0,0,0,0.4);
+  display: block; /* Cambiado de grid a block para la imagen */
+  overflow: hidden;
+  position: relative;
+}
 
-   .avatar-ring img {
+/* Esta es la parte nueva y crucial para que se vea la foto */
+.avatar-ring img {
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* Evita que la foto se estire */
-  object-position: top;   /* Asegura que se vea tu cara y no solo el pecho */
+  object-fit: cover;      /* Llena el círculo sin deformarse */
+  object-position: center 20%; /* Ajusta el encuadre para que no se corte la cabeza */
   display: block;
-    }
+}
 
     .cards-3,
     .cards-4 {
