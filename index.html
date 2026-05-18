@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio & CV - Carlos Blasco</title>
@@ -77,7 +76,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
     .slide-container {
       display: flex;
-      width: 1200vw;
+      width: 1800vw;
       height: 100vh;
       transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -225,25 +224,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       align-items: center;
     }
 
- .avatar-ring {
-  width: min(320px, 70vw); /* Se adapta mejor a móviles */
-  aspect-ratio: 1; /* Mantiene el círculo perfecto */
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #00d084;
-  margin: auto;
-  box-shadow: 0 0 35px rgba(0, 208, 132, 0.35);
-  display: block; /* Cambiado de grid a block para evitar zoom extra */
-}
+    .avatar-ring {
+      width: min(320px, 70vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #00d084;
+      margin: auto;
+      box-shadow: 0 0 35px rgba(0, 208, 132, 0.35);
+      display: block;
+    }
 
-.avatar-ring img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* 'center 20%' sube la imagen un poco para que no se vea aumentada 
-     en el pecho y se vea más tu cara y el fondo */
-  object-position: center 20%; 
-}
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
 
     .cards-3,
     .cards-4 {
@@ -296,6 +293,181 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       color: var(--muted-2);
       font-size: 0.92rem;
       line-height: 1.55;
+    }
+
+    .project-showcase {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .project-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .tech-tags span {
+      padding: 8px 11px;
+      border: 1px solid rgba(0, 208, 132, 0.32);
+      border-radius: 999px;
+      color: var(--primary-light);
+      background: rgba(0, 208, 132, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(180px, 0.72fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .screenshots.mobile-shots {
+      grid-template-columns: minmax(220px, 0.72fr) minmax(150px, 0.5fr);
+      justify-content: center;
+    }
+
+    .screenshots.landscape-shots {
+      grid-template-columns: minmax(320px, 1.2fr) minmax(190px, 0.72fr);
+    }
+
+    .screenshot-main,
+    .screenshot-thumb {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.9)),
+        radial-gradient(circle at 50% 0%, rgba(0, 208, 132, 0.12), transparent 42%);
+      box-shadow: 0 22px 58px rgba(0,0,0,0.28);
+    }
+
+    .screenshot-main {
+      height: min(58vh, 560px);
+      min-height: 430px;
+      border-radius: 26px;
+    }
+
+    .mobile-shots .screenshot-main {
+      width: min(100%, 340px);
+      height: min(64vh, 600px);
+      aspect-ratio: 9 / 16;
+      justify-self: center;
+      border-radius: 34px;
+    }
+
+    .landscape-shots .screenshot-main {
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 10;
+    }
+
+    .screenshot-column {
+      display: grid;
+      grid-auto-rows: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .screenshot-thumb {
+      height: 166px;
+      min-height: 0;
+      border-radius: 18px;
+    }
+
+    .mobile-shots .screenshot-thumb {
+      width: min(100%, 150px);
+      height: auto;
+      aspect-ratio: 9 / 16;
+      justify-self: center;
+      border-radius: 24px;
+    }
+
+    .landscape-shots .screenshot-thumb {
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .project-showcase.visual-focus {
+      grid-template-columns: minmax(260px, 0.62fr) minmax(520px, 1.38fr);
+      gap: 30px;
+    }
+
+    .project-showcase.visual-focus .project-copy {
+      gap: 14px;
+    }
+
+    .screenshots.wide-shots {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .wide-shots .screenshot-main {
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+    }
+
+    .wide-shots .screenshot-column {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .wide-shots .screenshot-thumb {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+    }
+
+    .screenshot-main img,
+    .screenshot-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      padding: 10px;
+    }
+
+    .mobile-shots img {
+      padding: 8px;
+    }
+
+    .screenshot-main img {
+      padding: 14px;
+    }
+
+    .wide-shots .screenshot-main img,
+    .wide-shots .screenshot-thumb img {
+      padding: 6px;
+    }
+
+    .shot-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 7px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 999px;
+      background: rgba(3, 7, 18, 0.74);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      backdrop-filter: blur(10px);
     }
 
     .timeline {
@@ -528,7 +700,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       left: 0;
       bottom: 0;
       height: 4px;
-      width: 8.33%;
+      width: 5.56%;
       background: linear-gradient(90deg, var(--primary), var(--accent));
       transition: width 0.4s ease;
       z-index: 30;
@@ -570,11 +742,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       .profile-grid,
       .impact-grid,
       .soft-grid,
+      .project-showcase,
+      .screenshots,
       .cards-3,
       .cards-4,
       .timeline,
       .contact-links {
         grid-template-columns: 1fr;
+      }
+
+      .screenshot-main {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 4 / 5;
+      }
+
+      .screenshot-thumb {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 10;
       }
 
       .timeline {
@@ -603,12 +789,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </head>
 <body>
 
-  <div class="slide-number" id="slideNumber">1 / 12</div>
+  <div class="slide-number" id="slideNumber">1 / 18</div>
   <div class="progress" id="progressBar"></div>
 
   <main class="slide-container" id="container">
 
-    <!-- 1. Portada -->
     <section class="slide">
       <div class="content center">
         <div class="eyebrow">FULL STACK DEVELOPER · JUNIOR PROFILE</div>
@@ -619,7 +804,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 2. Trayectoria -->
     <section class="slide">
       <div class="content center">
         <div class="mini-line"></div>
@@ -628,24 +812,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 3. Perfil profesional -->
     <section class="slide">
-  <div class="content">
-    <h2 class="section-title">Perfil profesional</h2>
-    <div class="profile-grid">
-      <div class="avatar-ring">
-        <img src="https://carlosdam90.github.io/Portafolio/img/carlos.png" alt="Carlos Blasco">
+      <div class="content">
+        <h2 class="section-title">Perfil profesional</h2>
+        <div class="profile-grid">
+          <div class="avatar-ring">
+            <img src="https://carlosdam90.github.io/Portafolio/img/carlos.png" alt="Carlos Blasco">
+          </div>
+          <div>
+            <p><strong class="green">Hola, soy Carlos.</strong> Me estoy especializando en el desarrollo de aplicaciones móviles, backend y soluciones web. Me gusta crear proyectos completos, desde la interfaz hasta la conexión con la base de datos.</p>
+            <br>
+            <p>Mi enfoque se basa en entender el problema, diseñar una solución clara y construir aplicaciones funcionales, mantenibles y con una presentación profesional.</p>
+          </div>
+        </div>
       </div>
-      <div>
-        <p><strong class="green">Hola, soy Carlos.</strong> Me estoy especializando en el desarrollo de aplicaciones móviles, backend y soluciones web. Me gusta crear proyectos completos, desde la interfaz hasta la conexión con la base de datos.</p>
-        <br>
-        <p>Mi enfoque se basa en entender el problema, diseñar una solución clara y construir aplicaciones funcionales, mantenibles y con una presentación profesional.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-    <!-- 4. Stack tecnológico -->
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Stack tecnológico core</h2>
@@ -669,7 +851,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 5. Timeline -->
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Trayectoria práctica</h2>
@@ -703,7 +884,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 6. Valor añadido -->
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Valor añadido</h2>
@@ -722,7 +902,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 7. Proyectos -->
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Proyectos destacados</h2>
@@ -763,7 +942,253 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 8. Lenguajes -->
+    <section class="slide">
+      <div class="content">
+        <h2 class="section-title">Baro en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">APP MOVIL · API REST · MYSQL</span>
+            <h3>Reserva de citas para barberías</h3>
+            <p>Baro muestra el flujo completo de una aplicación real: autenticación, listado de servicios, selección de cita, gestión de reservas y comunicación con backend propio.</p>
+            <p class="muted">Estas pantallas permiten revisar visualmente el producto y entender mejor la experiencia de usuario, no solo la parte técnica.</p>
+            <div class="tech-tags">
+              <span>.NET MAUI</span>
+              <span>ASP.NET Core</span>
+              <span>JWT</span>
+              <span>MySQL</span>
+              <span>Swagger</span>
+            </div>
+          </div>
+
+          <div class="screenshots mobile-shots">
+            <a class="screenshot-main" href="/Portafolio/img/baro/pantalla5.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="/Portafolio/img/baro/pantalla5.jpg" alt="Captura de Baro mostrando la pantalla de reservas">
+              <span class="shot-label">Reservas</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="/Portafolio/img/baro/pantalla1.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/baro/pantalla1.jpg" alt="Captura de Baro mostrando el inicio de sesión">
+                <span class="shot-label">Login</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/baro/pantalla6.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/baro/pantalla6.jpg" alt="Captura de Baro mostrando servicios de barbería">
+                <span class="shot-label">Servicios</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/baro/pantalla7.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/baro/pantalla7.jpg" alt="Captura de Swagger con endpoints de la API de Baro">
+                <span class="shot-label">API</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2 class="section-title">Parking Maps en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">MOBILE · MAPAS · GEOLOCALIZACION</span>
+            <h3>Publicación y consulta de plazas de aparcamiento</h3>
+            <p>Parking Maps enseña una aplicación móvil centrada en ubicación, visualización sobre mapa y publicación de plazas disponibles para otros usuarios.</p>
+            <p class="muted">Las capturas ayudan a revisar el flujo principal: mapa, detalle de plaza, formulario de publicación y vista de disponibilidad.</p>
+            <div class="tech-tags">
+              <span>Android</span>
+              <span>Kotlin</span>
+              <span>Maps</span>
+              <span>Geolocalización</span>
+            </div>
+          </div>
+
+          <div class="screenshots mobile-shots">
+            <a class="screenshot-main" href="/Portafolio/img/parking-maps/captura11.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="/Portafolio/img/parking-maps/captura11.jpg" alt="Captura de Parking Maps mostrando el mapa principal">
+              <span class="shot-label">Mapa</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="/Portafolio/img/parking-maps/captura10.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/parking-maps/captura10.jpg" alt="Captura de Parking Maps mostrando el detalle de una plaza">
+                <span class="shot-label">Detalle</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/parking-maps/publicar.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/parking-maps/publicar.png" alt="Captura de Parking Maps mostrando el formulario de publicación">
+                <span class="shot-label">Publicar</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/parking-maps/perfil.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/parking-maps/perfil.png" alt="Captura de Parking Maps mostrando perfil o gestión de plazas">
+                <span class="shot-label">Perfil</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2 class="section-title">Star Wars App en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">ANDROID · UI MOVIL · DATOS</span>
+            <h3>Gestión visual de personajes</h3>
+            <p>Proyecto Android enfocado en interfaz móvil, navegación, listado de personajes, detalle y persistencia de información.</p>
+            <p class="muted">Este bloque permite enseñar la app como producto navegable y no solo como ejercicio técnico.</p>
+            <div class="tech-tags">
+              <span>Android Studio</span>
+              <span>Java</span>
+              <span>SQLite</span>
+              <span>Layouts XML</span>
+            </div>
+          </div>
+
+          <div class="screenshots mobile-shots">
+            <a class="screenshot-main" href="/Portafolio/img/star-wars/starwars1.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="/Portafolio/img/star-wars/starwars1.jpg" alt="Captura de Star Wars App mostrando el listado de personajes">
+              <span class="shot-label">Listado</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="/Portafolio/img/star-wars/starwars2.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/star-wars/starwars2.jpg" alt="Captura de Star Wars App mostrando detalle de personaje">
+                <span class="shot-label">Detalle</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/star-wars/starwars3.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/star-wars/starwars3.jpg" alt="Captura de Star Wars App mostrando registro o edición">
+                <span class="shot-label">Registro</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/star-wars/busqueda.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/star-wars/busqueda.png" alt="Captura de Star Wars App mostrando búsqueda o filtros">
+                <span class="shot-label">Búsqueda</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2 class="section-title">Compraventa en capturas</h2>
+        <div class="project-showcase visual-focus">
+          <div class="project-copy">
+            <span class="eyebrow">WEB · MAQUETACION · NAVEGACION</span>
+            <h3>Compraventa de entradas</h3>
+            <p>Proyecto web orientado a construir una experiencia clara para publicar, consultar y revisar entradas disponibles.</p>
+            <p class="muted">Las capturas permiten valorar estructura, diseño, navegación y pantallas clave del flujo.</p>
+            <div class="tech-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Responsive</span>
+            </div>
+          </div>
+
+          <div class="screenshots landscape-shots wide-shots">
+            <a class="screenshot-main" href="/Portafolio/img/entradas/pantalla8.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="/Portafolio/img/entradas/pantalla8.jpg" alt="Captura del proyecto de compraventa de entradas mostrando la página principal">
+              <span class="shot-label">Home</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="/Portafolio/img/entradas/listado.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/entradas/listado.png" alt="Captura del listado de entradas">
+                <span class="shot-label">Listado</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/entradas/pantalla9.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/entradas/pantalla9.jpg" alt="Captura del detalle de una entrada">
+                <span class="shot-label">Detalle</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/entradas/formulario.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/entradas/formulario.png" alt="Captura del formulario de publicación de entradas">
+                <span class="shot-label">Formulario</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2 class="section-title">Unity Game en capturas</h2>
+        <div class="project-showcase visual-focus">
+          <div class="project-copy">
+            <span class="eyebrow">VIDEOJUEGO · ESCENAS · INTERACCION</span>
+            <h3>Primer acercamiento a desarrollo con Unity</h3>
+            <p>Proyecto pensado para practicar escenas, lógica de juego, interacción con objetos y comportamiento básico del jugador.</p>
+            <p class="muted">Aquí puedes mostrar tanto gameplay como elementos del editor para enseñar proceso y resultado.</p>
+            <div class="tech-tags">
+              <span>Unity</span>
+              <span>C#</span>
+              <span>Gameplay</span>
+              <span>Escenas</span>
+            </div>
+          </div>
+
+          <div class="screenshots landscape-shots wide-shots">
+            <a class="screenshot-main" href="/Portafolio/img/unity-game/goku.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="/Portafolio/img/unity-game/goku.jpg" alt="Captura de Unity Game mostrando gameplay">
+              <span class="shot-label">Gameplay</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="/Portafolio/img/unity-game/goku2.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/unity-game/goku2.png" alt="Captura de Unity Game mostrando menú">
+                <span class="shot-label">Menú</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/unity-game/escena.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/unity-game/escena.png" alt="Captura de Unity mostrando una escena del proyecto">
+                <span class="shot-label">Escena</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/unity-game/editor.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/unity-game/editor.png" alt="Captura del editor de Unity del proyecto">
+                <span class="shot-label">Editor</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <h2 class="section-title">Ideas SaaS en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">PRODUCTO · PROTOTIPO · ROADMAP</span>
+            <h3>Proyectos futuros y evolución de producto</h3>
+            <p>Espacio para enseñar mockups, prototipos, paneles o primeras pantallas de ideas SaaS orientadas a negocio y usuarios reales.</p>
+            <p class="muted">Si todavía no hay app final, puedes usar capturas de wireframes, diseños o documentación visual del concepto.</p>
+            <div class="tech-tags">
+              <span>SaaS</span>
+              <span>Mockups</span>
+              <span>Producto</span>
+              <span>Roadmap</span>
+            </div>
+          </div>
+
+          <div class="screenshots landscape-shots">
+            <a class="screenshot-main" href="/Portafolio/img/saas/dashboard.png" target="_blank" rel="noopener noreferrer">
+              <img src="/Portafolio/img/saas/dashboard.png" alt="Captura de idea SaaS mostrando dashboard o panel principal">
+              <span class="shot-label">Dashboard</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="/Portafolio/img/saas/mockup.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/saas/mockup.png" alt="Captura de idea SaaS mostrando mockup">
+                <span class="shot-label">Mockup</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/saas/flujo.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/saas/flujo.png" alt="Captura de idea SaaS mostrando flujo de usuario">
+                <span class="shot-label">Flujo</span>
+              </a>
+              <a class="screenshot-thumb" href="/Portafolio/img/saas/roadmap.png" target="_blank" rel="noopener noreferrer">
+                <img src="/Portafolio/img/saas/roadmap.png" alt="Captura de idea SaaS mostrando roadmap o planificación">
+                <span class="shot-label">Roadmap</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Dominio de lenguajes</h2>
@@ -798,7 +1223,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 9. Habilidades blandas -->
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Habilidades blandas</h2>
@@ -827,7 +1251,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 10. Frase -->
     <section class="slide">
       <div class="content quote">
         <div class="quote-mark">“</div>
@@ -836,7 +1259,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 11. Formación -->
     <section class="slide">
       <div class="content">
         <h2 class="section-title">Formación académica</h2>
@@ -857,59 +1279,41 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       </div>
     </section>
 
-    <!-- 12. Contacto -->
     <section class="slide">
       <div class="content center">
         <h2 class="gradient-title">¿Construimos algo juntos?</h2>
         <p>Estoy disponible para prácticas, proyectos junior y oportunidades donde pueda seguir creciendo junto a un equipo técnico.</p>
-<div class="contact-links">
+        <div class="contact-links">
+          <a class="link-pill" href="https://linkedin.com/in/carlos-blasco-dominguez-32771815a/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-linkedin"></i>
+            LinkedIn
+          </a>
 
-  <a class="link-pill"
-     href="https://linkedin.com/in/carlos-blasco-dominguez-32771815a/"
-     target="_blank"
-     rel="noopener noreferrer">
-    <i class="fa-brands fa-linkedin"></i>
-    LinkedIn
-  </a>
+          <a class="link-pill" href="https://github.com/CarlosDam90" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i>
+            GitHub
+          </a>
 
-  <a class="link-pill"
-     href="https://github.com/CarlosDam90"
-     target="_blank"
-     rel="noopener noreferrer">
-    <i class="fa-brands fa-github"></i>
-    GitHub
-  </a>
+          <a class="link-pill" href="mailto:carlos.blasco.dev@gmail.com">
+            <i class="fa-solid fa-envelope"></i>
+            carlos.blasco.dev@gmail.com
+          </a>
 
-  <a class="link-pill"
-     href="mailto:carlos.blasco.dev@gmail.com">
-    <i class="fa-solid fa-envelope"></i>
-    carlos.blasco.dev@gmail.com
-  </a>
+          <a class="link-pill" href="https://carlosdam90.github.io/Portafolio/" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-globe"></i>
+            Portfolio
+          </a>
 
-  <a class="link-pill"
-     href="https://carlosdam90.github.io/Portafolio/"
-     target="_blank"
-     rel="noopener noreferrer">
-    <i class="fa-solid fa-globe"></i>
-    Portfolio
-  </a>
-  
- <a class="link-pill"
-     href="curriculum26.pdf"
-     target="_blank"
-     rel="noopener noreferrer">
-    <i class="fa-solid fa-file-pdf"></i>
-    CV
-  </a>
-  
-<a class="link-pill"
-   href="https://wa.me/685400728"
-   target="_blank"
-   rel="noopener noreferrer">
-  <i class="fa-brands fa-whatsapp"></i>
-  WhatsApp
-</a>
-</div>
+          <a class="link-pill" href="curriculum26.pdf" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-file-pdf"></i>
+            CV
+          </a>
+
+          <a class="link-pill" href="https://wa.me/685400728" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i>
+            WhatsApp
+          </a>
+        </div>
 
         <p class="subtitle">Sevilla, España · Presencial / Remoto</p>
       </div>
@@ -926,7 +1330,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
   <script>
     let currentSlide = 0;
-    const totalSlides = 12;
+    const totalSlides = 18;
     const container = document.getElementById('container');
     const slideNumber = document.getElementById('slideNumber');
     const progressBar = document.getElementById('progressBar');
