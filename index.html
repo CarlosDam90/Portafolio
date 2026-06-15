@@ -339,25 +339,119 @@
       line-height: 1.55;
     }
 
+    .stack-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .stack-column {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.86), rgba(8, 14, 27, 0.74)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.12), transparent 42%);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.23);
+    }
+
+    .stack-column h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .stack-column h3 i {
+      color: var(--primary-light);
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .logo-tile {
+      min-height: 74px;
+      display: grid;
+      place-items: center;
+      gap: 7px;
+      padding: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.64);
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-align: center;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .logo-tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 208, 132, 0.62);
+      background: rgba(0, 208, 132, 0.1);
+      color: var(--primary-light);
+    }
+
+    .logo-tile i {
+      color: var(--primary-light);
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+
     .featured-projects {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 9px;
       align-items: stretch;
     }
 
     .project-card {
       position: relative;
       min-height: 0;
-      padding: 24px;
+      padding: 9px;
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 13px;
       background:
         linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(8, 14, 27, 0.78)),
         radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.14), transparent 42%);
       box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
       overflow: hidden;
-      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+      opacity: 0;
+      transform: translateY(18px) scale(0.96);
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.28s ease,
+        background 0.28s ease;
+    }
+
+    .slide.is-active .project-card {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .slide.is-active .project-card:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+
+    .slide.is-active .project-grid-small .project-card:nth-child(1) {
+      transition-delay: 0.12s;
+    }
+
+    .slide.is-active .project-grid-small .project-card:nth-child(2) {
+      transition-delay: 0.18s;
+    }
+
+    .slide.is-active .project-grid-small .project-card:nth-child(3) {
+      transition-delay: 0.24s;
+    }
+
+    .slide.is-active .project-grid-small .project-card:nth-child(4) {
+      transition-delay: 0.3s;
     }
 
     .project-card:hover {
@@ -369,47 +463,128 @@
     }
 
     .project-card.featured {
-      min-height: 430px;
+      min-height: 235px;
       display: grid;
       align-content: space-between;
+    }
+
+    .project-visual {
+      position: relative;
+      min-height: 48px;
+      margin-bottom: 7px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 10px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.88)),
+        radial-gradient(circle at 50% 0%, rgba(0, 208, 132, 0.12), transparent 48%);
+    }
+
+    .project-card.featured .project-visual {
+      min-height: 68px;
+    }
+
+    .project-grid-small .project-visual {
+      min-height: 30px;
+      margin-bottom: 5px;
+      border-radius: 8px;
+    }
+
+    .project-grid-small .project-logo-mark {
+      left: 10px;
+      bottom: 6px;
+      padding: 4px 6px;
+      font-size: 0.52rem;
+      border-radius: 8px;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.72;
+      filter: saturate(1.08) contrast(1.08);
+      transition: transform 0.36s ease, opacity 0.36s ease;
+    }
+
+    .project-card:hover .project-visual img {
+      transform: scale(1.04);
+      opacity: 0.86;
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(3, 7, 18, 0.05), rgba(3, 7, 18, 0.72)),
+        linear-gradient(90deg, rgba(0, 208, 132, 0.18), transparent 54%);
+      pointer-events: none;
+    }
+
+    .project-logo-mark {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid rgba(0, 208, 132, 0.34);
+      border-radius: 14px;
+      background: rgba(3, 7, 18, 0.74);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
+
+    .project-logo-mark i {
+      color: var(--primary-light);
+      font-size: 0.82rem;
     }
 
     .project-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 18px;
+      gap: 5px;
+      margin-top: 6px;
     }
 
     .project-stack span {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 8px 10px;
+      gap: 5px;
+      padding: 4px 6px;
       border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: 12px;
       color: var(--muted);
       background: rgba(15, 23, 42, 0.7);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
+      font-size: 0.56rem;
     }
 
     .project-stack i {
       color: var(--primary-light);
-      font-size: 1rem;
+      font-size: 0.72rem;
     }
 
     .project-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 18px 0;
+      gap: 6px;
+      margin: 6px 0;
     }
 
     .project-meta span {
       color: var(--accent);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
+      font-size: 0.58rem;
     }
 
     .project-action {
@@ -417,14 +592,14 @@
       align-items: center;
       gap: 9px;
       width: fit-content;
-      margin-top: 18px;
-      padding: 10px 13px;
+      margin-top: 6px;
+      padding: 5px 8px;
       border: 1px solid rgba(0, 208, 132, 0.36);
       border-radius: 999px;
       color: var(--primary-light);
       background: rgba(0, 208, 132, 0.08);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.76rem;
+      font-size: 0.6rem;
       cursor: pointer;
       transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
     }
@@ -438,29 +613,56 @@
     .project-grid-small {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 8px;
     }
 
     .project-grid-small .project-card {
-      padding: 19px;
+      padding: 8px;
+    }
+
+    .project-grid-small .project-stack span {
+      padding: 3px 5px;
+      font-size: 0.52rem;
+    }
+
+    .project-grid-small .project-action {
+      margin-top: 5px;
+    }
+
+    .project-card.featured p {
+      font-size: 0.78rem;
+      line-height: 1.32;
+    }
+
+    .project-card .card-label {
+      margin-bottom: 5px;
+      font-size: 0.58rem;
+    }
+
+    .project-card.featured h3 {
+      margin-bottom: 4px;
+      font-size: 0.95rem;
     }
 
     .project-grid-small h3 {
-      margin-bottom: 10px;
+      margin-bottom: 3px;
+      font-size: 0.82rem;
     }
 
     .project-grid-small small {
       display: block;
-      min-height: 66px;
+      min-height: 24px;
+      font-size: 0.62rem;
+      line-height: 1.22;
     }
 
     .project-number {
       position: absolute;
-      right: 18px;
-      top: 16px;
+      right: 9px;
+      top: 7px;
       color: rgba(148, 163, 184, 0.22);
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem;
+      font-size: 1.85rem;
       line-height: 1;
     }
 
@@ -701,6 +903,18 @@
       font-size: 0.9rem;
     }
 
+    .skill-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-logo i {
+      color: var(--primary-light);
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+
     .bar {
       height: 19px;
       border-radius: 999px;
@@ -720,26 +934,202 @@
 
     .soft-list {
       display: grid;
-      gap: 26px;
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: var(--card);
+      gap: 16px;
     }
 
     .soft-item {
       display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 14px;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.84), rgba(8, 14, 27, 0.72)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.1), transparent 42%);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+      transition: transform 0.26s ease, border-color 0.26s ease, background 0.26s ease;
+    }
+
+    .soft-item:hover {
+      transform: translateX(8px);
+      border-color: rgba(0, 208, 132, 0.58);
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(8, 14, 27, 0.78)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.18), transparent 46%);
+    }
+
+    .soft-icon {
+      width: 52px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0, 208, 132, 0.3);
+      border-radius: 16px;
+      color: var(--primary-light);
+      background: rgba(0, 208, 132, 0.08);
+      font-size: 1.25rem;
+      box-shadow: inset 0 0 24px rgba(0, 208, 132, 0.07);
     }
 
     .soft-item b {
+      display: block;
+      margin-bottom: 4px;
       color: var(--text);
     }
 
     .soft-item p {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
       color: var(--muted-2);
+    }
+
+    .mindset-card {
+      min-height: 360px;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(8, 14, 27, 0.76)),
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.14), transparent 46%);
+      box-shadow: var(--shadow);
+    }
+
+    .mindset-orbit {
+      width: 144px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      margin-inline: auto;
+      border: 1px solid rgba(0, 208, 132, 0.35);
+      border-radius: 50%;
+      background: rgba(0, 208, 132, 0.06);
+      box-shadow: 0 0 36px rgba(0, 208, 132, 0.16);
+    }
+
+    .mindset-orbit i {
+      color: var(--primary-light);
+      font-size: 3.2rem;
+    }
+
+    .mindset-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .mindset-tags span {
+      padding: 7px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.64);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+    }
+
+    .education-board {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .education-card {
+      position: relative;
+      min-height: 220px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(8, 14, 27, 0.76)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.13), transparent 44%);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .education-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(0, 208, 132, 0.62);
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(8, 14, 27, 0.82)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.2), transparent 48%);
+    }
+
+    .education-mark {
+      width: 128px;
+      min-height: 112px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 24px;
+      background: rgba(248, 250, 252, 0.96);
+      box-shadow: inset 0 0 28px rgba(0, 208, 132, 0.08);
+      padding: 14px;
+    }
+
+    .education-logo {
+      width: 100%;
+      max-height: 92px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .education-logo.us-logo {
+      max-height: 102px;
+    }
+
+    .education-logo.ilerna-logo {
+      max-height: 70px;
+    }
+
+    .education-logo-badge {
+      width: 82px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      color: #03111f;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      box-shadow: 0 0 26px rgba(0, 208, 132, 0.34);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    .education-logo-badge i {
+      font-size: 1.25rem;
+    }
+
+    .education-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .education-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .education-meta span {
+      padding: 7px 9px;
+      border: 1px solid rgba(0, 208, 132, 0.26);
+      border-radius: 999px;
+      color: var(--primary-light);
+      background: rgba(0, 208, 132, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
     }
 
     .quote {
@@ -788,6 +1178,39 @@
       transform: translateY(-4px);
       border-color: var(--primary);
       color: var(--primary-light);
+    }
+
+    #contacto .link-pill {
+      opacity: 0;
+      transform: translateY(28px) scale(0.92);
+    }
+
+    #contacto.is-active .link-pill {
+      animation: contactBounceIn 0.68s cubic-bezier(0.2, 0.9, 0.25, 1.25) forwards;
+    }
+
+    #contacto.is-active .link-pill:nth-child(1) {
+      animation-delay: 0.08s;
+    }
+
+    #contacto.is-active .link-pill:nth-child(2) {
+      animation-delay: 0.14s;
+    }
+
+    #contacto.is-active .link-pill:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    #contacto.is-active .link-pill:nth-child(4) {
+      animation-delay: 0.26s;
+    }
+
+    #contacto.is-active .link-pill:nth-child(5) {
+      animation-delay: 0.32s;
+    }
+
+    #contacto.is-active .link-pill:nth-child(6) {
+      animation-delay: 0.38s;
     }
 
     .controls {
@@ -858,12 +1281,14 @@
       position: absolute;
       top: 58px;
       right: 0;
-      width: min(330px, calc(100vw - 36px));
+      width: min(390px, calc(100vw - 36px));
       max-height: min(72vh, 640px);
-      padding: 12px;
+      padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      background: rgba(8, 14, 27, 0.94);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(8, 14, 27, 0.97), rgba(15, 23, 42, 0.94)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.14), transparent 46%);
       box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
       opacity: 0;
@@ -871,6 +1296,65 @@
       pointer-events: none;
       overflow: auto;
       transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+
+    .menu-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 13px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .menu-heading strong {
+      display: block;
+      color: var(--text);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .menu-heading small {
+      color: var(--muted-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+    }
+
+    .menu-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 9px;
+      border: 1px solid rgba(0, 208, 132, 0.26);
+      border-radius: 999px;
+      color: var(--primary-light);
+      background: rgba(0, 208, 132, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      white-space: nowrap;
+    }
+
+    .menu-group {
+      display: grid;
+      gap: 6px;
+      padding: 8px 0;
+    }
+
+    .menu-group + .menu-group {
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .menu-group-title {
+      padding: 0 4px 3px;
+      color: var(--muted-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .top-nav.is-open .menu-panel {
@@ -881,15 +1365,15 @@
 
     .menu-panel a {
       display: grid;
-      grid-template-columns: 34px 1fr;
+      grid-template-columns: 32px 1fr 16px;
       align-items: center;
-      gap: 10px;
-      min-height: 42px;
-      padding: 10px 12px;
+      gap: 9px;
+      min-height: 40px;
+      padding: 9px 10px;
       border-radius: 12px;
       color: var(--muted);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
     }
 
@@ -900,15 +1384,74 @@
       transform: translateX(-3px);
     }
 
-    .menu-panel span {
+    .menu-panel a.is-active {
+      box-shadow: inset 3px 0 0 rgba(0, 208, 132, 0.78);
+    }
+
+    .menu-index {
       display: inline-grid;
       place-items: center;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 10px;
+      border-radius: 9px;
       color: var(--accent);
-      font-size: 0.78rem;
+      font-size: 0.7rem;
+    }
+
+    .menu-text {
+      min-width: 0;
+    }
+
+    .menu-arrow {
+      color: rgba(148, 163, 184, 0.45);
+      font-size: 0.68rem;
+      transition: transform 0.22s ease, color 0.22s ease;
+    }
+
+    .menu-panel a:hover .menu-arrow,
+    .menu-panel a.is-active .menu-arrow {
+      color: var(--primary-light);
+      transform: translateX(2px);
+    }
+
+    .menu-panel a.submenu-link {
+      position: relative;
+      min-height: 34px;
+      margin-left: 20px;
+      padding: 7px 9px;
+      grid-template-columns: 28px 1fr 14px;
+      color: var(--muted-2);
+      font-size: 0.7rem;
+      border-radius: 10px;
+    }
+
+    .menu-panel a.submenu-link::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: -6px;
+      bottom: -6px;
+      width: 1px;
+      background: rgba(0, 208, 132, 0.22);
+    }
+
+    .menu-panel a.submenu-link::after {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      width: 10px;
+      height: 1px;
+      background: rgba(0, 208, 132, 0.34);
+    }
+
+    .menu-panel a.submenu-link .menu-index {
+      width: 24px;
+      height: 22px;
+      border-radius: 8px;
+      font-size: 0.58rem;
+      color: var(--primary-light);
     }
 
     button {
@@ -931,12 +1474,14 @@
       color: var(--primary-light);
       border: 1px solid rgba(0, 208, 132, 0.36);
       background: rgba(0, 208, 132, 0.08);
-      padding: 10px 13px;
+      padding: 5px 8px;
       font-weight: 700;
+      font-size: 0.6rem;
+      line-height: 1;
     }
 
     button.project-action:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       border-color: rgba(0, 208, 132, 0.72);
       background: rgba(0, 208, 132, 0.14);
     }
@@ -986,6 +1531,34 @@
       }
     }
 
+    @keyframes contactBounceIn {
+      0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.92);
+      }
+      62% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.035);
+      }
+      82% {
+        transform: translateY(3px) scale(0.99);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .project-card,
+      #contacto .link-pill {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+      }
+    }
+
     @media (max-width: 950px) {
       body {
         overflow-y: auto;
@@ -1028,6 +1601,8 @@
       .soft-grid,
       .project-showcase,
       .featured-projects,
+      .stack-board,
+      .education-board,
       .screenshots,
       .cards-3,
       .cards-4,
@@ -1075,6 +1650,23 @@
         gap: 8px;
       }
 
+      .logo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .education-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .education-mark {
+        margin-inline: auto;
+      }
+
+      .education-meta {
+        justify-content: center;
+      }
+
       .controls,
       .slide-number,
       .progress,
@@ -1098,23 +1690,42 @@
       <i class="fa-solid fa-bars"></i>
     </button>
     <div class="menu-panel" id="menuPanel">
-      <a href="#inicio" data-slide="0"><span>01</span>Inicio</a>
-      <a href="#vision" data-slide="1"><span>02</span>Visión</a>
-      <a href="#perfil" data-slide="2"><span>03</span>Perfil</a>
-      <a href="#stack" data-slide="3"><span>04</span>Stack</a>
-      <a href="#trayectoria" data-slide="4"><span>05</span>Trayectoria</a>
-      <a href="#valor" data-slide="5"><span>06</span>Valor añadido</a>
-      <a href="#proyectos" data-slide="6"><span>07</span>Proyectos</a>
-      <a href="#baro" data-slide="7"><span>08</span>Baro</a>
-      <a href="#parking" data-slide="8"><span>09</span>ParkynGnow</a>
-      <a href="#starwars" data-slide="9"><span>10</span>Star Wars</a>
-      <a href="#compraventa" data-slide="10"><span>11</span>Compraventa</a>
-      <a href="#unity" data-slide="11"><span>12</span>Unity</a>
-      <a href="#lenguajes" data-slide="12"><span>13</span>Lenguajes</a>
-      <a href="#habilidades" data-slide="13"><span>14</span>Habilidades</a>
-      <a href="#filosofia" data-slide="14"><span>15</span>Filosofía</a>
-      <a href="#formacion" data-slide="15"><span>16</span>Formación</a>
-      <a href="#contacto" data-slide="16"><span>17</span>Contacto</a>
+      <div class="menu-heading">
+        <div>
+          <strong>Portfolio</strong>
+          <small>Navegación rápida</small>
+        </div>
+        <span class="menu-status">17 slides</span>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-title">Perfil</div>
+        <a href="#inicio" data-slide="0"><span class="menu-index">01</span><span class="menu-text">Inicio</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#vision" data-slide="1"><span class="menu-index">02</span><span class="menu-text">Visión</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#perfil" data-slide="2"><span class="menu-index">03</span><span class="menu-text">Perfil</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#stack" data-slide="3"><span class="menu-index">04</span><span class="menu-text">Stack</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#trayectoria" data-slide="4"><span class="menu-index">05</span><span class="menu-text">Trayectoria</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#valor" data-slide="5"><span class="menu-index">06</span><span class="menu-text">Valor añadido</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-title">Proyectos</div>
+        <a href="#proyectos" data-slide="6"><span class="menu-index">07</span><span class="menu-text">Proyectos</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#baro" data-slide="7"><span class="menu-index">7.1</span><span class="menu-text">Baro</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#parking" data-slide="8"><span class="menu-index">7.2</span><span class="menu-text">ParkynGnow</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#starwars" data-slide="9"><span class="menu-index">7.3</span><span class="menu-text">Star Wars</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#compraventa" data-slide="10"><span class="menu-index">7.4</span><span class="menu-text">Compraventa</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#unity" data-slide="11"><span class="menu-index">7.5</span><span class="menu-text">Unity</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+      </div>
+
+      <div class="menu-group">
+        <div class="menu-group-title">Cierre</div>
+        <a href="#lenguajes" data-slide="12"><span class="menu-index">13</span><span class="menu-text">Lenguajes</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#habilidades" data-slide="13"><span class="menu-index">14</span><span class="menu-text">Habilidades</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#filosofia" data-slide="14"><span class="menu-index">15</span><span class="menu-text">Filosofía</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#formacion" data-slide="15"><span class="menu-index">16</span><span class="menu-text">Formación</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#contacto" data-slide="16"><span class="menu-index">17</span><span class="menu-text">Contacto</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+      </div>
     </div>
   </nav>
 
@@ -1156,21 +1767,43 @@
     <section class="slide" id="stack">
       <div class="content">
         <h2 class="section-title">Stack tecnológico core</h2>
-        <div class="cards-3">
-          <div class="card center">
-            <span class="icon">&lt;/&gt;</span>
-            <h3>Frontend / Mobile</h3>
-            <small>.NET MAUI · Android · Kotlin · HTML · CSS · JavaScript</small>
+        <div class="stack-board">
+          <div class="stack-column">
+            <h3><i class="fa-solid fa-mobile-screen-button"></i>Frontend / Mobile</h3>
+            <div class="logo-grid">
+              <span class="logo-tile"><i class="devicon-dotnetcore-plain"></i>.NET MAUI</span>
+              <span class="logo-tile"><i class="devicon-android-plain"></i>Android</span>
+              <span class="logo-tile"><i class="devicon-androidstudio-plain"></i>Android Studio</span>
+              <span class="logo-tile"><i class="devicon-kotlin-plain"></i>Kotlin</span>
+              <span class="logo-tile"><i class="devicon-html5-plain"></i>HTML5</span>
+              <span class="logo-tile"><i class="devicon-css3-plain"></i>CSS3</span>
+              <span class="logo-tile"><i class="devicon-javascript-plain"></i>JavaScript</span>
+              <span class="logo-tile"><i class="fa-solid fa-mobile-screen"></i>Responsive</span>
+            </div>
           </div>
-          <div class="card center">
-            <span class="icon">▦</span>
-            <h3>Backend</h3>
-            <small>C# · Java · ASP.NET Core Web API · APIs REST · JWT</small>
+          <div class="stack-column">
+            <h3><i class="fa-solid fa-server"></i>Backend</h3>
+            <div class="logo-grid">
+              <span class="logo-tile"><i class="devicon-csharp-plain"></i>C#</span>
+              <span class="logo-tile"><i class="devicon-java-plain"></i>Java</span>
+              <span class="logo-tile"><i class="devicon-dotnetcore-plain"></i>ASP.NET Core</span>
+              <span class="logo-tile"><i class="fa-solid fa-plug"></i>REST APIs</span>
+              <span class="logo-tile"><i class="fa-solid fa-shield-halved"></i>JWT</span>
+              <span class="logo-tile"><i class="devicon-swagger-plain"></i>Swagger</span>
+            </div>
           </div>
-          <div class="card center">
-            <span class="icon">●</span>
-            <h3>Datos & Herramientas</h3>
-            <small>MySQL · SQLite · Entity Framework Core · Git · GitHub · Swagger</small>
+          <div class="stack-column">
+            <h3><i class="fa-solid fa-database"></i>Datos & Herramientas</h3>
+            <div class="logo-grid">
+              <span class="logo-tile"><i class="devicon-mysql-plain"></i>MySQL</span>
+              <span class="logo-tile"><i class="devicon-sqlite-plain"></i>SQLite</span>
+              <span class="logo-tile"><i class="devicon-dotnetcore-plain"></i>EF Core</span>
+              <span class="logo-tile"><i class="devicon-git-plain"></i>Git</span>
+              <span class="logo-tile"><i class="devicon-github-original"></i>GitHub</span>
+              <span class="logo-tile"><i class="fa-solid fa-cloud"></i>Cloud</span>
+              <span class="logo-tile"><i class="devicon-docker-plain"></i>Docker</span>
+              <span class="logo-tile"><i class="devicon-unity-plain"></i>Unity</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1234,6 +1867,10 @@
           <article class="project-card featured">
             <span class="project-number">01</span>
             <div>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg" alt="Visual de Baro">
+                <span class="project-logo-mark"><i class="fa-solid fa-scissors"></i>Baro</span>
+              </div>
               <span class="card-label">Proyecto principal · Mobile + Backend</span>
               <h3>Baro</h3>
               <p>Aplicación completa para reservas en barberías: usuarios, servicios, citas, autenticación JWT, API propia y base de datos MySQL.</p>
@@ -1258,6 +1895,10 @@
           <div class="project-grid-small">
             <article class="project-card">
               <span class="project-number">02</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" alt="Visual de ParkynGnow">
+                <span class="project-logo-mark"><i class="fa-solid fa-square-parking"></i>ParkynGnow</span>
+              </div>
               <span class="card-label">Mobile · Maps</span>
               <h3>ParkynGnow</h3>
               <small>App móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.</small>
@@ -1270,6 +1911,10 @@
 
             <article class="project-card">
               <span class="project-number">03</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" alt="Visual de Star Wars App">
+                <span class="project-logo-mark"><i class="fa-solid fa-jedi"></i>Star Wars</span>
+              </div>
               <span class="card-label">Android · Datos</span>
               <h3>Star Wars App</h3>
               <small>Aplicación Android con gestión visual de personajes, navegación y persistencia local.</small>
@@ -1282,6 +1927,10 @@
 
             <article class="project-card">
               <span class="project-number">04</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" alt="Visual de Compraventa de entradas">
+                <span class="project-logo-mark"><i class="fa-solid fa-ticket"></i>Tickets</span>
+              </div>
               <span class="card-label">Web · Responsive</span>
               <h3>Compraventa</h3>
               <small>Proyecto web orientado a maquetación, navegación y experiencia de compra clara.</small>
@@ -1294,6 +1943,10 @@
 
             <article class="project-card">
               <span class="project-number">05</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/goku.jpg" alt="Visual de Unity Game">
+                <span class="project-logo-mark"><i class="devicon-unity-plain"></i>Unity Game</span>
+              </div>
               <span class="card-label">Videojuego · Unity</span>
               <h3>Unity Game</h3>
               <small>Primer acercamiento a escenas, lógica de juego, interacción y comportamiento del jugador.</small>
@@ -1494,27 +2147,27 @@
         <h2 class="section-title">Dominio de lenguajes</h2>
         <div class="skill-list">
           <div class="skill-row">
-            <span>C#</span>
+            <span class="skill-logo"><i class="devicon-csharp-plain"></i>C#</span>
             <div class="bar"><span style="--w: 82%"></span></div>
             <span>82%</span>
           </div>
           <div class="skill-row">
-            <span>Java</span>
+            <span class="skill-logo"><i class="devicon-java-plain"></i>Java</span>
             <div class="bar"><span style="--w: 76%"></span></div>
             <span>76%</span>
           </div>
           <div class="skill-row">
-            <span>Kotlin</span>
+            <span class="skill-logo"><i class="devicon-kotlin-plain"></i>Kotlin</span>
             <div class="bar"><span style="--w: 62%"></span></div>
             <span>62%</span>
           </div>
           <div class="skill-row">
-            <span>JavaScript</span>
+            <span class="skill-logo"><i class="devicon-javascript-plain"></i>JavaScript</span>
             <div class="bar"><span style="--w: 68%"></span></div>
             <span>68%</span>
           </div>
           <div class="skill-row">
-            <span>SQL</span>
+            <span class="skill-logo"><i class="fa-solid fa-database"></i>SQL</span>
             <div class="bar"><span style="--w: 74%"></span></div>
             <span>74%</span>
           </div>
@@ -1529,22 +2182,35 @@
         <div class="soft-grid">
           <div class="soft-list">
             <div class="soft-item">
-              <span class="green">▣</span>
+              <span class="soft-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
               <p><b>Resolución de problemas:</b> capacidad para analizar errores, buscar soluciones y aprender durante el proceso.</p>
             </div>
             <div class="soft-item">
-              <span class="green">▣</span>
+              <span class="soft-icon"><i class="fa-solid fa-comments"></i></span>
               <p><b>Comunicación:</b> explicación clara de ideas técnicas y avance del proyecto.</p>
             </div>
             <div class="soft-item">
-              <span class="green">▣</span>
+              <span class="soft-icon"><i class="fa-solid fa-bullseye"></i></span>
               <p><b>Constancia:</b> trabajo progresivo, mejora continua y atención al detalle.</p>
             </div>
+            <div class="soft-item">
+              <span class="soft-icon"><i class="fa-solid fa-layer-group"></i></span>
+              <p><b>Organización:</b> dividir tareas, priorizar avances y mantener una estructura clara del trabajo.</p>
+            </div>
           </div>
-          <div class="content-card center" style="display:grid; place-items:center; min-height: 330px;">
+          <div class="mindset-card center">
+            <div class="mindset-orbit">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
             <div>
               <h3 class="green">Mentalidad junior con visión de producto</h3>
               <p>Ganas de aprender, aportar al equipo y convertir cada proyecto en una oportunidad para crecer profesionalmente.</p>
+            </div>
+            <div class="mindset-tags">
+              <span>Aprendizaje</span>
+              <span>Equipo</span>
+              <span>Producto</span>
+              <span>Detalle</span>
             </div>
           </div>
         </div>
@@ -1562,23 +2228,81 @@
     <section class="slide" id="formacion">
       <div class="content">
         <h2 class="section-title">Formación académica</h2>
-        <div class="cards-4">
-          <div class="card center">
-            <h3>FP Superior Desarrollo de Aplicaciones Multiplataforma</h3>
-            <small>Ciclo Superior DAM · Desarrollo móvil, backend, bases de datos y programación.</small>
-          </div>
-          <div class="card center">
-            <h3>Ingeniería Aeroespacial</h3>
-            <small>No finalizado.</small>
-          </div>
-          <div class="card center">
-            <h3>Proyectos prácticos</h3>
-            <small>Aplicaciones móviles, APIs REST, diseño web, bases de datos y entregas funcionales.</small>
-          </div>
-          <div class="card center">
-            <h3>Aprendizaje continuo</h3>
-            <small>Interés en cloud, Docker, SaaS, despliegue y mejora de productos digitales.</small>
-          </div>
+        <div class="education-board">
+          <article class="education-card">
+            <div class="education-mark">
+              <img class="education-logo ilerna-logo" src="img/logo-ilerna.png" alt="Logo de ILERNA">
+            </div>
+            <div>
+              <span class="card-label">ILERNA · Formación Profesional</span>
+              <h3>FP Superior Desarrollo de Aplicaciones Multiplataforma</h3>
+              <small>Ciclo Superior DAM · Desarrollo móvil, backend, bases de datos y programación.</small>
+              <div class="education-meta">
+                <span>Mobile</span>
+                <span>Backend</span>
+                <span>Datos</span>
+                <span>Programación</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="education-card">
+            <div class="education-mark">
+              <img class="education-logo us-logo" src="img/logo-us.png" alt="Logo de la Universidad de Sevilla">
+            </div>
+            <div>
+              <span class="card-label">Universidad de Sevilla</span>
+              <h3>Ingeniería Aeroespacial</h3>
+              <small>No finalizado · base técnica, matemáticas, física y visión de ingeniería.</small>
+              <div class="education-meta">
+                <span>Universidad de Sevilla</span>
+                <span>Ingeniería</span>
+                <span>Base técnica</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="education-card">
+            <div class="education-mark">
+              <div class="education-logo-badge">
+                <div>
+                  <i class="fa-solid fa-code"></i><br>
+                  LAB
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="card-label">Aplicación práctica</span>
+              <h3>Proyectos prácticos</h3>
+              <small>Aplicaciones móviles, APIs REST, diseño web, bases de datos y entregas funcionales.</small>
+              <div class="education-meta">
+                <span>APIs REST</span>
+                <span>Apps</span>
+                <span>UI</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="education-card">
+            <div class="education-mark">
+              <div class="education-logo-badge">
+                <div>
+                  <i class="fa-solid fa-arrow-trend-up"></i><br>
+                  NEXT
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="card-label">Crecimiento</span>
+              <h3>Aprendizaje continuo</h3>
+              <small>Interés en cloud, Docker, SaaS, despliegue y mejora de productos digitales.</small>
+              <div class="education-meta">
+                <span>Cloud</span>
+                <span>Docker</span>
+                <span>SaaS</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1646,6 +2370,11 @@
       ['Cambiar idioma a inglés', 'Switch language to Spanish'],
       ['Abrir menú', 'Open menu'],
       ['Cerrar menú', 'Close menu'],
+      ['Portfolio', 'Portfolio'],
+      ['Navegación rápida', 'Quick navigation'],
+      ['17 slides', '17 slides'],
+      ['Perfil', 'Profile'],
+      ['Cierre', 'Final sections'],
       ['FULL STACK DEVELOPER · JUNIOR PROFILE', 'FULL STACK DEVELOPER · JUNIOR PROFILE'],
       ['Portfolio & CV', 'Portfolio & Resume'],
       ['"Un hombre con una idea nueva es un loco hasta que la idea triunfa".', '"A man with a new idea is a crank until the idea succeeds."'],
@@ -1676,6 +2405,16 @@
       ['Mi enfoque se basa en entender el problema o necesidad, diseñar una solución clara y construir aplicaciones funcionales, mantenibles y con una presentación profesional.', 'My approach is based on understanding the problem or need, designing a clear solution, and building functional, maintainable applications with a professional presentation.'],
       ['Stack tecnológico core', 'Core technology stack'],
       ['Frontend / Mobile', 'Frontend / Mobile'],
+      ['Android Studio', 'Android Studio'],
+      ['HTML5', 'HTML5'],
+      ['CSS3', 'CSS3'],
+      ['Responsive', 'Responsive'],
+      ['REST APIs', 'REST APIs'],
+      ['EF Core', 'EF Core'],
+      ['Git', 'Git'],
+      ['GitHub', 'GitHub'],
+      ['Cloud', 'Cloud'],
+      ['Docker', 'Docker'],
       ['.NET MAUI · Android · Kotlin · HTML · CSS · JavaScript', '.NET MAUI · Android · Kotlin · HTML · CSS · JavaScript'],
       ['Backend', 'Backend'],
       ['C# · Java · ASP.NET Core Web API · APIs REST · JWT', 'C# · Java · ASP.NET Core Web API · REST APIs · JWT'],
@@ -1786,17 +2525,32 @@
       ['explicación clara de ideas técnicas y avance del proyecto.', 'clear explanation of technical ideas and project progress.'],
       ['Constancia:', 'Consistency:'],
       ['trabajo progresivo, mejora continua y atención al detalle.', 'steady work, continuous improvement, and attention to detail.'],
+      ['Organización:', 'Organization:'],
+      ['dividir tareas, priorizar avances y mantener una estructura clara del trabajo.', 'breaking tasks down, prioritizing progress, and keeping work clearly structured.'],
       ['Mentalidad junior con visión de producto', 'Junior mindset with product vision'],
       ['Ganas de aprender, aportar al equipo y convertir cada proyecto en una oportunidad para crecer profesionalmente.', 'Motivation to learn, contribute to the team, and turn each project into an opportunity for professional growth.'],
+      ['Aprendizaje', 'Learning'],
+      ['Equipo', 'Team'],
+      ['Producto', 'Product'],
+      ['Detalle', 'Detail'],
       ['El genio se hace con un 1% de talento, y un 99% de trabajo', 'Genius is made with 1% talent and 99% work'],
       ['— Mi filosofía de trabajo', '— My work philosophy'],
       ['Formación académica', 'Academic background'],
+      ['Formación principal', 'Main training'],
+      ['ILERNA · Formación Profesional', 'ILERNA · Vocational Training'],
       ['FP Superior Desarrollo de Aplicaciones Multiplataforma', 'Higher Vocational Training in Cross-Platform Application Development'],
       ['Ciclo Superior DAM · Desarrollo móvil, backend, bases de datos y programación.', 'Higher DAM program · Mobile development, backend, databases, and programming.'],
       ['Ingeniería Aeroespacial', 'Aerospace Engineering'],
-      ['No finalizado.', 'Not completed.'],
+      ['No finalizado · base técnica, matemáticas, física y visión de ingeniería.', 'Not completed · technical foundation, mathematics, physics, and engineering mindset.'],
+      ['Universidad de Sevilla', 'University of Seville'],
+      ['Ingeniería', 'Engineering'],
+      ['Base técnica', 'Technical foundation'],
+      ['Aplicación práctica', 'Practical application'],
       ['Proyectos prácticos', 'Practical projects'],
       ['Aplicaciones móviles, APIs REST, diseño web, bases de datos y entregas funcionales.', 'Mobile applications, REST APIs, web design, databases, and functional deliveries.'],
+      ['Apps', 'Apps'],
+      ['UI', 'UI'],
+      ['Crecimiento', 'Growth'],
       ['Aprendizaje continuo', 'Continuous learning'],
       ['Interés en cloud, Docker, SaaS, despliegue y mejora de productos digitales.', 'Interest in cloud, Docker, SaaS, deployment, and digital product improvement.'],
       ['¿Construimos algo juntos?', 'Shall we build something together?'],
@@ -1871,7 +2625,9 @@
       });
 
       menuLinks.forEach((link) => {
-        link.classList.toggle('is-active', Number(link.dataset.slide) === currentSlide);
+        const linkSlide = Number(link.dataset.slide);
+        const isProjectParent = linkSlide === 6 && currentSlide >= 6 && currentSlide <= 11;
+        link.classList.toggle('is-active', linkSlide === currentSlide || isProjectParent);
       });
     }
 
