@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio & CV - Carlos Blasco</title>
@@ -14,9 +15,7 @@
       --primary-light: #00ff9d;
       --accent: #38bdf8;
       --bg: #050b16;
-      --bg-2: #0b1220;
       --card: rgba(22, 33, 52, 0.78);
-      --card-2: rgba(10, 17, 31, 0.88);
       --border: rgba(148, 163, 184, 0.22);
       --text: #f8fafc;
       --muted: #cbd5e1;
@@ -30,7 +29,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       height: 100%;
     }
@@ -43,6 +43,25 @@
         linear-gradient(135deg, #030712 0%, #07111f 45%, #050b16 100%);
       color: var(--text);
       overflow: hidden;
+    }
+
+    body::before,
+    body::after,
+    .slide-number,
+    .top-nav,
+    .controls,
+    .hint {
+      opacity: 0;
+      animation: fadeInUi 0.85s ease forwards;
+    }
+
+    body.is-loaded::before,
+    body.is-loaded::after,
+    body.is-loaded .slide-number,
+    body.is-loaded .top-nav,
+    body.is-loaded .controls,
+    body.is-loaded .hint {
+      opacity: 1;
     }
 
     body::before {
@@ -76,7 +95,7 @@
 
     .slide-container {
       display: flex;
-      width: 1800vw;
+      width: 1700vw;
       height: 100vh;
       transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -108,6 +127,19 @@
       position: relative;
       z-index: 2;
       width: min(1120px, 100%);
+      opacity: 0;
+      transform: translateY(26px) scale(0.98);
+      filter: blur(8px);
+      transition:
+        opacity 0.62s ease,
+        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.62s ease;
+    }
+
+    .slide.is-active .content {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
     }
 
     .content-card {
@@ -217,11 +249,23 @@
       color: transparent;
     }
 
-    .profile-grid {
+    .profile-grid,
+    .project-showcase,
+    .impact-grid,
+    .soft-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 54px;
+      gap: 42px;
       align-items: center;
+    }
+
+    .profile-grid,
+    .project-showcase {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .impact-grid,
+    .soft-grid {
+      grid-template-columns: 0.85fr 1.15fr;
     }
 
     .avatar-ring {
@@ -295,11 +339,129 @@
       line-height: 1.55;
     }
 
-    .project-showcase {
+    .featured-projects {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 34px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      position: relative;
+      min-height: 0;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(8, 14, 27, 0.78)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.14), transparent 42%);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(0, 208, 132, 0.62);
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(8, 14, 27, 0.84)),
+        radial-gradient(circle at 100% 0%, rgba(0, 208, 132, 0.2), transparent 46%);
+    }
+
+    .project-card.featured {
+      min-height: 430px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .project-stack span {
+      display: inline-flex;
       align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 12px;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+    }
+
+    .project-stack i {
+      color: var(--primary-light);
+      font-size: 1rem;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .project-meta span {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+    }
+
+    .project-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      margin-top: 18px;
+      padding: 10px 13px;
+      border: 1px solid rgba(0, 208, 132, 0.36);
+      border-radius: 999px;
+      color: var(--primary-light);
+      background: rgba(0, 208, 132, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      cursor: pointer;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+    }
+
+    .project-action:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 208, 132, 0.72);
+      background: rgba(0, 208, 132, 0.14);
+    }
+
+    .project-grid-small {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-grid-small .project-card {
+      padding: 19px;
+    }
+
+    .project-grid-small h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-grid-small small {
+      display: block;
+      min-height: 66px;
+    }
+
+    .project-number {
+      position: absolute;
+      right: 18px;
+      top: 16px;
+      color: rgba(148, 163, 184, 0.22);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
     }
 
     .project-copy {
@@ -314,30 +476,46 @@
       margin-top: 8px;
     }
 
-    .tech-tags span {
-      padding: 8px 11px;
+    .tech-tags .tech-logo {
+      min-width: 78px;
+      display: inline-grid;
+      place-items: center;
+      gap: 6px;
+      padding: 10px 12px;
       border: 1px solid rgba(0, 208, 132, 0.32);
-      border-radius: 999px;
+      border-radius: 14px;
       color: var(--primary-light);
       background: rgba(0, 208, 132, 0.08);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.68rem;
+      text-align: center;
+      line-height: 1.15;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    .tech-tags .tech-logo:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 208, 132, 0.68);
+      background: rgba(0, 208, 132, 0.14);
+    }
+
+    .tech-tags .tech-logo i {
+      color: var(--primary-light);
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    .tech-tags .tech-logo .fa-solid,
+    .tech-tags .tech-logo .fa-brands {
+      font-size: 1.55rem;
     }
 
     .screenshots {
       display: grid;
-      grid-template-columns: minmax(280px, 1fr) minmax(180px, 0.72fr);
-      gap: 16px;
-      align-items: center;
-    }
-
-    .screenshots.mobile-shots {
       grid-template-columns: minmax(220px, 0.72fr) minmax(150px, 0.5fr);
       justify-content: center;
-    }
-
-    .screenshots.landscape-shots {
-      grid-template-columns: minmax(320px, 1.2fr) minmax(190px, 0.72fr);
+      gap: 16px;
+      align-items: center;
     }
 
     .screenshot-main,
@@ -355,23 +533,11 @@
     }
 
     .screenshot-main {
-      height: min(58vh, 560px);
-      min-height: 430px;
-      border-radius: 26px;
-    }
-
-    .mobile-shots .screenshot-main {
       width: min(100%, 340px);
       height: min(64vh, 600px);
       aspect-ratio: 9 / 16;
       justify-self: center;
       border-radius: 34px;
-    }
-
-    .landscape-shots .screenshot-main {
-      height: auto;
-      min-height: 0;
-      aspect-ratio: 16 / 10;
     }
 
     .screenshot-column {
@@ -381,12 +547,6 @@
     }
 
     .screenshot-thumb {
-      height: 166px;
-      min-height: 0;
-      border-radius: 18px;
-    }
-
-    .mobile-shots .screenshot-thumb {
       width: min(100%, 150px);
       height: auto;
       aspect-ratio: 9 / 16;
@@ -394,39 +554,26 @@
       border-radius: 24px;
     }
 
-    .landscape-shots .screenshot-thumb {
-      height: auto;
-      aspect-ratio: 16 / 9;
-    }
-
-    .project-showcase.visual-focus {
-      grid-template-columns: minmax(260px, 0.62fr) minmax(520px, 1.38fr);
-      gap: 30px;
-    }
-
-    .project-showcase.visual-focus .project-copy {
-      gap: 14px;
-    }
-
-    .screenshots.wide-shots {
+    .landscape-shots {
       grid-template-columns: 1fr;
       gap: 14px;
     }
 
-    .wide-shots .screenshot-main {
+    .landscape-shots .screenshot-main {
       width: 100%;
+      max-width: none;
       height: auto;
       min-height: 0;
       aspect-ratio: 16 / 9;
       border-radius: 24px;
     }
 
-    .wide-shots .screenshot-column {
+    .landscape-shots .screenshot-column {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .wide-shots .screenshot-thumb {
+    .landscape-shots .screenshot-thumb {
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
@@ -434,7 +581,9 @@
     }
 
     .screenshot-main img,
-    .screenshot-thumb img {
+    .screenshot-thumb img,
+    .screenshot-main video,
+    .screenshot-thumb video {
       width: 100%;
       height: 100%;
       display: block;
@@ -443,16 +592,13 @@
       padding: 10px;
     }
 
-    .mobile-shots img {
-      padding: 8px;
-    }
-
-    .screenshot-main img {
+    .screenshot-main img,
+    .screenshot-main video {
       padding: 14px;
     }
 
-    .wide-shots .screenshot-main img,
-    .wide-shots .screenshot-thumb img {
+    .landscape-shots .screenshot-main img,
+    .landscape-shots .screenshot-thumb img {
       padding: 6px;
     }
 
@@ -506,32 +652,29 @@
       box-shadow: 0 0 18px rgba(0, 208, 132, 0.85);
     }
 
-    .time-item strong {
+    .time-item strong,
+    .time-item span,
+    .time-item small {
       display: block;
-      color: var(--text);
-      margin-bottom: 8px;
-      font-size: 0.95rem;
     }
 
     .time-item span {
-      display: block;
       color: var(--primary-light);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
       margin-bottom: 8px;
     }
 
+    .time-item strong {
+      color: var(--text);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
     .time-item small {
       color: var(--muted-2);
       line-height: 1.5;
       font-size: 0.86rem;
-    }
-
-    .impact-grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 46px;
-      align-items: center;
     }
 
     .big-percent {
@@ -575,13 +718,6 @@
       box-shadow: 0 0 18px rgba(0, 208, 132, 0.35);
     }
 
-    .soft-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 38px;
-      align-items: stretch;
-    }
-
     .soft-list {
       display: grid;
       gap: 26px;
@@ -623,7 +759,6 @@
       font-size: clamp(2.4rem, 5vw, 5rem);
       text-transform: none;
       letter-spacing: 0;
-      font-family: 'Bebas Neue', sans-serif;
     }
 
     .contact-links {
@@ -665,6 +800,117 @@
       z-index: 20;
     }
 
+    .top-nav {
+      position: fixed;
+      top: 20px;
+      right: 28px;
+      z-index: 45;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-toggle,
+    .menu-toggle {
+      height: 46px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.78);
+      color: var(--text);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(14px);
+    }
+
+    .language-toggle {
+      grid-auto-flow: column;
+      gap: 7px;
+      min-width: 82px;
+      padding: 0 13px;
+      color: var(--muted-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .language-toggle .is-active {
+      color: var(--primary-light);
+    }
+
+    .menu-toggle {
+      width: 46px;
+    }
+
+    .language-toggle:hover,
+    .menu-toggle:hover {
+      background: rgba(0, 208, 132, 0.16);
+      color: var(--primary-light);
+      border-color: rgba(0, 208, 132, 0.56);
+    }
+
+    .menu-toggle i {
+      font-size: 1.18rem;
+    }
+
+    .menu-panel {
+      position: absolute;
+      top: 58px;
+      right: 0;
+      width: min(330px, calc(100vw - 36px));
+      max-height: min(72vh, 640px);
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(8, 14, 27, 0.94);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+      pointer-events: none;
+      overflow: auto;
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+
+    .top-nav.is-open .menu-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .menu-panel a {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+
+    .menu-panel a:hover,
+    .menu-panel a.is-active {
+      background: rgba(0, 208, 132, 0.12);
+      color: var(--primary-light);
+      transform: translateX(-3px);
+    }
+
+    .menu-panel span {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      color: var(--accent);
+      font-size: 0.78rem;
+    }
+
     button {
       background: rgba(0, 208, 132, 0.95);
       color: #04111f;
@@ -681,10 +927,24 @@
       background: var(--accent);
     }
 
+    button.project-action {
+      color: var(--primary-light);
+      border: 1px solid rgba(0, 208, 132, 0.36);
+      background: rgba(0, 208, 132, 0.08);
+      padding: 10px 13px;
+      font-weight: 700;
+    }
+
+    button.project-action:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 208, 132, 0.72);
+      background: rgba(0, 208, 132, 0.14);
+    }
+
     .slide-number {
       position: fixed;
       top: 22px;
-      right: 30px;
+      right: 190px;
       z-index: 20;
       font-family: 'JetBrains Mono', monospace;
       color: var(--accent);
@@ -700,7 +960,7 @@
       left: 0;
       bottom: 0;
       height: 4px;
-      width: 5.56%;
+      width: 5.88%;
       background: linear-gradient(90deg, var(--primary), var(--accent));
       transition: width 0.4s ease;
       z-index: 30;
@@ -715,6 +975,15 @@
       color: var(--muted-2);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
+    }
+
+    @keyframes fadeInUi {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     @media (max-width: 950px) {
@@ -735,6 +1004,21 @@
         padding: 58px 20px;
       }
 
+      .content {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+
+      .top-nav {
+        top: 14px;
+        right: 14px;
+      }
+
+      .menu-panel {
+        max-height: 78vh;
+      }
+
       .content-card {
         padding: 28px;
       }
@@ -743,6 +1027,7 @@
       .impact-grid,
       .soft-grid,
       .project-showcase,
+      .featured-projects,
       .screenshots,
       .cards-3,
       .cards-4,
@@ -751,16 +1036,28 @@
         grid-template-columns: 1fr;
       }
 
+      .project-grid-small {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card.featured {
+        min-height: 0;
+      }
+
+      .project-grid-small small {
+        min-height: 0;
+      }
+
       .screenshot-main {
         height: auto;
         min-height: 0;
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 9 / 16;
       }
 
       .screenshot-thumb {
         height: auto;
         min-height: 0;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 9 / 16;
       }
 
       .timeline {
@@ -788,13 +1085,41 @@
   </style>
 </head>
 <body>
-
   <div class="slide-number" id="slideNumber">1 / 17</div>
   <div class="progress" id="progressBar"></div>
 
-  <main class="slide-container" id="container">
+  <nav class="top-nav" id="topNav" aria-label="Navegación del portfolio">
+    <button class="language-toggle" id="languageToggle" type="button" aria-label="Cambiar idioma a inglés">
+      <span data-lang-option="es" class="is-active">ES</span>
+      <span>/</span>
+      <span data-lang-option="en">EN</span>
+    </button>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuPanel">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="menu-panel" id="menuPanel">
+      <a href="#inicio" data-slide="0"><span>01</span>Inicio</a>
+      <a href="#vision" data-slide="1"><span>02</span>Visión</a>
+      <a href="#perfil" data-slide="2"><span>03</span>Perfil</a>
+      <a href="#stack" data-slide="3"><span>04</span>Stack</a>
+      <a href="#trayectoria" data-slide="4"><span>05</span>Trayectoria</a>
+      <a href="#valor" data-slide="5"><span>06</span>Valor añadido</a>
+      <a href="#proyectos" data-slide="6"><span>07</span>Proyectos</a>
+      <a href="#baro" data-slide="7"><span>08</span>Baro</a>
+      <a href="#parking" data-slide="8"><span>09</span>ParkynGnow</a>
+      <a href="#starwars" data-slide="9"><span>10</span>Star Wars</a>
+      <a href="#compraventa" data-slide="10"><span>11</span>Compraventa</a>
+      <a href="#unity" data-slide="11"><span>12</span>Unity</a>
+      <a href="#lenguajes" data-slide="12"><span>13</span>Lenguajes</a>
+      <a href="#habilidades" data-slide="13"><span>14</span>Habilidades</a>
+      <a href="#filosofia" data-slide="14"><span>15</span>Filosofía</a>
+      <a href="#formacion" data-slide="15"><span>16</span>Formación</a>
+      <a href="#contacto" data-slide="16"><span>17</span>Contacto</a>
+    </div>
+  </nav>
 
-    <section class="slide">
+  <main class="slide-container" id="container">
+    <section class="slide" id="inicio">
       <div class="content center">
         <div class="eyebrow">FULL STACK DEVELOPER · JUNIOR PROFILE</div>
         <h1><span class="bracket-name">//Carlos Blasco//</span></h1>
@@ -804,7 +1129,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="vision">
       <div class="content center">
         <div class="mini-line"></div>
         <h2>Trayectoria y<br><span class="green">visión</span></h2>
@@ -812,7 +1137,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="perfil">
       <div class="content">
         <h2 class="section-title">Perfil profesional</h2>
         <div class="profile-grid">
@@ -820,7 +1145,7 @@
             <img src="https://carlosdam90.github.io/Portafolio/img/carlos.png" alt="Carlos Blasco">
           </div>
           <div>
-            <p><strong class="green">Hola, soy Carlos.</strong> estoy finalizando mis estudios en FP de ciclo Superior en Desarrollo de Aplicaciones Multiplataformas. He trabajado en el desarrollo de aplicaciones móviles, APIs y proyectos web, combinando diseño, lógica y experiencia de usuario para construir soluciones completas.</p>
+            <p><strong class="green">Hola, soy Carlos.</strong> Estoy finalizando mis estudios en FP de Ciclo Superior en Desarrollo de Aplicaciones Multiplataforma. He trabajado en el desarrollo de aplicaciones móviles, APIs y proyectos web, combinando diseño, lógica y experiencia de usuario para construir soluciones completas.</p>
             <br>
             <p>Mi enfoque se basa en entender el problema o necesidad, diseñar una solución clara y construir aplicaciones funcionales, mantenibles y con una presentación profesional.</p>
           </div>
@@ -828,7 +1153,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="stack">
       <div class="content">
         <h2 class="section-title">Stack tecnológico core</h2>
         <div class="cards-3">
@@ -851,7 +1176,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="trayectoria">
       <div class="content">
         <h2 class="section-title">Trayectoria práctica</h2>
         <div class="timeline">
@@ -884,7 +1209,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="valor">
       <div class="content">
         <h2 class="section-title">Valor añadido</h2>
         <div class="impact-grid">
@@ -894,7 +1219,7 @@
           </div>
           <div>
             <h3>Soluciones de principio a fin</h3>
-            <p>Tengo un perfil Full Stack. Comprendo y desarrollo todo el ciclo de desarrollo, tanto de una app móvil moderna, como de una app Web</p>
+            <p>Tengo un perfil Full Stack. Comprendo y desarrollo todo el ciclo de desarrollo, tanto de una app móvil moderna como de una app web.</p>
             <br>
             <p class="muted">Mobile · Backend · Datos · Diseño · Documentación · Testing básico</p>
           </div>
@@ -902,47 +1227,88 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="proyectos">
       <div class="content">
         <h2 class="section-title">Proyectos destacados</h2>
-        <div class="cards-3">
-          <div class="card">
-            <span class="card-label">App móvil + API</span>
-            <h3>Baro</h3>
-            <small>Aplicación de reservas para barberías con usuarios, servicios, citas, autenticación JWT, backend propio y base de datos MySQL.</small>
-          </div>
-          <div class="card">
-            <span class="card-label">Mobile / Maps</span>
-            <h3>Parking Maps</h3>
-            <small>Aplicación móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.</small>
-          </div>
-          <div class="card">
-            <span class="card-label">Android</span>
-            <h3>Star Wars App</h3>
-            <small>Aplicación Android con gestión de personajes, interfaz móvil y persistencia de datos.</small>
-          </div>
-        </div>
-        <div class="cards-3" style="margin-top: 22px;">
-          <div class="card">
-            <span class="card-label">Web</span>
-            <h3>Compraventa de entradas</h3>
-            <small>Proyecto web orientado a maquetación, diseño, navegación y funcionalidades avanzadas.</small>
-          </div>
-          <div class="card">
-            <span class="card-label">Videojuego</span>
-            <h3>Unity Game</h3>
-            <small>Primer acercamiento al desarrollo de videojuegos, escenas, lógica y colisiones.</small>
-          </div>
-          <div class="card">
-            <span class="card-label">Ideas SaaS</span>
-            <h3>Proyectos futuros</h3>
-            <small>Interés en crear productos digitales escalables orientados a negocio y usuarios reales.</small>
+        <div class="featured-projects">
+          <article class="project-card featured">
+            <span class="project-number">01</span>
+            <div>
+              <span class="card-label">Proyecto principal · Mobile + Backend</span>
+              <h3>Baro</h3>
+              <p>Aplicación completa para reservas en barberías: usuarios, servicios, citas, autenticación JWT, API propia y base de datos MySQL.</p>
+              <div class="project-meta">
+                <span>App móvil</span>
+                <span>API REST</span>
+                <span>Base de datos</span>
+                <span>Autenticación</span>
+              </div>
+              <div class="project-stack">
+                <span><i class="devicon-dotnetcore-plain"></i>.NET MAUI</span>
+                <span><i class="devicon-dotnetcore-plain"></i>ASP.NET</span>
+                <span><i class="devicon-mysql-plain"></i>MySQL</span>
+                <span><i class="fa-solid fa-shield-halved"></i>JWT</span>
+              </div>
+            </div>
+            <button class="project-action" type="button" onclick="goToSlide(7)">
+              Ver capturas <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </article>
+
+          <div class="project-grid-small">
+            <article class="project-card">
+              <span class="project-number">02</span>
+              <span class="card-label">Mobile · Maps</span>
+              <h3>ParkynGnow</h3>
+              <small>App móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.</small>
+              <div class="project-stack">
+                <span><i class="devicon-android-plain"></i>Android</span>
+                <span><i class="devicon-kotlin-plain"></i>Kotlin</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(8)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">03</span>
+              <span class="card-label">Android · Datos</span>
+              <h3>Star Wars App</h3>
+              <small>Aplicación Android con gestión visual de personajes, navegación y persistencia local.</small>
+              <div class="project-stack">
+                <span><i class="devicon-java-plain"></i>Java</span>
+                <span><i class="devicon-sqlite-plain"></i>SQLite</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(9)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">04</span>
+              <span class="card-label">Web · Responsive</span>
+              <h3>Compraventa</h3>
+              <small>Proyecto web orientado a maquetación, navegación y experiencia de compra clara.</small>
+              <div class="project-stack">
+                <span><i class="devicon-html5-plain"></i>HTML</span>
+                <span><i class="devicon-javascript-plain"></i>JS</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(10)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">05</span>
+              <span class="card-label">Videojuego · Unity</span>
+              <h3>Unity Game</h3>
+              <small>Primer acercamiento a escenas, lógica de juego, interacción y comportamiento del jugador.</small>
+              <div class="project-stack">
+                <span><i class="devicon-unity-plain"></i>Unity</span>
+                <span><i class="devicon-csharp-plain"></i>C#</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(11)">Ver caso</button>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="baro">
       <div class="content">
         <h2 class="section-title">Baro en capturas</h2>
         <div class="project-showcase">
@@ -950,20 +1316,23 @@
             <span class="eyebrow">APP MOVIL · API REST · MYSQL</span>
             <h3>Reserva de citas para barberías</h3>
             <p>Baro muestra el flujo completo de una aplicación real: autenticación, listado de servicios, selección de cita, gestión de reservas y comunicación con backend propio.</p>
-            <p class="muted"></p>
+            <p class="muted">La imagen principal está preparada como demo en video. Sube el archivo <strong>baro-demo.mp4</strong> a la carpeta <strong>img</strong> del portfolio para verlo en movimiento.</p>
             <div class="tech-tags">
-              <span>.NET MAUI</span>
-              <span>ASP.NET Core</span>
-              <span>JWT</span>
-              <span>MySQL</span>
-              <span>Swagger</span>
+              <span class="tech-logo" title=".NET MAUI"><i class="devicon-dotnetcore-plain"></i><span>.NET MAUI</span></span>
+              <span class="tech-logo" title="ASP.NET Core"><i class="devicon-dotnetcore-plain"></i><span>ASP.NET</span></span>
+              <span class="tech-logo" title="JWT"><i class="fa-solid fa-shield-halved"></i><span>JWT</span></span>
+              <span class="tech-logo" title="MySQL"><i class="devicon-mysql-plain"></i><span>MySQL</span></span>
+              <span class="tech-logo" title="Swagger"><i class="devicon-swagger-plain"></i><span>Swagger</span></span>
             </div>
           </div>
 
-          <div class="screenshots mobile-shots">
-            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg" alt="Captura de Baro mostrando la pantalla de reservas">
-              <span class="shot-label">Reservas</span>
+          <div class="screenshots">
+            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/baro-demo.mp4" target="_blank" rel="noopener noreferrer">
+              <video autoplay muted loop playsinline poster="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg">
+                <source src="https://carlosdam90.github.io/Portafolio/img/baro-demo.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+              </video>
+              <span class="shot-label">Demo</span>
             </a>
             <div class="screenshot-column">
               <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/pantalla1.jpg" target="_blank" rel="noopener noreferrer">
@@ -977,14 +1346,14 @@
               <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/pantalla7.jpg" target="_blank" rel="noopener noreferrer">
                 <img src="https://carlosdam90.github.io/Portafolio/img/pantalla7.jpg" alt="Captura de Swagger con endpoints de la API de Baro">
                 <span class="shot-label">API</span>
-              </a
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="parking">
       <div class="content">
         <h2 class="section-title">ParkynGnow en capturas</h2>
         <div class="project-showcase">
@@ -992,16 +1361,15 @@
             <span class="eyebrow">MOBILE · MAPAS · GEOLOCALIZACION</span>
             <h3>Publicación y consulta de plazas de aparcamiento</h3>
             <p>Parking Maps enseña una aplicación móvil centrada en ubicación, visualización sobre mapa y publicación de plazas disponibles para otros usuarios.</p>
-            <p class="muted"></p>
             <div class="tech-tags">
-              <span>Android</span>
-              <span>Kotlin</span>
-              <span>Maps</span>
-              <span>Geolocalización</span>
+              <span class="tech-logo" title="Android"><i class="devicon-android-plain"></i><span>Android</span></span>
+              <span class="tech-logo" title="Kotlin"><i class="devicon-kotlin-plain"></i><span>Kotlin</span></span>
+              <span class="tech-logo" title="Maps"><i class="fa-solid fa-map-location-dot"></i><span>Maps</span></span>
+              <span class="tech-logo" title="Geolocalización"><i class="fa-solid fa-location-dot"></i><span>Geolocalización</span></span>
             </div>
           </div>
 
-          <div class="screenshots mobile-shots">
+          <div class="screenshots">
             <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" target="_blank" rel="noopener noreferrer">
               <img src="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" alt="Captura de Parking Maps mostrando el mapa principal">
               <span class="shot-label">Mapa</span>
@@ -1012,7 +1380,7 @@
                 <span class="shot-label">Detalle</span>
               </a>
               <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura12.jpg" target="_blank" rel="noopener noreferrer">
-                <img src="https://carlosdam90.github.io/Portafolio/img//captura12.jpg" alt="Captura de Parking Maps mostrando el menú principal">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura12.jpg" alt="Captura de Parking Maps mostrando el menú principal">
                 <span class="shot-label">Menu</span>
               </a>
             </div>
@@ -1021,7 +1389,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="starwars">
       <div class="content">
         <h2 class="section-title">Star Wars App en capturas</h2>
         <div class="project-showcase">
@@ -1029,26 +1397,25 @@
             <span class="eyebrow">ANDROID · UI MOVIL · DATOS</span>
             <h3>Gestión visual de personajes</h3>
             <p>Proyecto Android enfocado en interfaz móvil, navegación, listado de personajes, detalle y persistencia de información.</p>
-            <p class="muted"></p>
             <div class="tech-tags">
-              <span>Android Studio</span>
-              <span>Java</span>
-              <span>SQLite</span>
-              <span>Layouts XML</span>
+              <span class="tech-logo" title="Android Studio"><i class="devicon-androidstudio-plain"></i><span>Android Studio</span></span>
+              <span class="tech-logo" title="Java"><i class="devicon-java-plain"></i><span>Java</span></span>
+              <span class="tech-logo" title="SQLite"><i class="devicon-sqlite-plain"></i><span>SQLite</span></span>
+              <span class="tech-logo" title="XML Layouts"><i class="fa-solid fa-code"></i><span>Layouts XML</span></span>
             </div>
           </div>
 
-          <div class="screenshots mobile-shots">
+          <div class="screenshots">
             <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" target="_blank" rel="noopener noreferrer">
               <img src="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" alt="Captura de Star Wars App mostrando el listado de personajes">
               <span class="shot-label">Principal</span>
             </a>
             <div class="screenshot-column">
               <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/starwars2.jpg" target="_blank" rel="noopener noreferrer">
-                <img src="https://carlosdam90.github.io/Portafolio/img/starwars2.jpg" alt="Captura de Star Wars App mostrando detalle de personaje">
-                <span class="shot-label">menú</span>
+                <img src="https://carlosdam90.github.io/Portafolio/img/starwars2.jpg" alt="Captura de Star Wars App mostrando menú">
+                <span class="shot-label">Menu</span>
               </a>
-              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img//starwars3.jpg" target="_blank" rel="noopener noreferrer">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/starwars3.jpg" target="_blank" rel="noopener noreferrer">
                 <img src="https://carlosdam90.github.io/Portafolio/img/starwars3.jpg" alt="Captura de Star Wars App mostrando registro o edición">
                 <span class="shot-label">Registro</span>
               </a>
@@ -1058,24 +1425,23 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="compraventa">
       <div class="content">
         <h2 class="section-title">Compraventa en capturas</h2>
-        <div class="project-showcase visual-focus">
+        <div class="project-showcase">
           <div class="project-copy">
             <span class="eyebrow">WEB · MAQUETACION · NAVEGACION</span>
             <h3>Compraventa de entradas</h3>
-            <p>Proyecto web orientado a construir una experiencia clara en la gestión de compra-ventas de entradas; consultar, pagar y revisar entradas disponibles.</p>
-            <p class="muted"></p>
+            <p>Proyecto web orientado a construir una experiencia clara en la gestión de compra-ventas de entradas: consultar, pagar y revisar entradas disponibles.</p>
             <div class="tech-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>Responsive</span>
+              <span class="tech-logo" title="HTML5"><i class="devicon-html5-plain"></i><span>HTML</span></span>
+              <span class="tech-logo" title="CSS3"><i class="devicon-css3-plain"></i><span>CSS</span></span>
+              <span class="tech-logo" title="JavaScript"><i class="devicon-javascript-plain"></i><span>JavaScript</span></span>
+              <span class="tech-logo" title="Responsive"><i class="fa-solid fa-mobile-screen-button"></i><span>Responsive</span></span>
             </div>
           </div>
 
-          <div class="screenshots landscape-shots wide-shots">
+          <div class="screenshots landscape-shots">
             <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" target="_blank" rel="noopener noreferrer">
               <img src="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" alt="Captura del proyecto de compraventa de entradas mostrando la página principal">
               <span class="shot-label">Home</span>
@@ -1091,32 +1457,31 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="unity">
       <div class="content">
         <h2 class="section-title">Unity Game en capturas</h2>
-        <div class="project-showcase visual-focus">
+        <div class="project-showcase">
           <div class="project-copy">
             <span class="eyebrow">VIDEOJUEGO · ESCENAS · INTERACCION</span>
             <h3>Primer acercamiento a desarrollo con Unity</h3>
             <p>Proyecto pensado para practicar escenas, lógica de juego, interacción con objetos y comportamiento básico del jugador.</p>
-            <p class="muted"></p>
             <div class="tech-tags">
-              <span>Unity</span>
-              <span>C#</span>
-              <span>Gameplay</span>
-              <span>Escenas</span>
+              <span class="tech-logo" title="Unity"><i class="devicon-unity-plain"></i><span>Unity</span></span>
+              <span class="tech-logo" title="C#"><i class="devicon-csharp-plain"></i><span>C#</span></span>
+              <span class="tech-logo" title="Gameplay"><i class="fa-solid fa-gamepad"></i><span>Gameplay</span></span>
+              <span class="tech-logo" title="Escenas"><i class="fa-solid fa-cubes"></i><span>Escenas</span></span>
             </div>
           </div>
 
-          <div class="screenshots landscape-shots wide-shots">
+          <div class="screenshots landscape-shots">
             <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/goku.jpg" target="_blank" rel="noopener noreferrer">
               <img src="https://carlosdam90.github.io/Portafolio/img/goku.jpg" alt="Captura de Unity Game mostrando gameplay">
-              <span class="shot-label">captura</span>
+              <span class="shot-label">Captura</span>
             </a>
             <div class="screenshot-column">
               <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/goku2.png" target="_blank" rel="noopener noreferrer">
-                <img src="https://carlosdam90.github.io/Portafolio/img/goku2.png" alt="Captura de Unity Game mostrando menú">
-                <span class="shot-label">sprites DBZ</span>
+                <img src="https://carlosdam90.github.io/Portafolio/img/goku2.png" alt="Captura de Unity Game mostrando sprites">
+                <span class="shot-label">Sprites DBZ</span>
               </a>
             </div>
           </div>
@@ -1124,8 +1489,7 @@
       </div>
     </section>
 
-
-    <section class="slide">
+    <section class="slide" id="lenguajes">
       <div class="content">
         <h2 class="section-title">Dominio de lenguajes</h2>
         <div class="skill-list">
@@ -1159,7 +1523,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="habilidades">
       <div class="content">
         <h2 class="section-title">Habilidades blandas</h2>
         <div class="soft-grid">
@@ -1187,28 +1551,25 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="filosofia">
       <div class="content quote">
         <div class="quote-mark">“</div>
         <h2>El genio se hace con un 1% de talento, y un 99% de trabajo</h2>
-        <p class="green"> — Mi filosofía de trabajo</p>
+        <p class="green">— Mi filosofía de trabajo</p>
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="formacion">
       <div class="content">
         <h2 class="section-title">Formación académica</h2>
         <div class="cards-4">
-          
           <div class="card center">
             <h3>FP Superior Desarrollo de Aplicaciones Multiplataforma</h3>
             <small>Ciclo Superior DAM · Desarrollo móvil, backend, bases de datos y programación.</small>
-             </div>
-          
-             <div class="card center">
+          </div>
+          <div class="card center">
             <h3>Ingeniería Aeroespacial</h3>
             <small>No finalizado.</small>
-               
           </div>
           <div class="card center">
             <h3>Proyectos prácticos</h3>
@@ -1222,7 +1583,7 @@
       </div>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="contacto">
       <div class="content center">
         <h2 class="gradient-title">¿Construimos algo juntos?</h2>
         <p>Estoy disponible para prácticas, proyectos junior y oportunidades donde pueda seguir creciendo junto a un equipo técnico.</p>
@@ -1231,37 +1592,30 @@
             <i class="fa-brands fa-linkedin"></i>
             LinkedIn
           </a>
-
           <a class="link-pill" href="https://github.com/CarlosDam90" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-github"></i>
             GitHub
           </a>
-
           <a class="link-pill" href="mailto:carlos.blasco.dev@gmail.com">
             <i class="fa-solid fa-envelope"></i>
             carlos.blasco.dev@gmail.com
           </a>
-
           <a class="link-pill" href="https://carlosdam90.github.io/Portafolio/" target="_blank" rel="noopener noreferrer">
             <i class="fa-solid fa-globe"></i>
             Portfolio
           </a>
-
           <a class="link-pill" href="curriculum26.pdf" target="_blank" rel="noopener noreferrer">
             <i class="fa-solid fa-file-pdf"></i>
             CV
           </a>
-
           <a class="link-pill" href="https://wa.me/685400728" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-whatsapp"></i>
             WhatsApp
           </a>
         </div>
-
         <p class="subtitle">Sevilla, España · Presencial / Remoto</p>
       </div>
     </section>
-
   </main>
 
   <div class="controls">
@@ -1273,15 +1627,259 @@
 
   <script>
     let currentSlide = 0;
-    const totalSlides = 17;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
     const container = document.getElementById('container');
     const slideNumber = document.getElementById('slideNumber');
     const progressBar = document.getElementById('progressBar');
+    const topNav = document.getElementById('topNav');
+    const menuToggle = document.getElementById('menuToggle');
+    const menuLinks = document.querySelectorAll('.menu-panel a');
+    const languageToggle = document.getElementById('languageToggle');
+    const languageOptions = document.querySelectorAll('[data-lang-option]');
+    const defaultTitle = document.title;
+    let currentLanguage = 'es';
+
+    const translations = new Map([
+      ['Portfolio & CV - Carlos Blasco', 'Portfolio & Resume - Carlos Blasco'],
+      ['Navegación del portfolio', 'Portfolio navigation'],
+      ['Cambiar idioma a inglés', 'Switch language to Spanish'],
+      ['Abrir menú', 'Open menu'],
+      ['Cerrar menú', 'Close menu'],
+      ['FULL STACK DEVELOPER · JUNIOR PROFILE', 'FULL STACK DEVELOPER · JUNIOR PROFILE'],
+      ['Portfolio & CV', 'Portfolio & Resume'],
+      ['"Un hombre con una idea nueva es un loco hasta que la idea triunfa".', '"A man with a new idea is a crank until the idea succeeds."'],
+      ['Sevilla · Desarrollo móvil · Backend · Web', 'Seville · Mobile development · Backend · Web'],
+      ['Inicio', 'Home'],
+      ['Visión', 'Vision'],
+      ['Perfil', 'Profile'],
+      ['Stack', 'Stack'],
+      ['Trayectoria', 'Career path'],
+      ['Valor añadido', 'Added value'],
+      ['Proyectos', 'Projects'],
+      ['Baro', 'Baro'],
+      ['ParkynGnow', 'ParkynGnow'],
+      ['Star Wars', 'Star Wars'],
+      ['Compraventa', 'Ticket resale'],
+      ['Unity', 'Unity'],
+      ['Lenguajes', 'Languages'],
+      ['Habilidades', 'Soft skills'],
+      ['Filosofía', 'Philosophy'],
+      ['Formación', 'Education'],
+      ['Contacto', 'Contact'],
+      ['Trayectoria y', 'Journey and'],
+      ['visión', 'vision'],
+      ['Mi objetivo es crecer como desarrollador construyendo soluciones útiles, aprendiendo de proyectos reales y cuidando tanto la parte técnica como la experiencia del usuario.', 'My goal is to grow as a developer by building useful solutions, learning from real projects, and caring for both the technical side and the user experience.'],
+      ['Perfil profesional', 'Professional profile'],
+      ['Hola, soy Carlos.', 'Hi, I am Carlos.'],
+      ['Estoy finalizando mis estudios en FP de Ciclo Superior en Desarrollo de Aplicaciones Multiplataforma. He trabajado en el desarrollo de aplicaciones móviles, APIs y proyectos web, combinando diseño, lógica y experiencia de usuario para construir soluciones completas.', 'I am finishing my Higher Vocational Training studies in Cross-Platform Application Development. I have worked on mobile apps, APIs, and web projects, combining design, logic, and user experience to build complete solutions.'],
+      ['Mi enfoque se basa en entender el problema o necesidad, diseñar una solución clara y construir aplicaciones funcionales, mantenibles y con una presentación profesional.', 'My approach is based on understanding the problem or need, designing a clear solution, and building functional, maintainable applications with a professional presentation.'],
+      ['Stack tecnológico core', 'Core technology stack'],
+      ['Frontend / Mobile', 'Frontend / Mobile'],
+      ['.NET MAUI · Android · Kotlin · HTML · CSS · JavaScript', '.NET MAUI · Android · Kotlin · HTML · CSS · JavaScript'],
+      ['Backend', 'Backend'],
+      ['C# · Java · ASP.NET Core Web API · APIs REST · JWT', 'C# · Java · ASP.NET Core Web API · REST APIs · JWT'],
+      ['Datos & Herramientas', 'Data & Tools'],
+      ['MySQL · SQLite · Entity Framework Core · Git · GitHub · Swagger', 'MySQL · SQLite · Entity Framework Core · Git · GitHub · Swagger'],
+      ['Trayectoria práctica', 'Practical journey'],
+      ['Bases de programación', 'Programming foundations'],
+      ['Java, C#, lógica, estructuras, POO y resolución de problemas.', 'Java, C#, logic, data structures, OOP, and problem solving.'],
+      ['Desarrollo web', 'Web development'],
+      ['HTML, CSS y JavaScript para crear interfaces y páginas funcionales.', 'HTML, CSS, and JavaScript to create functional interfaces and pages.'],
+      ['Aplicaciones móviles', 'Mobile applications'],
+      ['.NET MAUI, Android Studio, Kotlin, navegación y consumo de APIs.', '.NET MAUI, Android Studio, Kotlin, navigation, and API consumption.'],
+      ['Backend & datos', 'Backend & data'],
+      ['ASP.NET Core Web API, MySQL, EF Core, autenticación y Swagger.', 'ASP.NET Core Web API, MySQL, EF Core, authentication, and Swagger.'],
+      ['Producto completo', 'Complete product'],
+      ['Proyecto Baro: app móvil, API, base de datos y visión SaaS.', 'Baro project: mobile app, API, database, and SaaS vision.'],
+      ['360°', '360°'],
+      ['Visión completa del producto', 'Full product vision'],
+      ['Soluciones de principio a fin', 'End-to-end solutions'],
+      ['Tengo un perfil Full Stack. Comprendo y desarrollo todo el ciclo de desarrollo, tanto de una app móvil moderna como de una app web.', 'I have a Full Stack profile. I understand and develop the full development cycle, both for a modern mobile app and for a web app.'],
+      ['Mobile · Backend · Datos · Diseño · Documentación · Testing básico', 'Mobile · Backend · Data · Design · Documentation · Basic testing'],
+      ['Proyectos destacados', 'Featured projects'],
+      ['Proyecto principal · Mobile + Backend', 'Main project · Mobile + Backend'],
+      ['Aplicación completa para reservas en barberías: usuarios, servicios, citas, autenticación JWT, API propia y base de datos MySQL.', 'Complete booking app for barbershops: users, services, appointments, JWT authentication, custom API, and MySQL database.'],
+      ['App móvil', 'Mobile app'],
+      ['API REST', 'REST API'],
+      ['Base de datos', 'Database'],
+      ['Autenticación', 'Authentication'],
+      ['Ver capturas', 'View screenshots'],
+      ['Mobile · Maps', 'Mobile · Maps'],
+      ['App móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.', 'Mobile app based on geolocation, map views, and publishing parking spots.'],
+      ['Ver caso', 'View case'],
+      ['Android · Datos', 'Android · Data'],
+      ['Aplicación Android con gestión visual de personajes, navegación y persistencia local.', 'Android application with visual character management, navigation, and local persistence.'],
+      ['Web · Responsive', 'Web · Responsive'],
+      ['Compraventa', 'Ticket resale'],
+      ['Proyecto web orientado a maquetación, navegación y experiencia de compra clara.', 'Web project focused on layout, navigation, and a clear purchase experience.'],
+      ['Videojuego · Unity', 'Video game · Unity'],
+      ['Primer acercamiento a escenas, lógica de juego, interacción y comportamiento del jugador.', 'First approach to scenes, game logic, interaction, and player behavior.'],
+      ['App móvil + API', 'Mobile app + API'],
+      ['Aplicación de reservas para barberías con usuarios, servicios, citas, autenticación JWT, backend propio y base de datos MySQL.', 'Booking application for barbershops with users, services, appointments, JWT authentication, custom backend, and MySQL database.'],
+      ['Mobile / Maps', 'Mobile / Maps'],
+      ['Aplicación móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.', 'Mobile application based on geolocation, map views, and publishing parking spots.'],
+      ['Android', 'Android'],
+      ['Aplicación Android con gestión de personajes, interfaz móvil y persistencia de datos.', 'Android application with character management, mobile UI, and data persistence.'],
+      ['Web', 'Web'],
+      ['Compraventa de entradas', 'Ticket resale platform'],
+      ['Proyecto web orientado a maquetación, diseño, navegación y funcionalidades avanzadas.', 'Web project focused on layout, design, navigation, and advanced functionality.'],
+      ['Videojuego', 'Video game'],
+      ['Unity Game', 'Unity Game'],
+      ['Primer acercamiento al desarrollo de videojuegos, escenas, lógica y colisiones.', 'First approach to video game development, scenes, logic, and collisions.'],
+      ['Ideas SaaS', 'SaaS ideas'],
+      ['Proyectos futuros', 'Future projects'],
+      ['Interés en crear productos digitales escalables orientados a negocio y usuarios reales.', 'Interest in creating scalable digital products for businesses and real users.'],
+      ['Baro en capturas', 'Baro screenshots'],
+      ['APP MOVIL · API REST · MYSQL', 'MOBILE APP · REST API · MYSQL'],
+      ['Reserva de citas para barberías', 'Appointment booking for barbershops'],
+      ['Baro muestra el flujo completo de una aplicación real: autenticación, listado de servicios, selección de cita, gestión de reservas y comunicación con backend propio.', 'Baro shows the full flow of a real application: authentication, service listing, appointment selection, booking management, and communication with a custom backend.'],
+      ['La imagen principal está preparada como demo en video. Sube el archivo', 'The main image is prepared as a video demo. Upload the file'],
+      ['a la carpeta', 'to the'],
+      ['del portfolio para verlo en movimiento.', 'folder of the portfolio to see it in motion.'],
+      ['Demo', 'Demo'],
+      ['Login', 'Login'],
+      ['Servicios', 'Services'],
+      ['API', 'API'],
+      ['ParkynGnow en capturas', 'ParkynGnow screenshots'],
+      ['MOBILE · MAPAS · GEOLOCALIZACION', 'MOBILE · MAPS · GEOLOCATION'],
+      ['Publicación y consulta de plazas de aparcamiento', 'Publishing and finding parking spots'],
+      ['Parking Maps enseña una aplicación móvil centrada en ubicación, visualización sobre mapa y publicación de plazas disponibles para otros usuarios.', 'Parking Maps presents a mobile app focused on location, map visualization, and publishing available parking spots for other users.'],
+      ['Maps', 'Maps'],
+      ['Geolocalización', 'Geolocation'],
+      ['Mapa', 'Map'],
+      ['Detalle', 'Detail'],
+      ['Menu', 'Menu'],
+      ['Star Wars App en capturas', 'Star Wars App screenshots'],
+      ['ANDROID · UI MOVIL · DATOS', 'ANDROID · MOBILE UI · DATA'],
+      ['Gestión visual de personajes', 'Visual character management'],
+      ['Proyecto Android enfocado en interfaz móvil, navegación, listado de personajes, detalle y persistencia de información.', 'Android project focused on mobile interface, navigation, character listing, detail views, and data persistence.'],
+      ['Android Studio', 'Android Studio'],
+      ['Java', 'Java'],
+      ['SQLite', 'SQLite'],
+      ['Layouts XML', 'XML layouts'],
+      ['Principal', 'Main'],
+      ['Registro', 'Form'],
+      ['Compraventa en capturas', 'Ticket resale screenshots'],
+      ['WEB · MAQUETACION · NAVEGACION', 'WEB · LAYOUT · NAVIGATION'],
+      ['Proyecto web orientado a construir una experiencia clara en la gestión de compra-ventas de entradas: consultar, pagar y revisar entradas disponibles.', 'Web project focused on building a clear experience for ticket resale management: browsing, payment, and reviewing available tickets.'],
+      ['Responsive', 'Responsive'],
+      ['Home', 'Home'],
+      ['Unity Game en capturas', 'Unity Game screenshots'],
+      ['VIDEOJUEGO · ESCENAS · INTERACCION', 'VIDEO GAME · SCENES · INTERACTION'],
+      ['Primer acercamiento a desarrollo con Unity', 'First approach to Unity development'],
+      ['Proyecto pensado para practicar escenas, lógica de juego, interacción con objetos y comportamiento básico del jugador.', 'Project designed to practice scenes, game logic, object interaction, and basic player behavior.'],
+      ['C#', 'C#'],
+      ['Gameplay', 'Gameplay'],
+      ['Escenas', 'Scenes'],
+      ['Captura', 'Screenshot'],
+      ['Sprites DBZ', 'DBZ sprites'],
+      ['Dominio de lenguajes', 'Language proficiency'],
+      ['Kotlin', 'Kotlin'],
+      ['JavaScript', 'JavaScript'],
+      ['SQL', 'SQL'],
+      ['Porcentajes orientativos para representar experiencia práctica y nivel de uso.', 'Indicative percentages to represent practical experience and usage level.'],
+      ['Habilidades blandas', 'Soft skills'],
+      ['Resolución de problemas:', 'Problem solving:'],
+      ['capacidad para analizar errores, buscar soluciones y aprender durante el proceso.', 'ability to analyze errors, find solutions, and learn throughout the process.'],
+      ['Comunicación:', 'Communication:'],
+      ['explicación clara de ideas técnicas y avance del proyecto.', 'clear explanation of technical ideas and project progress.'],
+      ['Constancia:', 'Consistency:'],
+      ['trabajo progresivo, mejora continua y atención al detalle.', 'steady work, continuous improvement, and attention to detail.'],
+      ['Mentalidad junior con visión de producto', 'Junior mindset with product vision'],
+      ['Ganas de aprender, aportar al equipo y convertir cada proyecto en una oportunidad para crecer profesionalmente.', 'Motivation to learn, contribute to the team, and turn each project into an opportunity for professional growth.'],
+      ['El genio se hace con un 1% de talento, y un 99% de trabajo', 'Genius is made with 1% talent and 99% work'],
+      ['— Mi filosofía de trabajo', '— My work philosophy'],
+      ['Formación académica', 'Academic background'],
+      ['FP Superior Desarrollo de Aplicaciones Multiplataforma', 'Higher Vocational Training in Cross-Platform Application Development'],
+      ['Ciclo Superior DAM · Desarrollo móvil, backend, bases de datos y programación.', 'Higher DAM program · Mobile development, backend, databases, and programming.'],
+      ['Ingeniería Aeroespacial', 'Aerospace Engineering'],
+      ['No finalizado.', 'Not completed.'],
+      ['Proyectos prácticos', 'Practical projects'],
+      ['Aplicaciones móviles, APIs REST, diseño web, bases de datos y entregas funcionales.', 'Mobile applications, REST APIs, web design, databases, and functional deliveries.'],
+      ['Aprendizaje continuo', 'Continuous learning'],
+      ['Interés en cloud, Docker, SaaS, despliegue y mejora de productos digitales.', 'Interest in cloud, Docker, SaaS, deployment, and digital product improvement.'],
+      ['¿Construimos algo juntos?', 'Shall we build something together?'],
+      ['Estoy disponible para prácticas, proyectos junior y oportunidades donde pueda seguir creciendo junto a un equipo técnico.', 'I am available for internships, junior projects, and opportunities where I can keep growing alongside a technical team.'],
+      ['Portfolio', 'Portfolio'],
+      ['CV', 'Resume'],
+      ['Sevilla, España · Presencial / Remoto', 'Seville, Spain · On-site / Remote'],
+      ['← Anterior', '← Previous'],
+      ['Siguiente →', 'Next →'],
+      ['Flechas · Espacio · Rueda', 'Arrows · Space · Wheel']
+    ]);
+
+    const textNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement;
+        if (!parent || ['SCRIPT', 'STYLE'].includes(parent.tagName)) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    while (walker.nextNode()) {
+      textNodes.push({
+        node: walker.currentNode,
+        es: walker.currentNode.nodeValue
+      });
+    }
+
+    function translateValue(value, language) {
+      if (language === 'es') return value;
+
+      const trimmed = value.trim();
+      const translated = translations.get(trimmed);
+      if (!translated) return value;
+
+      const leading = value.match(/^\s*/)[0];
+      const trailing = value.match(/\s*$/)[0];
+      return `${leading}${translated}${trailing}`;
+    }
+
+    function applyLanguage(language) {
+      currentLanguage = language;
+      document.documentElement.lang = language;
+      document.title = language === 'es' ? defaultTitle : translations.get(defaultTitle);
+      topNav.setAttribute('aria-label', language === 'es' ? 'Navegación del portfolio' : 'Portfolio navigation');
+      languageToggle.setAttribute('aria-label', language === 'es' ? 'Cambiar idioma a inglés' : 'Switch language to Spanish');
+
+      textNodes.forEach(({ node, es }) => {
+        node.nodeValue = translateValue(es, language);
+      });
+
+      languageOptions.forEach((option) => {
+        option.classList.toggle('is-active', option.dataset.langOption === language);
+      });
+
+      menuToggle.setAttribute('aria-label', topNav.classList.contains('is-open')
+        ? (language === 'es' ? 'Cerrar menú' : 'Close menu')
+        : (language === 'es' ? 'Abrir menú' : 'Open menu'));
+    }
+
+    function closeMenu() {
+      topNav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', currentLanguage === 'es' ? 'Abrir menú' : 'Open menu');
+    }
+
+    function setActiveNavigation() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('is-active', index === currentSlide);
+      });
+
+      menuLinks.forEach((link) => {
+        link.classList.toggle('is-active', Number(link.dataset.slide) === currentSlide);
+      });
+    }
 
     function updateSlide() {
       container.style.transform = `translateX(-${currentSlide * 100}vw)`;
       slideNumber.innerText = `${currentSlide + 1} / ${totalSlides}`;
       progressBar.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+      setActiveNavigation();
     }
 
     function move(direction) {
@@ -1289,9 +1887,46 @@
       updateSlide();
     }
 
+    function goToSlide(index) {
+      currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+      updateSlide();
+
+      if (window.innerWidth <= 950) {
+        slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      closeMenu();
+    }
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = topNav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen
+        ? (currentLanguage === 'es' ? 'Cerrar menú' : 'Close menu')
+        : (currentLanguage === 'es' ? 'Abrir menú' : 'Open menu'));
+    });
+
+    languageToggle.addEventListener('click', () => {
+      applyLanguage(currentLanguage === 'es' ? 'en' : 'es');
+    });
+
+    menuLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSlide(Number(link.dataset.slide));
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!topNav.contains(e.target)) closeMenu();
+    });
+
     document.addEventListener('keydown', (e) => {
+      const interactiveElement = e.target.closest('button, a, input, textarea, select');
+      if (interactiveElement && e.key !== 'Escape') return;
       if (e.key === 'ArrowRight' || e.key === ' ') move(1);
       if (e.key === 'ArrowLeft') move(-1);
+      if (e.key === 'Escape') closeMenu();
       if (e.key === 'Home') {
         currentSlide = 0;
         updateSlide();
@@ -1308,7 +1943,9 @@
       if (isScrolling) return;
       isScrolling = true;
       move(e.deltaY > 0 ? 1 : -1);
-      setTimeout(() => isScrolling = false, 850);
+      setTimeout(() => {
+        isScrolling = false;
+      }, 850);
     });
 
     let touchStartX = 0;
@@ -1320,6 +1957,11 @@
       const touchEndX = e.changedTouches[0].screenX;
       if (touchStartX - touchEndX > 60) move(1);
       if (touchEndX - touchStartX > 60) move(-1);
+    });
+
+    updateSlide();
+    requestAnimationFrame(() => {
+      document.body.classList.add('is-loaded');
     });
   </script>
 </body>
