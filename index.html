@@ -1868,107 +1868,452 @@
       </div>
     </section>
 
-  <section class="slide" id="proyectos">
-  <div class="content">
-    <h2 class="section-title">Proyectos destacados</h2>
-    <div class="featured-projects">
-      <article class="project-card featured">
-        <span class="project-number">01</span>
-        <div>
-          <div class="project-visual">
-            <img src="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg" alt="Visual de Baro">
-            <span class="project-logo-mark"><i class="fa-solid fa-scissors"></i>Baro</span>
-          </div>
-          <span class="card-label">Proyecto principal · Mobile + Backend</span>
-          <h3>Baro</h3>
-          <p>Aplicación completa para reservas en barberías: usuarios, servicios, citas, autenticación JWT, API propia y base de datos MySQL.</p>
-          <div class="project-meta">
-            <span>App móvil</span>
-            <span>API REST</span>
-            <span>Base de datos</span>
-            <span>Autenticación</span>
-          </div>
-          <div class="project-stack">
-            <span><i class="devicon-dotnetcore-plain"></i>.NET MAUI</span>
-            <span><i class="devicon-dotnetcore-plain"></i>ASP.NET</span>
-            <span><i class="devicon-mysql-plain"></i>MySQL</span>
-            <span><i class="fa-solid fa-shield-halved"></i>JWT</span>
+    <section class="slide" id="proyectos">
+      <div class="content">
+        <h2 class="section-title">Proyectos destacados</h2>
+        <div class="featured-projects">
+          <article class="project-card featured">
+            <span class="project-number">01</span>
+            <div>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg" alt="Visual de Baro">
+                <span class="project-logo-mark"><i class="fa-solid fa-scissors"></i>Baro</span>
+              </div>
+              <span class="card-label">Proyecto principal · Mobile + Backend</span>
+              <h3>Baro</h3>
+              <p>Aplicación completa para reservas en barberías: usuarios, servicios, citas, autenticación JWT, API propia y base de datos MySQL.</p>
+              <div class="project-meta">
+                <span>App móvil</span>
+                <span>API REST</span>
+                <span>Base de datos</span>
+                <span>Autenticación</span>
+              </div>
+              <div class="project-stack">
+                <span><i class="devicon-dotnetcore-plain"></i>.NET MAUI</span>
+                <span><i class="devicon-dotnetcore-plain"></i>ASP.NET</span>
+                <span><i class="devicon-mysql-plain"></i>MySQL</span>
+                <span><i class="fa-solid fa-shield-halved"></i>JWT</span>
+              </div>
+            </div>
+            <button class="project-action" type="button" onclick="goToSlide(7)">
+              Ver capturas <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </article>
+
+          <div class="project-grid-small">
+            <article class="project-card">
+              <span class="project-number">02</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" alt="Visual de ParkynGnow">
+                <span class="project-logo-mark"><i class="fa-solid fa-square-parking"></i>ParkynGnow</span>
+              </div>
+              <span class="card-label">Mobile · Maps</span>
+              <h3>ParkynGnow</h3>
+              <small>App móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.</small>
+              <div class="project-stack">
+                <span><i class="devicon-android-plain"></i>Android</span>
+                <span><i class="devicon-kotlin-plain"></i>Kotlin</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(8)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">03</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" alt="Visual de Star Wars App">
+                <span class="project-logo-mark"><i class="fa-solid fa-jedi"></i>Star Wars</span>
+              </div>
+              <span class="card-label">Android · Datos</span>
+              <h3>Star Wars App</h3>
+              <small>Aplicación Android con gestión visual de personajes, navegación y persistencia local.</small>
+              <div class="project-stack">
+                <span><i class="devicon-java-plain"></i>Java</span>
+                <span><i class="devicon-sqlite-plain"></i>SQLite</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(9)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">04</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" alt="Visual de Compraventa de entradas">
+                <span class="project-logo-mark"><i class="fa-solid fa-ticket"></i>Tickets</span>
+              </div>
+              <span class="card-label">Web · Responsive</span>
+              <h3>Compraventa</h3>
+              <small>Proyecto web orientado a maquetación, navegación y experiencia de compra clara.</small>
+              <div class="project-stack">
+                <span><i class="devicon-html5-plain"></i>HTML</span>
+                <span><i class="devicon-javascript-plain"></i>JS</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(10)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">05</span>
+              <div class="project-visual">
+                <img src="https://carlosdam90.github.io/Portafolio/img/goku.jpg" alt="Visual de Unity Game">
+                <span class="project-logo-mark"><i class="devicon-unity-plain"></i>Unity Game</span>
+              </div>
+              <span class="card-label">Videojuego · Unity</span>
+              <h3>Unity Game</h3>
+              <small>Primer acercamiento a escenas, lógica de juego, interacción y comportamiento del jugador.</small>
+              <div class="project-stack">
+                <span><i class="devicon-unity-plain"></i>Unity</span>
+                <span><i class="devicon-csharp-plain"></i>C#</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(11)">Ver caso</button>
+            </article>
           </div>
         </div>
-        <button class="project-action" type="button" onclick="goToSlide(7)">
-          Ver capturas <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </article>
-
-      <div class="project-grid-small">
-        <article class="project-card">
-          <span class="project-number">02</span>
-          <div class="project-visual">
-            <img src="https://spartapdf.com/favicon.svg" alt="Visual de SpartaPDF">
-            <span class="project-logo-mark"><i class="fa-solid fa-file-pdf"></i>SpartaPDF</span>
-          </div>
-          <span class="card-label">Web · Producto real</span>
-          <h3>SpartaPDF</h3>
-          <small>Aplicación web publicada para convertir imágenes a PDF y trabajar con documentos desde el navegador.</small>
-          <div class="project-stack">
-            <span><i class="devicon-react-original"></i>React</span>
-            <span><i class="devicon-typescript-plain"></i>TypeScript</span>
-            <span><i class="fa-solid fa-cloud"></i>Cloudflare</span>
-          </div>
-          <a class="project-action" href="https://spartapdf.com" target="_blank" rel="noopener noreferrer">Ver web</a>
-        </article>
-
-        <article class="project-card">
-          <span class="project-number">03</span>
-          <div class="project-visual">
-            <img src="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" alt="Visual de ParkynGnow">
-            <span class="project-logo-mark"><i class="fa-solid fa-square-parking"></i>ParkynGnow</span>
-          </div>
-          <span class="card-label">Mobile · Maps</span>
-          <h3>ParkynGnow</h3>
-          <small>App móvil basada en geolocalización, mapa y publicación de plazas de aparcamiento.</small>
-          <div class="project-stack">
-            <span><i class="devicon-android-plain"></i>Android</span>
-            <span><i class="devicon-kotlin-plain"></i>Kotlin</span>
-          </div>
-          <button class="project-action" type="button" onclick="goToSlide(8)">Ver caso</button>
-        </article>
-
-        <article class="project-card">
-          <span class="project-number">04</span>
-          <div class="project-visual">
-            <img src="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" alt="Visual de Star Wars App">
-            <span class="project-logo-mark"><i class="fa-solid fa-jedi"></i>Star Wars</span>
-          </div>
-          <span class="card-label">Android · Datos</span>
-          <h3>Star Wars App</h3>
-          <small>Aplicación Android con gestión visual de personajes, navegación y persistencia local.</small>
-          <div class="project-stack">
-            <span><i class="devicon-java-plain"></i>Java</span>
-            <span><i class="devicon-sqlite-plain"></i>SQLite</span>
-          </div>
-          <button class="project-action" type="button" onclick="goToSlide(9)">Ver caso</button>
-        </article>
-
-        <article class="project-card">
-          <span class="project-number">05</span>
-          <div class="project-visual">
-            <img src="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" alt="Visual de Compraventa de entradas">
-            <span class="project-logo-mark"><i class="fa-solid fa-ticket"></i>Tickets</span>
-          </div>
-          <span class="card-label">Web · Responsive</span>
-          <h3>Compraventa</h3>
-          <small>Proyecto web orientado a maquetación, navegación y experiencia de compra clara.</small>
-          <div class="project-stack">
-            <span><i class="devicon-html5-plain"></i>HTML</span>
-            <span><i class="devicon-javascript-plain"></i>JS</span>
-          </div>
-          <button class="project-action" type="button" onclick="goToSlide(10)">Ver caso</button>
-        </article>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
+    <section class="slide" id="baro">
+      <div class="content">
+        <h2 class="section-title">Baro en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">APP MOVIL · API REST · MYSQL</span>
+            <h3>Reserva de citas para barberías</h3>
+            <p>Baro muestra el flujo completo de una aplicación real: autenticación, listado de servicios, selección de cita, gestión de reservas y comunicación con backend propio.</p>
+            <p class="muted">La imagen principal está preparada como demo en video. Sube el archivo <strong>baro-demo.mp4</strong> a la carpeta <strong>img</strong> del portfolio para verlo en movimiento.</p>
+            <div class="tech-tags">
+              <span class="tech-logo" title=".NET MAUI"><i class="devicon-dotnetcore-plain"></i><span>.NET MAUI</span></span>
+              <span class="tech-logo" title="ASP.NET Core"><i class="devicon-dotnetcore-plain"></i><span>ASP.NET</span></span>
+              <span class="tech-logo" title="JWT"><i class="fa-solid fa-shield-halved"></i><span>JWT</span></span>
+              <span class="tech-logo" title="MySQL"><i class="devicon-mysql-plain"></i><span>MySQL</span></span>
+              <span class="tech-logo" title="Swagger"><i class="devicon-swagger-plain"></i><span>Swagger</span></span>
+            </div>
+          </div>
+
+          <div class="screenshots">
+            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/baro-demo.mp4" target="_blank" rel="noopener noreferrer">
+              <video autoplay muted loop playsinline poster="https://carlosdam90.github.io/Portafolio/img/pantalla5.jpg">
+                <source src="https://carlosdam90.github.io/Portafolio/img/baro-demo.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este video.
+              </video>
+              <span class="shot-label">Demo</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/pantalla1.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla1.jpg" alt="Captura de Baro mostrando el inicio de sesión">
+                <span class="shot-label">Login</span>
+              </a>
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/pantalla6.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla6.jpg" alt="Captura de Baro mostrando servicios de barbería">
+                <span class="shot-label">Servicios</span>
+              </a>
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/pantalla7.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla7.jpg" alt="Captura de Swagger con endpoints de la API de Baro">
+                <span class="shot-label">API</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="parking">
+      <div class="content">
+        <h2 class="section-title">ParkynGnow en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">MOBILE · MAPAS · GEOLOCALIZACION</span>
+            <h3>Publicación y consulta de plazas de aparcamiento</h3>
+            <p>Parking Maps enseña una aplicación móvil centrada en ubicación, visualización sobre mapa y publicación de plazas disponibles para otros usuarios.</p>
+            <div class="tech-tags">
+              <span class="tech-logo" title="Android"><i class="devicon-android-plain"></i><span>Android</span></span>
+              <span class="tech-logo" title="Kotlin"><i class="devicon-kotlin-plain"></i><span>Kotlin</span></span>
+              <span class="tech-logo" title="Maps"><i class="fa-solid fa-map-location-dot"></i><span>Maps</span></span>
+              <span class="tech-logo" title="Geolocalización"><i class="fa-solid fa-location-dot"></i><span>Geolocalización</span></span>
+            </div>
+          </div>
+
+          <div class="screenshots">
+            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" alt="Captura de Parking Maps mostrando el mapa principal">
+              <span class="shot-label">Mapa</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" alt="Captura de Parking Maps mostrando el detalle de una plaza">
+                <span class="shot-label">Detalle</span>
+              </a>
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura12.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura12.jpg" alt="Captura de Parking Maps mostrando el menú principal">
+                <span class="shot-label">Menu</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="starwars">
+      <div class="content">
+        <h2 class="section-title">Star Wars App en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">ANDROID · UI MOVIL · DATOS</span>
+            <h3>Gestión visual de personajes</h3>
+            <p>Proyecto Android enfocado en interfaz móvil, navegación, listado de personajes, detalle y persistencia de información.</p>
+            <div class="tech-tags">
+              <span class="tech-logo" title="Android Studio"><i class="devicon-androidstudio-plain"></i><span>Android Studio</span></span>
+              <span class="tech-logo" title="Java"><i class="devicon-java-plain"></i><span>Java</span></span>
+              <span class="tech-logo" title="SQLite"><i class="devicon-sqlite-plain"></i><span>SQLite</span></span>
+              <span class="tech-logo" title="XML Layouts"><i class="fa-solid fa-code"></i><span>Layouts XML</span></span>
+            </div>
+          </div>
+
+          <div class="screenshots">
+            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" alt="Captura de Star Wars App mostrando el listado de personajes">
+              <span class="shot-label">Principal</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/starwars2.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/starwars2.jpg" alt="Captura de Star Wars App mostrando menú">
+                <span class="shot-label">Menu</span>
+              </a>
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/starwars3.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/starwars3.jpg" alt="Captura de Star Wars App mostrando registro o edición">
+                <span class="shot-label">Registro</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="compraventa">
+      <div class="content">
+        <h2 class="section-title">Compraventa en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">WEB · MAQUETACION · NAVEGACION</span>
+            <h3>Compraventa de entradas</h3>
+            <p>Proyecto web orientado a construir una experiencia clara en la gestión de compra-ventas de entradas: consultar, pagar y revisar entradas disponibles.</p>
+            <div class="tech-tags">
+              <span class="tech-logo" title="HTML5"><i class="devicon-html5-plain"></i><span>HTML</span></span>
+              <span class="tech-logo" title="CSS3"><i class="devicon-css3-plain"></i><span>CSS</span></span>
+              <span class="tech-logo" title="JavaScript"><i class="devicon-javascript-plain"></i><span>JavaScript</span></span>
+              <span class="tech-logo" title="Responsive"><i class="fa-solid fa-mobile-screen-button"></i><span>Responsive</span></span>
+            </div>
+          </div>
+
+          <div class="screenshots landscape-shots">
+            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" alt="Captura del proyecto de compraventa de entradas mostrando la página principal">
+              <span class="shot-label">Home</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/pantalla9.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/pantalla9.jpg" alt="Captura del detalle de una entrada">
+                <span class="shot-label">Detalle</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="unity">
+      <div class="content">
+        <h2 class="section-title">Unity Game en capturas</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">VIDEOJUEGO · ESCENAS · INTERACCION</span>
+            <h3>Primer acercamiento a desarrollo con Unity</h3>
+            <p>Proyecto pensado para practicar escenas, lógica de juego, interacción con objetos y comportamiento básico del jugador.</p>
+            <div class="tech-tags">
+              <span class="tech-logo" title="Unity"><i class="devicon-unity-plain"></i><span>Unity</span></span>
+              <span class="tech-logo" title="C#"><i class="devicon-csharp-plain"></i><span>C#</span></span>
+              <span class="tech-logo" title="Gameplay"><i class="fa-solid fa-gamepad"></i><span>Gameplay</span></span>
+              <span class="tech-logo" title="Escenas"><i class="fa-solid fa-cubes"></i><span>Escenas</span></span>
+            </div>
+          </div>
+
+          <div class="screenshots landscape-shots">
+            <a class="screenshot-main" href="https://carlosdam90.github.io/Portafolio/img/goku.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="https://carlosdam90.github.io/Portafolio/img/goku.jpg" alt="Captura de Unity Game mostrando gameplay">
+              <span class="shot-label">Captura</span>
+            </a>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/goku2.png" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/goku2.png" alt="Captura de Unity Game mostrando sprites">
+                <span class="shot-label">Sprites DBZ</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="lenguajes">
+      <div class="content">
+        <h2 class="section-title">Dominio de lenguajes</h2>
+        <div class="skill-list">
+          <div class="skill-row">
+            <span class="skill-logo"><i class="devicon-csharp-plain"></i>C#</span>
+            <div class="bar"><span style="--w: 82%"></span></div>
+            <span>82%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-logo"><i class="devicon-java-plain"></i>Java</span>
+            <div class="bar"><span style="--w: 76%"></span></div>
+            <span>76%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-logo"><i class="devicon-kotlin-plain"></i>Kotlin</span>
+            <div class="bar"><span style="--w: 62%"></span></div>
+            <span>62%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-logo"><i class="devicon-javascript-plain"></i>JavaScript</span>
+            <div class="bar"><span style="--w: 68%"></span></div>
+            <span>68%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-logo"><i class="fa-solid fa-database"></i>SQL</span>
+            <div class="bar"><span style="--w: 74%"></span></div>
+            <span>74%</span>
+          </div>
+        </div>
+        <p class="subtitle center">Porcentajes orientativos para representar experiencia práctica y nivel de uso.</p>
+      </div>
+    </section>
+
+    <section class="slide" id="habilidades">
+      <div class="content">
+        <h2 class="section-title">Habilidades blandas</h2>
+        <div class="soft-grid">
+          <div class="soft-list">
+            <div class="soft-item">
+              <span class="soft-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+              <p><b>Resolución de problemas:</b> capacidad para analizar errores, buscar soluciones y aprender durante el proceso.</p>
+            </div>
+            <div class="soft-item">
+              <span class="soft-icon"><i class="fa-solid fa-comments"></i></span>
+              <p><b>Comunicación:</b> explicación clara de ideas técnicas y avance del proyecto.</p>
+            </div>
+            <div class="soft-item">
+              <span class="soft-icon"><i class="fa-solid fa-bullseye"></i></span>
+              <p><b>Constancia:</b> trabajo progresivo, mejora continua y atención al detalle.</p>
+            </div>
+            <div class="soft-item">
+              <span class="soft-icon"><i class="fa-solid fa-layer-group"></i></span>
+              <p><b>Organización:</b> dividir tareas, priorizar avances y mantener una estructura clara del trabajo.</p>
+            </div>
+          </div>
+          <div class="mindset-card center">
+            <div class="mindset-orbit">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+            <div>
+              <h3 class="green">Mentalidad junior con visión de producto</h3>
+              <p>Ganas de aprender, aportar al equipo y convertir cada proyecto en una oportunidad para crecer profesionalmente.</p>
+            </div>
+            <div class="mindset-tags">
+              <span>Aprendizaje</span>
+              <span>Equipo</span>
+              <span>Producto</span>
+              <span>Detalle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="filosofia">
+      <div class="content quote">
+        <div class="quote-mark">“</div>
+        <h2>El genio se hace con un 1% de talento, y un 99% de trabajo</h2>
+        <p class="green">— Mi filosofía de trabajo</p>
+      </div>
+    </section>
+
+    <section class="slide" id="formacion">
+      <div class="content">
+        <h2 class="section-title">Formación académica</h2>
+        <div class="education-board">
+          <article class="education-card">
+            <div class="education-mark">
+              <img class="education-logo ilerna-logo" src="logo-ilerna.png" alt="Logo de ILERNA">
+            </div>
+            <div>
+              <span class="card-label">ILERNA · Formación Profesional</span>
+              <h3>FP Superior Desarrollo de Aplicaciones Multiplataforma</h3>
+              <small>Ciclo Superior DAM · Desarrollo móvil, backend, bases de datos y programación.</small>
+              <div class="education-meta">
+                <span>Mobile</span>
+                <span>Backend</span>
+                <span>Datos</span>
+                <span>Programación</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="education-card">
+            <div class="education-mark">
+              <img class="education-logo us-logo" src="logo-us.png" alt="Logo de la Universidad de Sevilla">
+            </div>
+            <div>
+              <span class="card-label">Universidad de Sevilla</span>
+              <h3>Ingeniería Aeroespacial</h3>
+              <small>No finalizado · base técnica, matemáticas, física y visión de ingeniería.</small>
+              <div class="education-meta">
+                <span>Universidad de Sevilla</span>
+                <span>Ingeniería</span>
+                <span>Base técnica</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="education-card">
+            <div class="education-mark">
+              <div class="education-logo-badge">
+                <div>
+                  <i class="fa-solid fa-code"></i><br>
+                  LAB
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="card-label">Aplicación práctica</span>
+              <h3>Proyectos prácticos</h3>
+              <small>Aplicaciones móviles, APIs REST, diseño web, bases de datos y entregas funcionales.</small>
+              <div class="education-meta">
+                <span>APIs REST</span>
+                <span>Apps</span>
+                <span>UI</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="education-card">
+            <div class="education-mark">
+              <div class="education-logo-badge">
+                <div>
+                  <i class="fa-solid fa-arrow-trend-up"></i><br>
+                  NEXT
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="card-label">Crecimiento</span>
+              <h3>Aprendizaje continuo</h3>
+              <small>Interés en cloud, Docker, SaaS, despliegue y mejora de productos digitales.</small>
+              <div class="education-meta">
+                <span>Cloud</span>
+                <span>Docker</span>
+                <span>SaaS</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="slide" id="contacto">
       <div class="content center">
