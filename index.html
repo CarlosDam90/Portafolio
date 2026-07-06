@@ -95,7 +95,7 @@
 
     .slide-container {
       display: flex;
-      width: 1700vw;
+      width: 1800vw;
       height: 100vh;
       transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -454,6 +454,10 @@
       transition-delay: 0.3s;
     }
 
+    .slide.is-active .project-grid-small .project-card:nth-child(5) {
+      transition-delay: 0.36s;
+    }
+
     .project-card:hover {
       transform: translateY(-7px);
       border-color: rgba(0, 208, 132, 0.62);
@@ -780,6 +784,48 @@
       height: auto;
       aspect-ratio: 16 / 9;
       border-radius: 16px;
+    }
+
+    .sparta-preview {
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .sparta-preview-panel {
+      width: min(100%, 720px);
+      min-height: 280px;
+      display: grid;
+      place-items: center;
+      gap: 16px;
+      padding: 38px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 204, 91, 0.2), transparent 38%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.92));
+    }
+
+    .sparta-preview-logo {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.34));
+    }
+
+    .sparta-preview-title {
+      font-size: clamp(1.6rem, 4vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .sparta-preview-title span {
+      color: #f4c95d;
+    }
+
+    .sparta-preview-copy {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
     }
 
     .screenshot-main img,
@@ -1685,7 +1731,7 @@
   </style>
 </head>
 <body>
-  <div class="slide-number" id="slideNumber">1 / 17</div>
+  <div class="slide-number" id="slideNumber">1 / 18</div>
   <div class="progress" id="progressBar"></div>
 
   <nav class="top-nav" id="topNav" aria-label="Navegación del portfolio">
@@ -1703,7 +1749,7 @@
           <strong>Portfolio</strong>
           <small>Navegación rápida</small>
         </div>
-        <span class="menu-status">17 slides</span>
+        <span class="menu-status">18 slides</span>
       </div>
 
       <div class="menu-group">
@@ -1720,19 +1766,20 @@
         <div class="menu-group-title">Proyectos</div>
         <a href="#proyectos" data-slide="6"><span class="menu-index">07</span><span class="menu-text">Proyectos</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
         <a class="submenu-link" href="#baro" data-slide="7"><span class="menu-index">7.1</span><span class="menu-text">Baro</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a class="submenu-link" href="#parking" data-slide="8"><span class="menu-index">7.2</span><span class="menu-text">ParkynGnow</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a class="submenu-link" href="#starwars" data-slide="9"><span class="menu-index">7.3</span><span class="menu-text">Star Wars</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a class="submenu-link" href="#compraventa" data-slide="10"><span class="menu-index">7.4</span><span class="menu-text">Compraventa</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a class="submenu-link" href="#unity" data-slide="11"><span class="menu-index">7.5</span><span class="menu-text">Unity</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#spartapdf" data-slide="8"><span class="menu-index">7.2</span><span class="menu-text">SpartaPDF</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#parking" data-slide="9"><span class="menu-index">7.3</span><span class="menu-text">ParkynGnow</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#starwars" data-slide="10"><span class="menu-index">7.4</span><span class="menu-text">Star Wars</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#compraventa" data-slide="11"><span class="menu-index">7.5</span><span class="menu-text">Compraventa</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a class="submenu-link" href="#unity" data-slide="12"><span class="menu-index">7.6</span><span class="menu-text">Unity</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
       </div>
 
       <div class="menu-group">
         <div class="menu-group-title">Cierre</div>
-        <a href="#lenguajes" data-slide="12"><span class="menu-index">13</span><span class="menu-text">Lenguajes</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a href="#habilidades" data-slide="13"><span class="menu-index">14</span><span class="menu-text">Habilidades</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a href="#filosofia" data-slide="14"><span class="menu-index">15</span><span class="menu-text">Filosofía</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a href="#formacion" data-slide="15"><span class="menu-index">16</span><span class="menu-text">Formación</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
-        <a href="#contacto" data-slide="16"><span class="menu-index">17</span><span class="menu-text">Contacto</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#lenguajes" data-slide="13"><span class="menu-index">14</span><span class="menu-text">Lenguajes</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#habilidades" data-slide="14"><span class="menu-index">15</span><span class="menu-text">Habilidades</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#filosofia" data-slide="15"><span class="menu-index">16</span><span class="menu-text">Filosofía</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#formacion" data-slide="16"><span class="menu-index">17</span><span class="menu-text">Formación</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
+        <a href="#contacto" data-slide="17"><span class="menu-index">18</span><span class="menu-text">Contacto</span><i class="fa-solid fa-chevron-right menu-arrow"></i></a>
       </div>
     </div>
   </nav>
@@ -1904,6 +1951,23 @@
             <article class="project-card">
               <span class="project-number">02</span>
               <div class="project-visual">
+                <img src="https://spartapdf.com/favicon.svg" alt="Visual de SpartaPDF">
+                <span class="project-logo-mark"><i class="fa-solid fa-file-pdf"></i>SpartaPDF</span>
+              </div>
+              <span class="card-label">Web · Producto real</span>
+              <h3>SpartaPDF</h3>
+              <small>Aplicación web publicada para convertir imágenes a PDF y trabajar con documentos desde el navegador.</small>
+              <div class="project-stack">
+                <span><i class="devicon-react-original"></i>React</span>
+                <span><i class="devicon-typescript-plain"></i>TypeScript</span>
+                <span><i class="fa-solid fa-cloud"></i>Cloudflare</span>
+              </div>
+              <button class="project-action" type="button" onclick="goToSlide(8)">Ver caso</button>
+            </article>
+
+            <article class="project-card">
+              <span class="project-number">03</span>
+              <div class="project-visual">
                 <img src="https://carlosdam90.github.io/Portafolio/img/captura11.jpg" alt="Visual de ParkynGnow">
                 <span class="project-logo-mark"><i class="fa-solid fa-square-parking"></i>ParkynGnow</span>
               </div>
@@ -1914,11 +1978,11 @@
                 <span><i class="devicon-android-plain"></i>Android</span>
                 <span><i class="devicon-kotlin-plain"></i>Kotlin</span>
               </div>
-              <button class="project-action" type="button" onclick="goToSlide(8)">Ver caso</button>
+              <button class="project-action" type="button" onclick="goToSlide(9)">Ver caso</button>
             </article>
 
             <article class="project-card">
-              <span class="project-number">03</span>
+              <span class="project-number">04</span>
               <div class="project-visual">
                 <img src="https://carlosdam90.github.io/Portafolio/img/starwars1.jpg" alt="Visual de Star Wars App">
                 <span class="project-logo-mark"><i class="fa-solid fa-jedi"></i>Star Wars</span>
@@ -1930,11 +1994,11 @@
                 <span><i class="devicon-java-plain"></i>Java</span>
                 <span><i class="devicon-sqlite-plain"></i>SQLite</span>
               </div>
-              <button class="project-action" type="button" onclick="goToSlide(9)">Ver caso</button>
+              <button class="project-action" type="button" onclick="goToSlide(10)">Ver caso</button>
             </article>
 
             <article class="project-card">
-              <span class="project-number">04</span>
+              <span class="project-number">05</span>
               <div class="project-visual">
                 <img src="https://carlosdam90.github.io/Portafolio/img/pantalla8.jpg" alt="Visual de Compraventa de entradas">
                 <span class="project-logo-mark"><i class="fa-solid fa-ticket"></i>Tickets</span>
@@ -1946,11 +2010,11 @@
                 <span><i class="devicon-html5-plain"></i>HTML</span>
                 <span><i class="devicon-javascript-plain"></i>JS</span>
               </div>
-              <button class="project-action" type="button" onclick="goToSlide(10)">Ver caso</button>
+              <button class="project-action" type="button" onclick="goToSlide(11)">Ver caso</button>
             </article>
 
             <article class="project-card">
-              <span class="project-number">05</span>
+              <span class="project-number">06</span>
               <div class="project-visual">
                 <img src="https://carlosdam90.github.io/Portafolio/img/goku.jpg" alt="Visual de Unity Game">
                 <span class="project-logo-mark"><i class="devicon-unity-plain"></i>Unity Game</span>
@@ -1962,7 +2026,7 @@
                 <span><i class="devicon-unity-plain"></i>Unity</span>
                 <span><i class="devicon-csharp-plain"></i>C#</span>
               </div>
-              <button class="project-action" type="button" onclick="goToSlide(11)">Ver caso</button>
+              <button class="project-action" type="button" onclick="goToSlide(12)">Ver caso</button>
             </article>
           </div>
         </div>
@@ -2010,6 +2074,55 @@
               </a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="spartapdf">
+      <div class="content">
+        <h2 class="section-title">SpartaPDF.com</h2>
+        <div class="project-showcase">
+          <div class="project-copy">
+            <span class="eyebrow">WEB · REACT · CLOUDFLARE</span>
+            <h3>Convertidor PDF publicado como producto real</h3>
+            <p>SpartaPDF es una aplicación web enfocada en convertir imágenes a PDF y trabajar con documentos directamente desde el navegador, con una experiencia limpia, rápida y preparada para despliegue público.</p>
+            <p class="muted">Proyecto desplegado en dominio propio y conectado a Cloudflare, con foco en producto, SEO, rendimiento y uso real.</p>
+            <div class="tech-tags">
+              <span class="tech-logo" title="React"><i class="devicon-react-original"></i><span>React</span></span>
+              <span class="tech-logo" title="TypeScript"><i class="devicon-typescript-plain"></i><span>TypeScript</span></span>
+              <span class="tech-logo" title="Cloudflare"><i class="fa-solid fa-cloud"></i><span>Cloudflare</span></span>
+              <span class="tech-logo" title="PDF"><i class="fa-solid fa-file-pdf"></i><span>PDF tools</span></span>
+            </div>
+            <div class="project-stack">
+              <a class="project-action" href="https://spartapdf.com" target="_blank" rel="noopener noreferrer">Ver web <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a class="project-action" href="https://github.com/CarlosDam90/HermesPDF" target="_blank" rel="noopener noreferrer">Ver código <i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div class="screenshots landscape-shots">
+            <a class="screenshot-main sparta-preview" href="https://spartapdf.com" target="_blank" rel="noopener noreferrer">
+              <div class="sparta-preview-panel">
+                <img class="sparta-preview-logo" src="https:https://carlosdam90.github.io/Portafolio/img/" alt="Logo de SpartaPDF">
+                <div>
+                  <div class="sparta-preview-title">Sparta<span>PDF</span></div>
+                  <p class="sparta-preview-copy">Herramientas PDF en el navegador: conversión, organización y edición ligera de documentos.</p>
+                </div>
+              </div>
+              <span class="shot-label">SpartaPDF.com</span>
+            </a>
+              <div class=""screenshot-thumb">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" alt="Captura de Parking Maps mostrando el detalle de una plaza">
+                <span class="shot-label">Detalle</span>
+              </a>
+          </div>
+             <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" alt="Captura de Parking Maps mostrando el detalle de una plaza">
+                <span class="shot-label">Detalle</span>
+              </a>
+          </div>
+            
         </div>
       </div>
     </section>
@@ -2380,7 +2493,7 @@
       ['Cerrar menú', 'Close menu'],
       ['Portfolio', 'Portfolio'],
       ['Navegación rápida', 'Quick navigation'],
-      ['17 slides', '17 slides'],
+      ['18 slides', '18 slides'],
       ['Perfil', 'Profile'],
       ['Cierre', 'Final sections'],
       ['FULL STACK DEVELOPER · JUNIOR PROFILE', 'FULL STACK DEVELOPER · JUNIOR PROFILE'],
@@ -2395,6 +2508,7 @@
       ['Valor añadido', 'Added value'],
       ['Proyectos', 'Projects'],
       ['Baro', 'Baro'],
+      ['SpartaPDF', 'SpartaPDF'],
       ['ParkynGnow', 'ParkynGnow'],
       ['Star Wars', 'Star Wars'],
       ['Compraventa', 'Ticket resale'],
@@ -2460,6 +2574,18 @@
       ['Web · Responsive', 'Web · Responsive'],
       ['Compraventa', 'Ticket resale'],
       ['Proyecto web orientado a maquetación, navegación y experiencia de compra clara.', 'Web project focused on layout, navigation, and a clear purchase experience.'],
+      ['Web · Producto real', 'Web · Real product'],
+      ['Aplicación web publicada para convertir imágenes a PDF y trabajar con documentos desde el navegador.', 'Published web app to convert images to PDF and work with documents from the browser.'],
+      ['Ver web', 'View website'],
+      ['SpartaPDF en capturas', 'SpartaPDF screenshots'],
+      ['WEB · REACT · CLOUDFLARE', 'WEB · REACT · CLOUDFLARE'],
+      ['Convertidor PDF publicado como producto real', 'PDF converter published as a real product'],
+      ['SpartaPDF es una aplicación web enfocada en convertir imágenes a PDF y trabajar con documentos directamente desde el navegador, con una experiencia limpia, rápida y preparada para despliegue público.', 'SpartaPDF is a web app focused on converting images to PDF and working with documents directly from the browser, with a clean, fast experience ready for public deployment.'],
+      ['Proyecto desplegado en dominio propio y conectado a Cloudflare, con foco en producto, SEO, rendimiento y uso real.', 'Project deployed on a custom domain and connected to Cloudflare, focused on product, SEO, performance, and real usage.'],
+      ['Ver web', 'View website'],
+      ['Ver código', 'View code'],
+      ['Herramientas PDF en el navegador: conversión, organización y edición ligera de documentos.', 'PDF tools in the browser: conversion, organization, and light document editing.'],
+      ['Web publicada', 'Published website'],
       ['Videojuego · Unity', 'Video game · Unity'],
       ['Primer acercamiento a escenas, lógica de juego, interacción y comportamiento del jugador.', 'First approach to scenes, game logic, interaction, and player behavior.'],
       ['App móvil + API', 'Mobile app + API'],
@@ -2634,7 +2760,7 @@
 
       menuLinks.forEach((link) => {
         const linkSlide = Number(link.dataset.slide);
-        const isProjectParent = linkSlide === 6 && currentSlide >= 6 && currentSlide <= 11;
+        const isProjectParent = linkSlide === 6 && currentSlide >= 6 && currentSlide <= 12;
         link.classList.toggle('is-active', linkSlide === currentSlide || isProjectParent);
       });
     }
