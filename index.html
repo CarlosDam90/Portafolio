@@ -404,8 +404,8 @@
 
     .featured-projects {
       display: grid;
-      grid-template-columns: 0.86fr 1.14fr;
-      gap: 9px;
+      grid-template-columns: minmax(300px, 0.9fr) minmax(520px, 1.1fr);
+      gap: 12px;
       align-items: stretch;
     }
 
@@ -617,20 +617,54 @@
     .project-grid-small {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      gap: 5px;
     }
 
     .project-grid-small .project-card {
-      padding: 8px;
+      min-height: 82px;
+      display: flex;
+      flex-direction: column;
+      padding: 5px;
+    }
+
+    .project-grid-small .project-stack {
+      margin-top: auto;
     }
 
     .project-grid-small .project-stack span {
-      padding: 3px 5px;
-      font-size: 0.52rem;
+      padding: 1px 3px;
+      font-size: 0.36rem;
+      gap: 3px;
     }
 
     .project-grid-small .project-action {
-      margin-top: 5px;
+      margin-top: 2px;
+      padding: 2px 5px;
+      font-size: 0.42rem;
+    }
+
+    .sparta-card .project-visual {
+      display: grid;
+      place-items: center;
+      min-height: 24px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(244, 201, 93, 0.18), transparent 44%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.92));
+    }
+
+    .sparta-card .project-visual img {
+      width: min(72%, 104px);
+      height: 18px;
+      min-height: 0;
+      object-fit: contain;
+      opacity: 0.95;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.32));
+    }
+
+    .sparta-card .project-visual::after {
+      background:
+        linear-gradient(180deg, rgba(3, 7, 18, 0), rgba(3, 7, 18, 0.18)),
+        linear-gradient(90deg, rgba(244, 201, 93, 0.08), transparent 54%);
     }
 
     .project-card.featured p {
@@ -639,8 +673,8 @@
     }
 
     .project-card .card-label {
-      margin-bottom: 5px;
-      font-size: 0.58rem;
+      margin-bottom: 2px;
+      font-size: 0.42rem;
     }
 
     .project-card.featured h3 {
@@ -649,15 +683,15 @@
     }
 
     .project-grid-small h3 {
-      margin-bottom: 3px;
-      font-size: 0.82rem;
+      margin-bottom: 1px;
+      font-size: 0.58rem;
     }
 
     .project-grid-small small {
       display: block;
-      min-height: 24px;
-      font-size: 0.62rem;
-      line-height: 1.22;
+      min-height: 14px;
+      font-size: 0.42rem;
+      line-height: 1.08;
     }
 
     .project-number {
@@ -668,6 +702,12 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.85rem;
       line-height: 1;
+    }
+
+    .project-grid-small .project-number {
+      right: 6px;
+      top: 4px;
+      font-size: 1.12rem;
     }
 
     .project-copy {
@@ -792,12 +832,12 @@
     }
 
     .sparta-preview-panel {
-      width: min(100%, 720px);
-      min-height: 280px;
+      width: min(100%, 900px);
+      min-height: 430px;
       display: grid;
       place-items: center;
-      gap: 16px;
-      padding: 38px;
+      gap: 26px;
+      padding: 58px;
       text-align: center;
       background:
         radial-gradient(circle at 50% 12%, rgba(255, 204, 91, 0.2), transparent 38%),
@@ -805,9 +845,13 @@
     }
 
     .sparta-preview-logo {
-      width: 88px;
-      height: 88px;
+      width: min(92%, 620px);
+      height: 240px;
       object-fit: contain;
+      padding: 28px 38px;
+      border: 1px solid rgba(244, 201, 93, 0.28);
+      border-radius: 20px;
+      background: rgba(3, 7, 18, 0.44);
       filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.34));
     }
 
@@ -822,28 +866,39 @@
     }
 
     .sparta-preview-copy {
-      max-width: 540px;
+      max-width: 760px;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 1.08rem;
       line-height: 1.55;
     }
 
-    .sparta-project-brand {
-      width: min(100%, 260px);
-      padding: 14px 18px;
-      border: 1px solid rgba(244, 201, 93, 0.28);
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(244, 201, 93, 0.16), transparent 48%),
-        rgba(3, 7, 18, 0.48);
+    .sparta-gallery {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+      gap: 18px;
     }
 
-    .sparta-project-brand img {
+    .sparta-gallery .screenshot-main {
       width: 100%;
-      height: 74px;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.34));
+      max-width: none;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+    }
+
+    .sparta-gallery .screenshot-column {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .sparta-gallery .screenshot-thumb {
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 10;
+      border-radius: 16px;
     }
 
     .screenshot-main img,
@@ -1966,10 +2021,10 @@
           </article>
 
           <div class="project-grid-small">
-            <article class="project-card">
+            <article class="project-card sparta-card">
               <span class="project-number">02</span>
               <div class="project-visual">
-                <img src="https://spartapdf.com/favicon.svg" alt="Visual de SpartaPDF">
+                <img src="https://carlosdam90.github.io/Portafolio/spartapdflogo.png" alt="Visual de SpartaPDF">
                 <span class="project-logo-mark"><i class="fa-solid fa-file-pdf"></i>SpartaPDF</span>
               </div>
               <span class="card-label">Web · Producto real</span>
@@ -2111,38 +2166,33 @@
               <span class="tech-logo" title="Cloudflare"><i class="fa-solid fa-cloud"></i><span>Cloudflare</span></span>
               <span class="tech-logo" title="PDF"><i class="fa-solid fa-file-pdf"></i><span>PDF tools</span></span>
             </div>
-            <div class="sparta-project-brand">
-              <img src="https://carlosdam90.github.io/Portafolio/spartapdflogo.png" alt="Logo de SpartaPDF">
-            </div>
             <div class="project-stack">
               <a class="project-action" href="https://spartapdf.com" target="_blank" rel="noopener noreferrer">Ver web <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
               <a class="project-action" href="https://github.com/CarlosDam90/HermesPDF" target="_blank" rel="noopener noreferrer">Ver código <i class="fa-brands fa-github"></i></a>
             </div>
           </div>
 
-          <div class="screenshots landscape-shots">
+          <div class="screenshots sparta-gallery">
             <a class="screenshot-main sparta-preview" href="https://spartapdf.com" target="_blank" rel="noopener noreferrer">
               <div class="sparta-preview-panel">
-                <img class="sparta-preview-logo" src="https:https://carlosdam90.github.io/Portafolio/spartapdf.jpg" alt="Logo de SpartaPDF">
+                <img class="sparta-preview-logo" src="https://carlosdam90.github.io/Portafolio/spartapdflogo.png" alt="Logo de SpartaPDF">
                 <div>
                   <div class="sparta-preview-title">Sparta<span>PDF</span></div>
                   <p class="sparta-preview-copy">Herramientas PDF en el navegador: conversión, organización y edición ligera de documentos.</p>
                 </div>
               </div>
-              <span class="shot-label">Web publicada</span>
+              <span class="shot-label">SpartaPDF.com</span>
             </a>
-              <div class=""screenshot-thumb">
-              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" target="_blank" rel="noopener noreferrer">
-                <img src="https://carlosdam90.github.io/Portafolio/spartapdf1.jpg" alt="Captura de Parking Maps mostrando el detalle de una plaza">
-                <span class="shot-label">Detalle</span>
+            <div class="screenshot-column">
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/spartapdf.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/spartapdf.jpg" alt="Captura de SpartaPDF mostrando la portada">
+                <span class="shot-label">Home</span>
               </a>
-          </div>
-             <div class="screenshot-column">
-              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" target="_blank" rel="noopener noreferrer">
-                <img src="https://carlosdam90.github.io/Portafolio/img/captura10.jpg" alt="Captura de Parking Maps mostrando el detalle de una plaza">
-                <span class="shot-label">Detalle</span>
+              <a class="screenshot-thumb" href="https://carlosdam90.github.io/Portafolio/spartapdf1.jpg" target="_blank" rel="noopener noreferrer">
+                <img src="https://carlosdam90.github.io/Portafolio/spartapdf1.jpg" alt="Captura de SpartaPDF mostrando la herramienta">
+                <span class="shot-label">Herramienta</span>
               </a>
-          </div>
+            </div>
             
         </div>
       </div>
@@ -2254,7 +2304,7 @@
 
     <section class="slide" id="unity">
       <div class="content">
-        <h2 class="section-title">Unity Game </h2>
+        <h2 class="section-title">Unity Game</h2>
         <div class="project-showcase">
           <div class="project-copy">
             <span class="eyebrow">VIDEOJUEGO · ESCENAS · INTERACCION</span>
