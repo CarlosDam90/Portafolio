@@ -58,6 +58,7 @@
     /* Equal-size solar planets */
     .stack-board .stack-node.dotnet{width:104px;height:104px}
     .stack-board .stack-node.dotnet .stack-icon{width:62px;height:62px}
+    .stack-board .stack-node:nth-child(14){left:32%;top:34%}
     @media(max-width:760px){.stack-board .stack-node.dotnet{width:76px;height:76px}.stack-board .stack-node.dotnet .stack-icon{width:48px;height:48px}}
     /* Stable project previews: the phone frame never moves or gets cropped on hover */
     #work .case-media,#work .phone-shell,#work .case-media img,#work .case-media video,#work .baro-brand,#work .sparta-brand{transform:none!important}
@@ -155,7 +156,8 @@
           ['git','git.svg','Git','Versionado','#f05032','Control de versiones y trabajo incremental.'],
           ['github','github.svg','GitHub','Código','#f2f2f2','Repositorios, colaboración y entrega.'],
           ['docker','docker.svg','Docker','Infraestructura','#2496ed','Entornos reproducibles y servicios aislados.'],
-          ['cloudflare','cloudflare.svg','Cloudflare','Delivery','#f48120','Despliegue, rendimiento y publicación web.']
+          ['cloudflare','cloudflare.svg','Cloudflare','Delivery','#f48120','Despliegue, rendimiento y publicación web.'],
+          ['java','java.svg','Java','Backend · Mobile','#e76f00','Desarrollo orientado a objetos, aplicaciones backend y ecosistema Android.']
         ];
         stack.innerHTML='<canvas class="stack-canvas" aria-hidden="true"></canvas><div class="shell"><div class="stack-head"><h2 class="title">Stack <span class="serif">tecnológico.</span></h2></div><div class="stack-board">'+technologies.map(t=>`<article class="stack-node ${t[0]}" style="--node-color:${t[4]}"><div class="stack-icon"><img src="tech/${t[1]}" alt=""></div><h3>${t[2]}</h3><small>${t[3]}</small><p class="stack-detail">${t[5]}</p></article>`).join('')+'</div></div>';
         oldLab.replaceWith(stack);
