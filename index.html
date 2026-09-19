@@ -159,8 +159,9 @@
           ['cloudflare','cloudflare.svg','Cloudflare','Delivery','#f48120','Despliegue, rendimiento y publicación web.'],
           ['java','java.svg','Java','Backend · Mobile','#e76f00','Desarrollo orientado a objetos, aplicaciones backend y ecosistema Android.']
         ];
-        stack.innerHTML='<canvas class="stack-canvas" aria-hidden="true"></canvas><div class="shell"><div class="stack-head"><h2 class="title">Stack <span class="serif">tecnológico.</span></h2></div><div class="stack-board">'+technologies.map(t=>`<article class="stack-node ${t[0]}" style="--node-color:${t[4]}"><div class="stack-icon"><img src="tech/${t[1]}" alt=""></div><h3>${t[2]}</h3><small>${t[3]}</small><p class="stack-detail">${t[5]}</p></article>`).join('')+'</div></div>';
+        stack.innerHTML='<canvas class="stack-canvas" aria-hidden="true"></canvas><div class="shell"><div class="stack-head"><h2 class="title">Stack <span class="serif">tecnológico.</span></h2></div><div class="stack-board">'+technologies.map(t=>`<article class="stack-node ${t[0]}" style="--node-color:${t[4]}"><div class="stack-icon"><img src="${t[1]}" data-file="${t[1]}" alt="Logo de ${t[2]}"></div><h3>${t[2]}</h3><small>${t[3]}</small><p class="stack-detail">${t[5]}</p></article>`).join('')+'</div></div>';
         oldLab.replaceWith(stack);
+        stack.querySelectorAll('.stack-icon img').forEach(img=>img.addEventListener('error',()=>{if(img.dataset.fallback)return;img.dataset.fallback='true';img.src='tech/'+img.dataset.file}));
         if(oldProcess&&!oldProcess.classList.contains('contact'))oldProcess.remove();
         document.querySelectorAll('a[href="#lab"]').forEach(link=>link.textContent='Stack');
 
