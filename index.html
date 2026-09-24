@@ -96,6 +96,22 @@
     .education-cap{position:absolute;z-index:6;right:-17px;top:-19px;width:72px;height:72px;display:grid;place-items:center;border:1px solid rgba(201,255,74,.4);border-radius:21px;color:var(--acid);background:linear-gradient(145deg,rgba(157,140,255,.24),rgba(16,16,20,.96) 48%,rgba(255,89,62,.2));box-shadow:0 18px 45px rgba(0,0,0,.42),0 0 35px rgba(201,255,74,.08);transform:rotate(7deg);transition:transform .55s var(--ease),box-shadow .55s var(--ease)}.education-cap:after{content:"";position:absolute;right:9px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--hot);box-shadow:0 0 14px var(--hot)}.education-cap svg{width:45px;height:45px;overflow:visible}.hero-profile-panel:hover .education-cap{transform:rotate(-4deg) translateY(-5px) scale(1.05);box-shadow:0 24px 55px rgba(0,0,0,.48),0 0 42px rgba(201,255,74,.15)}
     @media(max-width:650px){.education-cap{right:9px;top:-25px;width:62px;height:62px;border-radius:18px}.education-cap svg{width:39px;height:39px}}
   </style>
+  <style>
+    .pc-cover-host{height:100svh;min-height:620px;padding:0;overflow:hidden;background:#050709}
+    .pc-cover-host iframe{display:block;width:100%;height:100%;border:0;background:#050709}
+    .nav{transition:opacity .35s ease,transform .35s ease}
+    .nav.cover-hidden{opacity:0;transform:translateY(-18px);pointer-events:none}
+    .mobile-dock{display:none}
+    @media(max-width:760px){
+      .pc-cover-host{min-height:760px;height:max(760px,100svh)}
+      body{padding-bottom:76px}
+      .mobile-dock{position:fixed;z-index:86;display:grid;grid-template-columns:repeat(4,1fr);left:12px;right:12px;bottom:max(10px,env(safe-area-inset-bottom));padding:7px;border:1px solid rgba(255,255,255,.12);border-radius:21px;background:rgba(10,10,14,.86);box-shadow:0 18px 55px rgba(0,0,0,.48);backdrop-filter:blur(20px);transition:opacity .25s ease,transform .35s ease}
+      body.mobile-overlay-open .mobile-dock{opacity:0;pointer-events:none;transform:translateY(120%)}
+      .mobile-dock a{display:grid;place-items:center;gap:4px;min-height:48px;border-radius:15px;color:#89868f;font:700 9px/1 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.02em}
+      .mobile-dock a:before{content:"";width:6px;height:6px;border-radius:50%;background:#55525b;transition:.25s}
+      .mobile-dock a:active,.mobile-dock a:hover{color:#fff;background:rgba(255,255,255,.05)}.mobile-dock a:active:before,.mobile-dock a:hover:before{background:var(--hot);box-shadow:0 0 12px var(--hot)}
+    }
+  </style>
 </head>
 <body class="loading">
   <aside class="section-rail" aria-label="Progreso por secciones"><button class="rail-dot active" data-target="top" aria-label="Inicio"></button><button class="rail-dot" data-target="profile" aria-label="Perfil"></button><button class="rail-dot" data-target="work" aria-label="Proyectos"></button><button class="rail-dot" data-target="lab" aria-label="Tecnologías"></button><button class="rail-dot" data-target="contact" aria-label="Contacto"></button></aside>
@@ -104,7 +120,9 @@
   <div class="command" role="dialog" aria-modal="true" aria-label="Navegación rápida"><div class="command-card"><div class="command-head">QUICK NAVIGATION · ESC TO CLOSE</div><a href="#work"><span>Proyectos</span><span>01</span></a><a href="#profile"><span>Perfil</span><span>02</span></a><a href="#lab"><span>Stack & proceso</span><span>03</span></a><a href="#contact"><span>Contacto</span><span>04</span></a></div></div>
   <header class="nav"><div class="nav-in"><a href="#top" class="brand"><i></i>Carlos Blasco</a><nav class="links" aria-label="Navegación principal"><a href="#work" data-es="Proyectos" data-en="Work">Proyectos</a><a href="#profile" data-es="Perfil" data-en="About">Perfil</a><a href="#lab">Lab</a><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></nav><div class="nav-actions"><button class="round-btn command-trigger" aria-label="Abrir navegación rápida">⌘ K</button><button class="round-btn lang" aria-label="Cambiar idioma">EN</button><button class="round-btn menu" aria-label="Abrir menú" aria-expanded="false">☰</button></div></div></header>
   <main id="top">
-    <section class="hero"><div class="shell"><div class="hero-top"><div class="availability" data-es="Disponible para nuevas oportunidades" data-en="Available for new opportunities">Disponible para nuevas oportunidades</div><div class="hero-index">PORTFOLIO / 2026</div></div><h1 class="hero-title"><span class="row"><span class="word" data-es="Software que" data-en="Software with">Software que</span></span><span class="row"><span class="word"><em data-es="funciona." data-en="purpose.">funciona.</em></span></span></h1><div class="hero-bottom hero-bottom-minimal"><div class="hero-cta"><span class="scroll-chip">SCROLL TO EXPLORE</span><a class="circle-link magnetic" href="#work" data-es="Explorar proyectos ↘" data-en="Explore work ↘">Explorar proyectos ↘</a></div></div></div></section>
+    <section class="hero pc-cover-host" aria-label="Portada interactiva">
+      <iframe src="workstation-cover.html" title="Portada interactiva de Carlos Blasco" loading="eager"></iframe>
+    </section>
     <div class="ticker"><div class="ticker-track"><span>.NET MAUI <b>✦</b></span><span>ASP.NET CORE <b>✦</b></span><span>REACT <b>✦</b></span><span>MYSQL <b>✦</b></span><span>ANDROID <b>✦</b></span><span>PRODUCT THINKING <b>✦</b></span><span>.NET MAUI <b>✦</b></span><span>ASP.NET CORE <b>✦</b></span><span>REACT <b>✦</b></span><span>MYSQL <b>✦</b></span><span>ANDROID <b>✦</b></span><span>PRODUCT THINKING <b>✦</b></span></div></div>
     <section id="profile"><div class="shell section-grid"><aside class="sticky-label">01 / PROFILE<br>SEVILLA, ES<figure class="profile-photo reveal"><img src="https://carlosdam90.github.io/Portafolio/img/carlos.png" alt="Retrato de Carlos Blasco" loading="lazy"><span class="photo-mark" aria-hidden="true"></span></figure></aside><div class="profile-copy reveal"><div class="kicker" data-es="Perfil profesional" data-en="Professional profile">Perfil profesional</div><p class="lead" data-es="No me limito a escribir código. <span>Conecto las piezas</span> necesarias para convertir una necesidad en un producto claro, mantenible y listo para crecer." data-en="I don't stop at writing code. <span>I connect the pieces</span> required to turn a need into a clear, maintainable product ready to grow.">No me limito a escribir código. <span>Conecto las piezas</span> necesarias para convertir una necesidad en un producto claro, mantenible y listo para crecer.</p><div class="profile-meta"><div class="meta"><small data-es="Enfoque" data-en="Focus">Enfoque</small><strong>Full Stack / Mobile</strong><em data-es="Desarrollo de producto de principio a fin" data-en="End-to-end product development">Desarrollo de producto de principio a fin</em></div><div class="meta"><small data-es="Formación principal" data-en="Main education">Formación principal</small><strong data-es="Ciclo Superior en Desarrollo de Aplicaciones Multiplataforma" data-en="Higher Vocational Degree in Cross-Platform Application Development">Ciclo Superior en Desarrollo de Aplicaciones Multiplataforma</strong><em>ILERNA · Sevilla</em></div><div class="meta"><small data-es="Estudios universitarios" data-en="University studies">Estudios universitarios</small><strong data-es="Ingeniería Aeroespacial" data-en="Aerospace Engineering">Ingeniería Aeroespacial</strong><em data-es="Universidad de Sevilla · No finalizada" data-en="University of Seville · Not completed">Universidad de Sevilla · No finalizada</em></div><div class="meta"><small data-es="Ubicación" data-en="Location">Ubicación</small><strong data-es="Sevilla, España" data-en="Seville, Spain">Sevilla, España</strong><em data-es="Presencial / Remoto" data-en="On-site / Remote">Presencial / Remoto</em></div></div></div></div></section>
     <section id="work"><div class="shell"><div class="work-head reveal"><div><div class="kicker">02 / SELECTED WORK</div><h2 class="title" data-es="Proyectos <span class='serif'>personales.</span>" data-en="Personal <span class='serif'>projects.</span>">Proyectos <span class="serif">personales.</span></h2></div><div class="view-note" data-es="PROYECTOS REALES" data-en="REAL PROJECTS">PROYECTOS REALES</div></div><div class="cases">
@@ -117,6 +135,7 @@
     <section><div class="shell"><div class="kicker reveal">04 / PROCESS</div><h2 class="title reveal" data-es="Cómo convierto una idea <span class='serif'>en software.</span>" data-en="How I turn an idea <span class='serif'>into software.</span>">Cómo convierto una idea <span class="serif">en software.</span></h2><div class="process-list reveal"><div class="process-row"><span>01</span><h3 data-es="Entender el problema" data-en="Understand the problem">Entender el problema</h3><i>↘</i></div><div class="process-row"><span>02</span><h3 data-es="Diseñar una solución clara" data-en="Design a clear solution">Diseñar una solución clara</h3><i>↘</i></div><div class="process-row"><span>03</span><h3 data-es="Construir y conectar" data-en="Build and connect">Construir y conectar</h3><i>↘</i></div><div class="process-row"><span>04</span><h3 data-es="Probar, publicar y mejorar" data-en="Test, ship and improve">Probar, publicar y mejorar</h3><i>↘</i></div></div></div></section>
     <section class="contact" id="contact"><div class="shell"><div class="contact-box reveal"><div><div class="kicker">05 / LET'S TALK</div><h2 data-es="¿Hablamos?" data-en="Let's talk?">¿Hablamos?</h2></div><div class="contact-actions"><a class="contact-btn primary magnetic" href="mailto:carlos.blasco.dev@gmail.com">carlos.blasco.dev@gmail.com ↗</a><a class="contact-btn magnetic" href="https://linkedin.com/in/carlos-blasco-dominguez-32771815a/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="contact-btn magnetic" href="https://github.com/CarlosDam90" target="_blank" rel="noopener">GitHub ↗</a><a class="contact-btn cv-btn magnetic" href="Carlos-Blasco-CV.pdf" target="_blank" rel="noopener" download><span class="pdf-icon" aria-hidden="true">PDF</span><span data-es="Descargar CV" data-en="Download CV">Descargar CV</span></a></div></div><footer class="footer"><span>© <span id="year"></span> Carlos Blasco</span><span data-es="Software · Producto · Experiencia" data-en="Software · Product · Experience">Software · Producto · Experiencia</span></footer></div></section>
   </main>
+  <nav class="mobile-dock" aria-label="Navegación móvil"><a href="#top">Inicio</a><a href="#work">Proyectos</a><a href="#lab">Stack</a><a href="#contact">Contacto</a></nav>
   <div class="demo-modal" role="dialog" aria-modal="true" aria-label="Demo del proyecto"><div class="demo-frame"><span class="demo-title">PROJECT DEMO</span><button class="demo-close">Cerrar ✕</button><video controls playsinline preload="metadata"><source src="barovideo.mp4" type="video/mp4"></video></div></div>
   <script>
     const qs=(s,p=document)=>p.querySelector(s),qsa=(s,p=document)=>[...p.querySelectorAll(s)];
@@ -131,7 +150,7 @@
     let language='es';qs('.lang').addEventListener('click',e=>{language=language==='es'?'en':'es';document.documentElement.lang=language;qsa('[data-es]').forEach(x=>x.innerHTML=x.dataset[language]);e.currentTarget.textContent=language==='es'?'EN':'ES'});qs('#year').textContent=new Date().getFullYear();
     const rail=qsa('.rail-dot'),observed=qsa('#top,#profile,#work,#lab,#contact');rail.forEach(dot=>dot.addEventListener('click',()=>document.getElementById(dot.dataset.target).scrollIntoView({behavior:'smooth'})));const railObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)rail.forEach(dot=>dot.classList.toggle('active',dot.dataset.target===entry.target.id))}),{rootMargin:'-45% 0px -45% 0px'});observed.forEach(section=>railObserver.observe(section));
     const demo=qs('.demo-modal'),demoVideo=qs('video',demo),demoSource=qs('source',demo),demoTitle=qs('.demo-title',demo);function toggleDemo(open,trigger){if(open&&trigger){demoSource.src=trigger.dataset.video;demoTitle.textContent=trigger.dataset.title;demoVideo.load()}demo.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';if(open)demoVideo.play().catch(()=>{});else demoVideo.pause()}qsa('.media-play,.demo-link').forEach(trigger=>trigger.addEventListener('click',event=>{event.preventDefault();toggleDemo(true,trigger)}));qs('.demo-close').addEventListener('click',()=>toggleDemo(false));demo.addEventListener('click',event=>{if(event.target===demo)toggleDemo(false)});addEventListener('keydown',event=>{if(event.key==='Escape')toggleDemo(false)});
-    let lastY=scrollY,velocity=0;addEventListener('scroll',()=>{velocity+=(scrollY-lastY-velocity)*.18;lastY=scrollY;qs('.hero-title').style.transform=`skewY(${Math.max(-2.5,Math.min(2.5,velocity*.018))}deg)`},{passive:true});setInterval(()=>velocity*=.72,40);
+    let lastY=scrollY,velocity=0;addEventListener('scroll',()=>{velocity+=(scrollY-lastY-velocity)*.18;lastY=scrollY;const scrollHero=qs('.hero-title');if(scrollHero)scrollHero.style.transform=`skewY(${Math.max(-2.5,Math.min(2.5,velocity*.018))}deg)`},{passive:true});setInterval(()=>velocity*=.72,40);
     let trailStamp=0;addEventListener('pointermove',event=>{if(matchMedia('(pointer:coarse)').matches||performance.now()-trailStamp<34)return;trailStamp=performance.now();const dot=document.createElement('i');dot.className='trail-dot';dot.style.left=event.clientX+'px';dot.style.top=event.clientY+'px';document.body.append(dot);setTimeout(()=>dot.remove(),650)},{passive:true});
   </script>
   <script>
@@ -200,6 +219,38 @@
         stack.addEventListener('pointermove',e=>{const r=stack.getBoundingClientRect();stack.style.setProperty('--mx',`${e.clientX-r.left}px`);stack.style.setProperty('--my',`${e.clientY-r.top}px`)});
         nodes.forEach(node=>{node.addEventListener('pointermove',e=>{const r=node.getBoundingClientRect();node.style.setProperty('--local-x',`${e.clientX-r.left}px`);node.style.setProperty('--local-y',`${e.clientY-r.top}px`)});node.addEventListener('pointerenter',()=>{const ar=node.getBoundingClientRect();stack.style.setProperty('--glow',`color-mix(in srgb, ${getComputedStyle(node).getPropertyValue('--node-color')} 18%, transparent)`);nodes.forEach(other=>{other.classList.toggle('active',other===node);if(other!==node){const r=other.getBoundingClientRect(),dx=Math.sign(r.left-ar.left),dy=Math.sign(r.top-ar.top);other.style.setProperty('--push-x',`${dx*16}px`);other.style.setProperty('--push-y',`${dy*12}px`)}});draw(node)});node.addEventListener('pointerleave',()=>{nodes.forEach(other=>{other.classList.remove('active');other.style.setProperty('--push-x','0px');other.style.setProperty('--push-y','0px')});stack.style.setProperty('--glow','rgba(157,140,255,.13)');draw()})});
       }
+    })();
+  </script>
+  <script>
+    (() => {
+      const navigation = document.querySelector('.nav');
+      const cover = document.querySelector('.pc-cover-host');
+      if (!navigation || !cover) return;
+      const updateNavigation = () => navigation.classList.toggle('cover-hidden', window.scrollY < cover.offsetHeight * .72);
+      updateNavigation();
+      addEventListener('scroll', updateNavigation, {passive:true});
+      addEventListener('resize', updateNavigation, {passive:true});
+      addEventListener('message', event => {
+        if (event.origin !== location.origin) return;
+        if (event.data?.type === 'portfolio:navigate') {
+          const destination = document.getElementById(event.data.target);
+          if (destination) destination.scrollIntoView({behavior:'smooth'});
+        }
+        if (event.data?.type === 'portfolio:project') {
+          const projects = [...document.querySelectorAll('#work .case')];
+          const destination = projects[event.data.index];
+          if (destination) destination.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+        if (event.data?.type === 'portfolio:overlay') document.body.classList.toggle('mobile-overlay-open',Boolean(event.data.open));
+      });
+      document.addEventListener('click', event => {
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+        const destination = document.querySelector(link.getAttribute('href'));
+        if (!destination) return;
+        event.preventDefault();
+        destination.scrollIntoView({behavior:'smooth'});
+      }, true);
     })();
   </script>
 </body>
