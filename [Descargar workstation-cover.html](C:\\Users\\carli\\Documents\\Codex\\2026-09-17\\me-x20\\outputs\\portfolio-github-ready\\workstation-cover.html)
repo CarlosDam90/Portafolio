@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07101a">
+  <title>Carlos Blasco | Portada workstation</title>
+  <style>
+    :root{--red:#ff4e3b;--lime:#b9f34a;--white:#f7f7f3;--muted:#aab3bc;--glass:rgba(6,12,19,.82)}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#05080b;color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,a{font:inherit}
+    .viewport{min-height:100svh;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 70% 30%,#19222c,#05080b 68%)}
+    .scene{position:relative;width:100vw;height:100svh;min-height:620px;overflow:hidden;isolation:isolate;background-color:#080d12;background-image:url("office-workstation.png");background-repeat:no-repeat;background-size:113% 113%;background-position:100% 50%;box-shadow:0 0 90px #000}
+    .scene:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(3,7,12,.9) 0%,rgba(3,7,12,.66) 24%,rgba(3,7,12,.14) 50%,transparent 70%),linear-gradient(180deg,rgba(2,5,8,.5),transparent 22%,rgba(2,5,8,.08))}
+    .topbar{position:absolute;z-index:20;left:4.6%;right:4.6%;top:2.2%;height:5.3%;display:flex;align-items:center;padding:0 1.4%;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(4,9,14,.62);backdrop-filter:blur(14px);font-size:clamp(7px,.72vw,14px)}
+    .brand,.topnav button{border:0;background:none;color:#fff;cursor:pointer}
+    .brand{display:flex;align-items:center;gap:.75em;font-weight:750}
+    .brand:before{content:"";width:.7em;aspect-ratio:1;border-radius:50%;background:var(--red);box-shadow:0 0 .9em rgba(255,78,59,.5)}
+    .topnav{display:flex;gap:2.2em;margin:auto}
+    .topnav button{color:#d8dde1;transition:color .2s,transform .2s}
+    .topnav button:hover{color:#fff;transform:translateY(-2px)}
+    .nav-pill{padding:.62em 1em;border:1px solid rgba(255,255,255,.17);border-radius:999px;color:#fff;font:600 .82em/1 ui-monospace,Consolas,monospace}
+    .hero-copy{position:absolute;z-index:10;left:5.1%;top:15%;width:36%;}
+    .availability{display:flex;align-items:center;gap:.75em;margin-bottom:2.1em;color:#c6ced5;font:500 clamp(7px,.72vw,14px)/1.2 ui-monospace,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+    .availability:before{content:"";width:.58em;aspect-ratio:1;border-radius:50%;background:#5cff2f;box-shadow:0 0 1.2em #5cff2f}
+    .hero-name{margin:0;font-size:clamp(3.2rem,6.5vw,8.2rem);line-height:.67;letter-spacing:-.075em}
+    .hero-name span{display:block}
+    .hero-name .surname{color:var(--red);font-family:Georgia,"Times New Roman",serif;font-weight:500;font-style:italic;transform:translateX(.02em)}
+    .role{margin:2.4em 0 0;color:#d6dde3;font:500 clamp(8px,.82vw,16px)/1.2 ui-monospace,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase}
+    .actions{display:flex;align-items:center;gap:1em;margin-top:3em}
+    .primary,.secondary{display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;text-decoration:none;font-weight:750;transition:transform .25s,box-shadow .25s}
+    .primary{width:7.2em;aspect-ratio:1;border-radius:50%;background:var(--red);color:#090b0e;font-size:clamp(8px,.8vw,15px);line-height:1.05;text-align:center;box-shadow:0 18px 45px rgba(255,78,59,.2)}
+    .secondary{gap:.75em;padding:1.1em 1.45em;border:1px solid rgba(255,255,255,.19);border-radius:999px;background:rgba(4,9,14,.46);color:#fff;font-size:clamp(8px,.76vw,14px);backdrop-filter:blur(10px)}
+    .primary:hover,.secondary:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,0,0,.34)}
+    .socials{display:flex;gap:.75em;margin-top:2em}
+    .socials a{width:2.8em;aspect-ratio:1;display:grid;place-items:center;border:1px solid rgba(255,255,255,.19);border-radius:50%;background:rgba(4,9,14,.5);color:#fff;text-decoration:none;font:700 clamp(7px,.66vw,12px)/1 ui-monospace,Consolas,monospace;transition:transform .22s,border-color .22s}
+    .socials a:hover{transform:translateY(-4px) rotate(-4deg);border-color:var(--red)}
+    .screen-ui{position:absolute;z-index:8;left:0;top:0;width:720px;height:560px;overflow:hidden;transform-origin:0 0;border:1px solid rgba(151,187,216,.28);border-radius:12px;background:radial-gradient(circle at 85% 0,rgba(47,104,150,.2),transparent 35%),linear-gradient(145deg,#0c1b29,#050d15);color:#dce8f2;filter:brightness(1.14);box-shadow:inset 0 0 35px rgba(0,0,0,.65),0 0 18px rgba(0,0,0,.7);backface-visibility:hidden}
+    .screen-ui:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(255,255,255,.05) 4px)}
+    .screen-top{height:66px;display:flex;align-items:center;gap:14px;padding:0 24px;border-bottom:1px solid rgba(190,214,233,.16);font:700 13px/1 ui-monospace,Consolas,monospace;letter-spacing:.08em}
+    .screen-led{width:9px;aspect-ratio:1;border-radius:50%;background:var(--lime);box-shadow:0 0 14px var(--lime)}
+    .screen-top strong{color:#fff}.screen-top span{color:#6f8496}.screen-clock{margin-left:auto;color:#8da0b0!important}
+    .screen-overview{height:494px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:26px;padding:26px}
+    .screen-photo{height:100%;margin:0;overflow:hidden;border:1px solid rgba(190,214,233,.25);border-radius:14px;background:#172532;box-shadow:0 18px 36px rgba(0,0,0,.28)}
+    .screen-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:58% center}
+    .formation{position:relative;min-width:0;min-height:0;overflow:hidden}
+    .profile-scroll{height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:smooth;padding:2px 23px 26px 0;scrollbar-width:none}
+    .profile-scroll::-webkit-scrollbar{display:none}
+    .formation:hover .edu-card{border-color:rgba(185,243,74,.32);background:rgba(255,255,255,.06)}
+    .screen-eyebrow{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 20px;padding:0 0 15px;border:0;border-bottom:1px solid rgba(190,214,233,.16);background:none;color:#fff;font:800 27px/1.05 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.04em;text-align:left;cursor:pointer}
+    .screen-eyebrow:hover,.screen-eyebrow:focus-visible{color:var(--lime);outline:none}
+    .screen-eyebrow span:first-child{display:flex;align-items:center;gap:11px}.screen-eyebrow span:first-child:before{content:"";width:8px;height:8px;flex:0 0 auto;border-radius:50%;background:var(--lime);box-shadow:0 0 12px rgba(185,243,74,.7)}
+    .screen-eyebrow span:last-child{padding:7px 9px;border:1px solid rgba(185,243,74,.24);border-radius:8px;background:rgba(185,243,74,.07);color:var(--lime);font:800 12px/1 ui-monospace,Consolas,monospace;letter-spacing:.08em}
+    .education-list{display:grid;gap:18px}
+    .edu-card{display:grid;grid-template-columns:74px minmax(0,1fr);align-items:center;gap:18px;min-height:142px;padding:20px;border:1px solid rgba(190,214,233,.22);border-radius:13px;background:rgba(255,255,255,.045)}
+    .edu-logo{width:74px;height:74px;display:grid;place-items:center;border-radius:11px;background:#f5f7f9;color:#10202c;font-size:14px;font-weight:900}.edu-logo.us{padding:8px 5px;background:#861526}.edu-logo.us img{display:block;width:100%;height:auto;object-fit:contain}
+    .edu-card h2{margin:0 0 10px;color:#fff;font-size:23px;line-height:1.12;letter-spacing:-.025em}.edu-card p{margin:0;color:#aebdca;font:600 14px/1.45 ui-monospace,Consolas,monospace}
+    .languages-panel{margin-top:28px;padding-top:24px;border-top:1px solid rgba(190,214,233,.16)}
+    .languages-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}.languages-head small{display:block;margin-bottom:7px;color:var(--lime);font:800 11px/1 ui-monospace,Consolas,monospace;letter-spacing:.12em}.languages-head h3{margin:0;color:#fff;font-size:29px;line-height:1;letter-spacing:-.045em}.languages-head b{color:#6f8496;font:800 11px/1 ui-monospace,Consolas,monospace}
+    .language-list{display:grid;gap:10px}.language-row{padding:16px;border:1px solid rgba(190,214,233,.18);border-radius:12px;background:rgba(255,255,255,.035)}
+    .language-meta{display:flex;align-items:center;justify-content:space-between;gap:12px}.language-name{display:flex;align-items:center;gap:10px;min-width:0}.language-name strong{color:#fff;font-size:17px}.language-flag{width:31px;height:20px;display:block;flex:0 0 auto;overflow:hidden;border:1px solid rgba(255,255,255,.3);border-radius:4px;box-shadow:0 5px 12px rgba(0,0,0,.28)}.language-meta>span{color:var(--lime);font:800 11px/1 ui-monospace,Consolas,monospace;letter-spacing:.06em}
+    .language-bar{height:7px;margin-top:12px;overflow:hidden;border-radius:999px;background:rgba(190,214,233,.1)}.language-bar i{display:block;width:var(--level);height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--red),var(--lime));box-shadow:0 0 13px rgba(185,243,74,.3)}
+    .language-row p{margin:10px 0 0;color:#91a2b0;font:600 11px/1.4 ui-monospace,Consolas,monospace}
+    .screen-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.screen-fact{padding:14px;border:1px solid rgba(190,214,233,.14);border-radius:11px;background:rgba(185,243,74,.035)}.screen-fact small{display:block;margin-bottom:6px;color:#718596;font:700 9px/1 ui-monospace,Consolas,monospace;letter-spacing:.1em}.screen-fact strong{color:#fff;font-size:13px}
+    .scroll-meter{position:absolute;z-index:5;right:2px;top:3px;bottom:18px;width:8px;border:1px solid rgba(190,214,233,.17);border-radius:999px;background:rgba(3,9,14,.55);pointer-events:none}.scroll-meter i{position:absolute;left:1px;right:1px;top:1px;height:25%;border-radius:999px;background:var(--lime);box-shadow:0 0 12px rgba(185,243,74,.5);transform:translateY(calc(var(--scroll-ratio,0) * 300%));transition:transform .12s linear}.scroll-label{position:absolute;right:-6px;bottom:0;z-index:6;transform:rotate(90deg) translateX(100%);transform-origin:right bottom;color:#718596;font:700 8px/1 ui-monospace,Consolas,monospace;letter-spacing:.12em;pointer-events:none}
+    .scroll-fade{position:absolute;z-index:4;left:0;right:22px;bottom:0;height:38px;background:linear-gradient(transparent,#06101a 82%);pointer-events:none;transition:opacity .2s}.formation.at-end .scroll-fade{opacity:0}
+    .hint{position:absolute;right:2.3%;bottom:2.5%;z-index:12;padding:.65em .9em;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(4,9,14,.65);color:#b7c0c8;font:600 clamp(6px,.55vw,10px)/1 ui-monospace,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(10px)}
+    .project-object{position:absolute;z-index:16;padding:0;border:0;background:transparent;color:transparent;cursor:pointer;outline:none}
+    .project-object:before{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;background:rgba(255,244,218,.78);box-shadow:0 0 0 0 rgba(255,214,145,.25),0 0 8px rgba(255,221,164,.42);pointer-events:none;transform:translate(-50%,-50%);animation:object-point 2.8s ease-in-out infinite;transition:background .2s,box-shadow .2s,transform .2s}
+    .project-object:hover:before,.project-object:focus-visible:before{background:#fff4d7;box-shadow:0 0 0 5px rgba(255,214,145,.09),0 0 12px rgba(255,221,164,.62);transform:translate(-50%,-50%) scale(1.14)}
+    @keyframes object-point{0%,100%{opacity:.48;box-shadow:0 0 0 0 rgba(255,214,145,0),0 0 7px rgba(255,221,164,.3)}50%{opacity:.92;box-shadow:0 0 0 5px rgba(255,214,145,.08),0 0 11px rgba(255,221,164,.48)}}
+    .hot-baro{left:85.7%;top:56.5%;width:11.5%;height:18.5%;border-radius:50%}
+    .hot-sparta{left:72.3%;top:71.7%;width:27.2%;height:24%}
+    .education-modal{position:absolute;inset:0;z-index:60;display:grid;place-items:center;padding:6%;opacity:0;pointer-events:none;transition:opacity .28s ease}.education-modal[hidden]{display:none}
+    .education-modal.open{opacity:1;pointer-events:auto}
+    .education-backdrop{position:absolute;inset:0;border:0;background:rgba(2,6,10,.76);backdrop-filter:blur(16px);cursor:pointer}
+    .education-dialog{position:relative;z-index:1;width:min(980px,88%);max-height:84%;overflow:auto;padding:38px 42px 42px;border:1px solid rgba(190,214,233,.24);border-radius:24px;background:radial-gradient(circle at 92% 0,rgba(73,132,177,.18),transparent 34%),linear-gradient(145deg,rgba(12,27,41,.98),rgba(5,13,21,.98));box-shadow:0 35px 90px rgba(0,0,0,.58);transform:translateY(18px) scale(.97);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+    .education-modal.open .education-dialog{transform:none}
+    .education-dialog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;color:var(--lime);font:800 13px/1 ui-monospace,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+    .education-close{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:22px;transition:.2s}
+    .education-close:hover,.education-close:focus-visible{border-color:var(--lime);background:rgba(185,243,74,.08);outline:none;transform:rotate(6deg)}
+    .education-dialog>h2{margin:0 0 28px;color:#fff;font-size:clamp(34px,4vw,58px);line-height:.95;letter-spacing:-.055em}
+    .education-dialog>h2 em{color:var(--red);font-family:Georgia,"Times New Roman",serif;font-weight:500}
+    .education-modal-list{display:grid;gap:16px}
+    .education-modal-item{display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;align-items:center;padding:24px;border:1px solid rgba(190,214,233,.18);border-radius:17px;background:rgba(255,255,255,.035)}
+    .education-modal-logo{width:110px;height:96px;display:grid;place-items:center;border-radius:14px;background:#f5f7f9;color:#10202c;font-size:18px;font-weight:900}.education-modal-logo.us{padding:12px 8px;background:#861526}.education-modal-logo.us img{display:block;width:100%;height:auto;object-fit:contain}
+    .education-modal-item h3{margin:0 0 8px;color:#fff;font-size:clamp(21px,2.2vw,31px);line-height:1.08;letter-spacing:-.025em}
+    .education-modal-item p{margin:0 0 5px;color:#c3d0da;font-size:17px;line-height:1.4}.education-modal-item strong{color:var(--lime);font:800 14px/1.4 ui-monospace,Consolas,monospace;letter-spacing:.04em;text-transform:uppercase}
+    .education-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.education-tags span{padding:7px 10px;border:1px solid rgba(190,214,233,.18);border-radius:999px;background:rgba(255,255,255,.04);color:#d8e2e9;font:700 12px/1 ui-monospace,Consolas,monospace}
+    .mobile-profile,.mobile-projects{display:none}
+    @media(max-width:800px){
+      html,body,.viewport{min-height:100%;height:100%}
+      .viewport{display:block;overflow:hidden}
+      .scene{width:100%;height:100%;min-height:760px;aspect-ratio:auto;background-size:auto 100%;background-position:69% center;box-shadow:none}
+      .scene:before{background:linear-gradient(180deg,rgba(2,6,10,.74) 0%,rgba(2,6,10,.3) 35%,rgba(2,6,10,.72) 75%,rgba(2,6,10,.94) 100%),linear-gradient(90deg,rgba(2,6,10,.8),rgba(2,6,10,.13) 80%)}
+      .topbar{left:14px;right:14px;top:12px;height:50px;padding:0 16px;font-size:12px;background:rgba(4,9,14,.72)}
+      .topnav{display:none}.nav-pill{margin-left:auto;padding:8px 11px}
+      .hero-copy{left:22px;right:22px;top:92px;width:auto}
+      .availability{margin-bottom:20px;font-size:9px;letter-spacing:.11em}
+      .hero-name{font-size:clamp(58px,18vw,76px);line-height:.69}
+      .role{margin-top:24px;font-size:9px;letter-spacing:.17em}
+      .cta-cluster{width:max-content;display:grid;grid-template-columns:88px minmax(0,1fr);grid-template-rows:auto auto;gap:9px 12px;margin-top:23px}
+      .actions{display:contents}
+      .primary{width:88px;font-size:10px;box-shadow:0 16px 36px rgba(255,78,59,.24)}
+      .primary{grid-column:1;grid-row:1/3;align-self:center}.secondary{grid-column:2;grid-row:1;padding:14px 16px;font-size:10px;background:rgba(4,9,14,.68)}
+      .socials{grid-column:2;grid-row:2;gap:8px;margin:0}.socials a{width:34px;font-size:9px;background:rgba(4,9,14,.7)}.socials a:nth-child(2),.socials a:nth-child(4){display:none}
+      .screen-ui,.hint,.project-object{display:none}
+      .mobile-profile{position:absolute;z-index:12;display:grid;grid-template-columns:106px minmax(0,1fr);gap:13px;left:14px;right:14px;bottom:150px;min-height:210px;padding:12px;border:1px solid rgba(190,214,233,.24);border-radius:22px;background:radial-gradient(circle at 100% 0,rgba(73,132,177,.19),transparent 44%),rgba(5,13,21,.89);box-shadow:0 24px 55px rgba(0,0,0,.42);backdrop-filter:blur(18px);overflow:hidden}
+      .mobile-photo{position:relative;min-width:0;margin:0;overflow:hidden;border-radius:15px;background:#172532}.mobile-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:56% center}.mobile-photo:after{content:"";position:absolute;inset:auto 9px 9px auto;width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+      .mobile-education{min-width:0;display:flex;flex-direction:column;justify-content:center}
+      .mobile-education-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;color:#fff}.mobile-education-head span{font:800 15px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:-.02em}.mobile-education-head b{padding:6px 7px;border:1px solid rgba(185,243,74,.28);border-radius:7px;color:var(--lime);font:800 9px/1 ui-monospace,Consolas,monospace}
+      .mobile-edu{display:grid;grid-template-columns:38px minmax(0,1fr);gap:9px;align-items:center;padding:9px;border:1px solid rgba(190,214,233,.16);border-radius:11px;background:rgba(255,255,255,.04)}.mobile-edu+.mobile-edu{margin-top:7px}.mobile-edu-logo{width:38px;height:38px;display:grid;place-items:center;border-radius:8px;background:#f5f7f9;color:#10202c;font-size:7px;font-weight:900}.mobile-edu-logo.us{padding:5px 3px;background:#861526}.mobile-edu-logo.us img{width:100%;height:auto}.mobile-edu strong{display:block;color:#fff;font-size:10px;line-height:1.15}.mobile-edu small{display:block;margin-top:4px;color:#9fb0bd;font:600 7px/1.25 ui-monospace,Consolas,monospace}
+      .mobile-profile-hit{position:absolute;inset:0;z-index:3;border:0;background:transparent;cursor:pointer}.mobile-profile-hit:focus-visible{outline:2px solid var(--lime);outline-offset:-5px;border-radius:22px}
+      .mobile-projects{position:absolute;z-index:13;left:14px;right:14px;bottom:86px;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+      .mobile-project{position:relative;display:grid;grid-template-columns:9px 1fr auto;gap:9px;align-items:center;min-width:0;padding:13px 14px;border:1px solid rgba(255,255,255,.15);border-radius:15px;background:rgba(4,9,14,.82);color:#fff;text-align:left;backdrop-filter:blur(15px);cursor:pointer}.mobile-project i{width:7px;height:7px;border-radius:50%;background:#f6c468;box-shadow:0 0 12px #f6c468}.mobile-project span{min-width:0;font-size:12px;font-weight:800}.mobile-project small{color:#87939d;font:700 10px/1 ui-monospace,Consolas,monospace}.mobile-project:active{transform:scale(.97)}
+      .education-modal{position:fixed;padding:12px;place-items:end center}
+      .education-dialog{width:100%;max-height:88svh;padding:24px 18px 22px;border-radius:25px 25px 16px 16px}
+      .education-dialog-head{margin-bottom:12px;font-size:10px}.education-close{width:38px;height:38px}
+      .education-dialog>h2{margin-bottom:20px;font-size:37px}
+      .education-modal-list{gap:10px}.education-modal-item{grid-template-columns:64px minmax(0,1fr);gap:13px;padding:14px}.education-modal-logo{width:64px;height:58px;border-radius:10px;font-size:11px}.education-modal-logo.us{padding:8px 5px}.education-modal-item h3{margin-bottom:5px;font-size:16px}.education-modal-item p{margin-bottom:3px;font-size:12px}.education-modal-item strong{font-size:9px}.education-tags{gap:5px;margin-top:9px}.education-tags span{padding:5px 7px;font-size:8px}
+    }
+    @media(max-width:360px){.hero-copy{top:82px}.hero-name{font-size:55px}.availability{font-size:8px}.mobile-profile{grid-template-columns:92px minmax(0,1fr)}.mobile-project{padding-inline:10px}.mobile-project small{display:none}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.project-object:before{animation:none;opacity:.72}}
+  </style>
+</head>
+<body>
+  <main class="viewport">
+    <section class="scene" aria-label="Portada de Carlos Blasco sobre un espacio de trabajo">
+      <header class="topbar">
+        <button class="brand" type="button" data-parent-target="top">Carlos Blasco</button>
+        <nav class="topnav" aria-label="Navegación principal">
+          <button type="button" data-parent-target="work">Proyectos</button>
+          <button type="button" data-open-education>Formación</button>
+          <button type="button" data-parent-target="lab">Stack</button>
+          <button type="button" data-parent-target="contact">Contacto</button>
+        </nav>
+        <span class="nav-pill">ES</span>
+      </header>
+
+      <div class="hero-copy">
+        <div class="availability">Disponible para nuevas oportunidades</div>
+        <h1 class="hero-name"><span>CARLOS</span><span class="surname">BLASCO</span></h1>
+        <p class="role">Full Stack · Mobile Developer</p>
+        <div class="cta-cluster">
+          <div class="actions">
+            <button class="primary" type="button" data-parent-target="work">Explorar<br>proyectos →</button>
+            <a class="secondary" href="Carlos-Blasco-CV.pdf" target="_blank" rel="noopener">Descargar CV ↓</a>
+          </div>
+          <div class="socials" aria-label="Redes y contacto">
+            <a href="https://linkedin.com/in/carlos-blasco-dominguez-32771815a/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://github.com/CarlosDam90" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+            <a href="https://spartapdf.com/" target="_blank" rel="noopener" aria-label="SpartaPDF">WEB</a>
+            <a href="mailto:carlos.blasco.dev@gmail.com" aria-label="Correo">@</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-ui" aria-label="Interfaz interactiva del monitor">
+        <header class="screen-top"><i class="screen-led"></i><strong>CARLOS.OS</strong><span>/ perfil</span><span class="screen-clock">ONLINE</span></header>
+        <div class="screen-overview">
+          <figure class="screen-photo"><img src="carlos.png" alt="Carlos Blasco"></figure>
+          <section class="formation" aria-label="Formación académica">
+            <div class="profile-scroll" tabindex="0" aria-label="Perfil académico e idiomas. Desplaza para ver más información">
+              <button class="screen-eyebrow" type="button" data-open-education aria-label="Ver la formación académica ampliada"><span>Formación académica</span><span>02 ↗</span></button>
+              <div class="education-list">
+                <article class="edu-card"><div class="edu-logo">ILERNA</div><div><h2>Desarrollo de Aplicaciones Multiplataforma</h2><p>Grado Superior · ILERNA Sevilla</p></div></article>
+                <article class="edu-card"><div class="edu-logo us"><img src="universidad-sevilla.png" alt="Universidad de Sevilla"></div><div><h2>Ingeniería Aeroespacial</h2><p>Universidad de Sevilla · No finalizado</p></div></article>
+              </div>
+              <section class="languages-panel" aria-labelledby="languages-title">
+                <header class="languages-head"><div><small>COMUNICACIÓN / 02</small><h3 id="languages-title">Idiomas</h3></div><b>NIVEL</b></header>
+                <div class="language-list">
+                  <article class="language-row"><div class="language-meta"><div class="language-name"><svg class="language-flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg><strong>Español</strong></div><span>NATIVO</span></div><div class="language-bar" aria-hidden="true"><i style="--level:100%"></i></div><p>Comunicación oral y escrita.</p></article>
+                  <article class="language-row"><div class="language-meta"><div class="language-name"><svg class="language-flag" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="9"/><path d="M0 0 60 40M60 0 0 40" stroke="#c8102e" stroke-width="5"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/><path d="M30 0v40M0 20h60" stroke="#c8102e" stroke-width="7"/></svg><strong>Inglés</strong></div><span>B2 · INTERMEDIO ALTO</span></div><div class="language-bar" aria-hidden="true"><i style="--level:72%"></i></div><p>Documentación técnica, lectura y conversación.</p></article>
+                </div>
+                <div class="screen-facts"><article class="screen-fact"><small>UBICACIÓN</small><strong>Sevilla, ES</strong></article><article class="screen-fact"><small>MODALIDAD</small><strong>Presencial / Remoto</strong></article></div>
+              </section>
+            </div>
+            <div class="scroll-meter" aria-hidden="true"><i></i></div><span class="scroll-label" aria-hidden="true">SCROLL</span><div class="scroll-fade" aria-hidden="true"></div>
+          </section>
+        </div>
+      </div>
+      <section class="mobile-profile" aria-label="Resumen de la formación de Carlos Blasco">
+        <button class="mobile-profile-hit" type="button" data-open-education aria-label="Abrir la formación académica completa"></button>
+        <figure class="mobile-photo"><img src="carlos.png" alt="Carlos Blasco"></figure>
+        <div class="mobile-education">
+          <div class="mobile-education-head"><span>Formación</span><b>VER +</b></div>
+          <article class="mobile-edu"><div class="mobile-edu-logo">ILERNA</div><div><strong>Desarrollo de Aplicaciones Multiplataforma</strong><small>GRADO SUPERIOR · SEVILLA</small></div></article>
+          <article class="mobile-edu"><div class="mobile-edu-logo us"><img src="universidad-sevilla.png" alt=""></div><div><strong>Ingeniería Aeroespacial</strong><small>UNIVERSIDAD DE SEVILLA</small></div></article>
+        </div>
+      </section>
+      <div class="mobile-projects" aria-label="Accesos rápidos a proyectos">
+        <button class="mobile-project" type="button" data-project-index="0"><i aria-hidden="true"></i><span>Baro</span><small>01 ↘</small></button>
+        <button class="mobile-project" type="button" data-project-index="1"><i aria-hidden="true"></i><span>SpartaPDF</span><small>02 ↘</small></button>
+      </div>
+      <button class="project-object hot-baro" type="button" data-project-index="0" aria-label="Ir al proyecto Baro">Baro</button>
+      <button class="project-object hot-sparta" type="button" data-project-index="1" aria-label="Ir al proyecto SpartaPDF">SpartaPDF</button>
+      <span class="hint">Perfil · Formación · Idiomas</span>
+      <div class="education-modal" hidden role="dialog" aria-modal="true" aria-labelledby="education-title">
+        <button class="education-backdrop" type="button" data-close-education aria-label="Cerrar formación"></button>
+        <section class="education-dialog">
+          <header class="education-dialog-head"><span>Formación / 02</span><button class="education-close" type="button" data-close-education aria-label="Cerrar">×</button></header>
+          <h2 id="education-title">Formación <em>académica.</em></h2>
+          <div class="education-modal-list">
+            <article class="education-modal-item">
+              <div class="education-modal-logo">ILERNA</div>
+              <div><h3>Desarrollo de Aplicaciones Multiplataforma</h3><p>Ciclo Formativo de Grado Superior</p><strong>ILERNA Sevilla</strong><div class="education-tags"><span>C#</span><span>.NET</span><span>Java</span><span>SQL</span><span>Android</span></div></div>
+            </article>
+            <article class="education-modal-item">
+              <div class="education-modal-logo us"><img src="universidad-sevilla.png" alt="Universidad de Sevilla"></div>
+              <div><h3>Ingeniería Aeroespacial</h3><p>Estudios universitarios no finalizados</p><strong>Universidad de Sevilla</strong></div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const scene=document.querySelector('.scene');
+    const screen=document.querySelector('.screen-ui');
+    const profileScroll=document.querySelector('.profile-scroll');
+    const formation=document.querySelector('.formation');
+    const educationModal=document.querySelector('.education-modal');
+    const educationClose=document.querySelector('.education-close');
+
+    function solve(matrix){
+      const n=matrix.length;
+      for(let c=0;c<n;c++){
+        let p=c;for(let r=c+1;r<n;r++)if(Math.abs(matrix[r][c])>Math.abs(matrix[p][c]))p=r;
+        [matrix[c],matrix[p]]=[matrix[p],matrix[c]];
+        const d=matrix[c][c];for(let k=c;k<=n;k++)matrix[c][k]/=d;
+        for(let r=0;r<n;r++){if(r===c)continue;const f=matrix[r][c];for(let k=c;k<=n;k++)matrix[r][k]-=f*matrix[c][k]}
+      }
+      return matrix.map((row,i)=>row[n]);
+    }
+
+    function fitScreen(){
+      if(matchMedia('(max-width:800px)').matches){screen.style.transform='none';return}
+      const w=scene.clientWidth,h=scene.clientHeight;
+      const source=[[0,0],[720,0],[720,560],[0,560]];
+      const target=[[w*.551,h*.294],[w*.758,h*.286],[w*.756,h*.553],[w*.549,h*.518]];
+      const equations=[];
+      source.forEach(([x,y],i)=>{const[X,Y]=target[i];equations.push([x,y,1,0,0,0,-X*x,-X*y,X],[0,0,0,x,y,1,-Y*x,-Y*y,Y])});
+      const[a,b,c,d,e,f,g,j]=solve(equations);
+      screen.style.transform=`matrix3d(${a},${d},0,${g},${b},${e},0,${j},0,0,1,0,${c},${f},0,1)`;
+    }
+
+    document.querySelectorAll('[data-parent-target]').forEach(button=>button.addEventListener('click',()=>window.parent.postMessage({type:'portfolio:navigate',target:button.dataset.parentTarget},location.origin)));
+    document.querySelectorAll('[data-project-index]').forEach(button=>button.addEventListener('click',()=>window.parent.postMessage({type:'portfolio:project',index:Number(button.dataset.projectIndex)},location.origin)));
+    function openEducation(){educationModal.hidden=false;window.parent.postMessage({type:'portfolio:overlay',open:true},location.origin);requestAnimationFrame(()=>{educationModal.classList.add('open');educationClose.focus()})}
+    function closeEducation(){educationModal.classList.remove('open');window.parent.postMessage({type:'portfolio:overlay',open:false},location.origin);setTimeout(()=>{educationModal.hidden=true},280)}
+    document.querySelectorAll('[data-open-education]').forEach(button=>button.addEventListener('click',openEducation));
+    document.querySelectorAll('[data-close-education]').forEach(button=>button.addEventListener('click',closeEducation));
+    addEventListener('keydown',event=>{if(event.key==='Escape'&&!educationModal.hidden)closeEducation()});
+    function updateProfileScroll(){const max=profileScroll.scrollHeight-profileScroll.clientHeight;const ratio=max>0?profileScroll.scrollTop/max:0;formation.style.setProperty('--scroll-ratio',ratio);formation.classList.toggle('at-end',ratio>.97)}
+    profileScroll.addEventListener('scroll',updateProfileScroll,{passive:true});updateProfileScroll();
+    fitScreen();addEventListener('resize',fitScreen,{passive:true});
+  </script>
+</body>
+</html>
