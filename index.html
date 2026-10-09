@@ -3046,6 +3046,22 @@ html[data-palette="solar"] {
     height:39px
   }
 }
+
+    /* Estado de publicación de SoQara en Google Play */
+    .google-play-testing {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      margin-top: 24px;
+      padding: 11px 15px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+    }
+    .google-play-icon { width: 32px; height: 32px; flex: 0 0 32px; }
+    .google-play-testing strong { display: block; font-size: 13px; }
+    .google-play-testing span { display: block; color: var(--muted); font-size: 11px; }
   </style>
   <style>
    .pc-cover-host {
@@ -3524,6 +3540,18 @@ html[data-palette="solar"] {
          </span>
          <i>↗</i>
         </a>
+        <div class="google-play-testing" aria-label="Google Play: en período de pruebas cerradas">
+         <svg class="google-play-icon" viewBox="0 0 48 48" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#00d5ff" d="M8 5v38l20-19z"/>
+          <path fill="#00e69b" d="M8 5 30 19 28 24z"/>
+          <path fill="#ffce00" d="m28 24 12-8c2-1.5 2-3.5 0-5L30 19z"/>
+          <path fill="#ff3e69" d="m8 43 22-14 10-8c2-1.5 2-3.5 0-5L28 24z"/>
+         </svg>
+         <div>
+          <strong>Google Play</strong>
+          <span data-es="En período de pruebas cerradas" data-en="In closed testing">En período de pruebas cerradas</span>
+         </div>
+        </div>
        </div>
       </article>
       <article class="case reveal">
